@@ -1,0 +1,77 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBarStyle</item>
+
+        <item name="android:windowBackground">@color/custom_theme_color</item>
+        <item name="android:colorBackground">@color/custom_theme_color</item>
+        <item name="android:statusBarColor">@color/statusBarColor</item>
+
+
+
+        <item name="android:actionBarSize">45dp</item>
+        <!--
+        <item name="buttonStyle">@style/MyButtonStyle</item>
+
+        <item name="actionButtonStyle">@style/MyActionButton</item>
+
+
+        <item name="actionModeWebSearchDrawable">@style/MySearchView</item>
+-->
+
+        <item name="android:actionOverflowButtonStyle">@style/MyOverflowButtonStyle</item>
+
+    </style>
+
+    <style name="MyOverflowButtonStyle" parent="@android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/more</item>
+    </style>
+
+    <style name="MyActionBarStyle" parent="android:Widget.Holo.Light.ActionBar.Solid">
+        <item name="android:titleTextStyle">@style/MyTitleTextActionBarStyle</item>
+        <item name="android:background">#8E3E29</item>
+
+
+
+
+    </style>
+
+    <style name="MyTitleTextActionBarStyle" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="MyButtonStyle" parent="android:Widget.Holo.Light.Button">
+        <!--
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">24dip</item>
+        -->
+        <item name="android:paddingLeft">0dip</item>
+        <item name="android:paddingRight">0dip</item>
+        <item name="android:listPreferredItemPaddingRight">0dip</item>
+    </style>
+
+    <style name="MyActionButton" parent="android:Widget.Holo.ActionButton">
+        <item name="android:minWidth">2dip</item>
+        <item name="android:gravity">center</item>
+        <item name="android:scaleType">center</item>
+
+    </style>
+
+    <style name="MyH2TextViewStyle">
+        <item name="android:layout_marginTop">8dp</item>
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">#EADEDA</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">true</item>
+
+
+    </style>
+</resources>

@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item android:id="@+id/action_user_edit"
+        android:title="@string/action_detail_edit"
+        android:icon="@drawable/edit"
+        android:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_user_delete"
+        android:icon="@drawable/clear"
+        android:title="@string/action_detail_delete"
+        android:showAsAction="never"/>
+
+    <item android:id="@+id/action_settings"
+        android:icon="@drawable/more"
+        android:title="@string/action_settings"
+        android:showAsAction="never" />
+</menu>

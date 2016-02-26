@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="color_control_normal">#1A000000</color>
+    <color name="color_control_activated">#111</color>
+
+
+    <color name="custom_theme_color">#F1F1F1</color>
+
+    <color name="statusBarColor">#401C12</color>
+
+    <color name="mySolidColor">#FFFFFF</color>
+
+
+</resources>

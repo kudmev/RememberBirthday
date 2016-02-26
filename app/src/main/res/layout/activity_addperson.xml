@@ -1,0 +1,125 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ActivityAddPerson">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+    >
+
+        <ImageView
+            android:id="@+id/user_image"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_face_add"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:onClick="onClickImage"
+            />
+
+        <EditText
+            android:id="@+id/add_name_person"
+            android:hint="@string/enter_name"
+            android:textColorHint="#aaa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="25dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="5dp"
+            android:textColor="#333"
+            android:textSize="18dp"
+            android:background="@drawable/textlines"
+            android:inputType="textCapWords"/>
+    </LinearLayout>
+
+    <TextView
+        style="@style/MyH2TextViewStyle"
+        android:text="День рождения"/>
+
+    <TextView
+        android:id="@+id/add_date_person"
+        android:drawableLeft="@drawable/calendar"
+        android:text=" добавить дату рождения"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingLeft="9dp"
+        android:paddingBottom="7dp"
+        android:textColor="#333"
+        android:clickable="true"
+        android:onClick="showDatePickerDialog"/>
+
+    <TextView
+        style="@style/MyH2TextViewStyle"
+        android:text="Заметка об имениннике"/>
+
+    <EditText
+        android:id="@+id/add_note_person"
+        android:hint="@string/enter_note"
+        android:textColorHint="#aaa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="25dp"
+        android:layout_margin="5dp"
+        android:paddingTop="4dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="5dp"
+        android:textColor="#333"
+        android:textSize="18dp"
+        android:background="@drawable/textlines"
+        android:inputType="textCapSentences"/>
+
+    <Button
+        android:id="@+id/add_contact_person"
+        android:text="@string/enter_contact"
+        android:gravity="left|center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:paddingTop="4dp"
+        android:paddingLeft="35dp"
+        android:paddingBottom="5dp"
+        android:textColor="#333"
+        android:textSize="16sp"
+        android:background="@drawable/button_selector"
+        android:onClick="pickContact"
+
+        />
+
+    <!-- android:background="@drawable/button_selector" -->
+
+    <TextView
+        android:id="@+id/text_title_phone"
+        style="@style/MyH2TextViewStyle"
+        android:text="Присоединенный номер"
+        android:visibility="invisible"/>
+
+    <EditText
+        android:id="@+id/add_phone_person"
+        android:hint="@string/enter_phone"
+        android:visibility="invisible"
+        android:textColorHint="#aaa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="25dp"
+        android:layout_margin="5dp"
+        android:paddingTop="4dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="5dp"
+        android:textColor="#333"
+        android:textSize="18dp"
+        android:background="@drawable/textlines"
+        android:inputType="textCapSentences"/>
+</LinearLayout>

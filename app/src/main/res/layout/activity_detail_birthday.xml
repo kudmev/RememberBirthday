@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="dmitrykuznetsov.rememberbirthday.features.birthday.detail.DetailBirthdayActivityVM" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            tools:context=".ActivityDetailPerson">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:drawableLeft="@drawable/ic_face"
+                android:drawablePadding="7dp"
+                android:drawableStart="@drawable/ic_face"
+                android:gravity="center_vertical"
+                android:text="@{viewModel.person.name}"
+                android:textColor="#333"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/MyH2TextViewStyle"
+                android:text="@string/age" />
+
+            <TextView
+                style="@style/TextViewDetail"
+                app:age="@{viewModel.person.dateInMillis}" />
+
+            <TextView
+                style="@style/MyH2TextViewStyle"
+                android:text="@string/nearest_birthday" />
+
+            <TextView
+                android:id="@+id/detail_date_person"
+                style="@style/TextViewDetail"
+                app:birthday="@{viewModel.person.dateInMillis}" />
+
+            <TextView
+                android:id="@+id/detail_title_note"
+                style="@style/MyH2TextViewStyle"
+                android:text="@string/note_birthday" />
+
+            <TextView
+                android:id="@+id/detail_note_person"
+                style="@style/TextViewDetail"
+                android:text="@{viewModel.person.note}" />
+
+            <TextView
+                android:id="@+id/detail_title_phone"
+                style="@style/MyH2TextViewStyle"
+                android:text="@string/phone" />
+
+            <RelativeLayout
+                android:id="@+id/detail_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/detail_sms_image"
+                    android:layout_toStartOf="@+id/detail_sms_image"
+                    android:background="@drawable/all_borders_one_pixel"
+                    android:drawableEnd="@drawable/call"
+                    android:drawableRight="@drawable/call"
+                    android:gravity="start|center_vertical"
+                    android:onClick="onClickCall"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="7dp"
+                    android:paddingTop="3dp"
+                    android:text="@{viewModel.person.bindPhone}"
+                    android:textColor="#333"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/detail_sms_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/all_borders_one_pixel"
+                    android:contentDescription="@string/image"
+                    android:onClick="onClickSms"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="7dp"
+                    android:paddingTop="3dp"
+                    android:src="@drawable/textsms" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

@@ -4,63 +4,57 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.os.Build;
+import android.databinding.ObservableLong;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.DatePicker;
-import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by ִלטענטי on 08.06.2015.
+ * Created by Dmitry Kuznetsov on 08.06.2015.
  */
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
-    private DateDialogListener dateDialogListener;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        //long millis=savedInstanceState.getLong("millis");
         Calendar c = Calendar.getInstance();
 
-        if (getArguments()!=null) {
-            Long millis=(Long)getArguments().getLong("millis");
-            c.setTimeInMillis(millis);
+        if (getArguments() != null) {
+            ObservableLong millis = getArguments().getParcelable("millis");
+            c.setTimeInMillis(millis.get());
         }
 
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
-        dialog.getDatePicker().setMaxDate(new Date().getTime());
-        //dialog.getDatePicker().se
+        DatePickerDialog dialog = new DatePickerDialog(getActivity(), R.style.DatePickerTheme, this, year, month, day);
 
+        dialog.getDatePicker().setMaxDate(new Date().getTime());
 
         return dialog;
-        // Create a new instance of DatePickerDialog and return it
-
     }
 
-    public interface DateDialogListener {
-        void onSetDate(Calendar calendar);
-    }
-
+    @Nullable
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        getActivity().getIntent().getBundleExtra("position");
-        if (activity!=null)
-            dateDialogListener = (DateDialogListener) activity;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        return super.onCreateView(inflater, container, savedInstanceState);
+
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        Calendar calendar=Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, day);
 
-        dateDialogListener.onSetDate(calendar);
+//        .onSetDate(calendar);
     }
 }

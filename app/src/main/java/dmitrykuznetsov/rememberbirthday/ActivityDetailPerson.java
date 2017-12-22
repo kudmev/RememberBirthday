@@ -3,14 +3,11 @@ package dmitrykuznetsov.rememberbirthday;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,16 +18,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import dmitrykuznetsov.rememberbirthday.features.birthday.edit.EditPersonActivity;
 
 /**
- * Created by ִלטענטי on 11.01.2016.
+ * Created by Dmitry Kuznetsov on 11.01.2016.
  */
-public class ActivityDetailPerson extends Activity implements ConfirmDeleteUserDialogFragment.NoticeDialogListener{
-    public static final int REQUEST_ADD_CODE=0;
-    public static final int REQUEST_MEDIA_CODE=1;
+public class ActivityDetailPerson extends Activity implements ConfirmDeleteUserDialogFragment.NoticeDialogListener {
+    public static final int REQUEST_ADD_CODE = 0;
 
     private TextView textName, textAge, textDate, textNote, textPhone, textTitlePhone, textTitleNote;
     private ImageView imageView;
@@ -46,16 +40,16 @@ public class ActivityDetailPerson extends Activity implements ConfirmDeleteUserD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailperson);
 
-        position=getIntent().getIntExtra("position", 0);
+        position = getIntent().getIntExtra("position", 0);
 
-        textName= (TextView) findViewById(R.id.detail_name_person);
-        textAge= (TextView) findViewById(R.id.detail_age_person);
-        textDate= (TextView) findViewById(R.id.detail_date_person);
-        textNote=(TextView) findViewById(R.id.detail_note_person);
-        textPhone=(TextView) findViewById(R.id.detail_phone_person);
-        textTitlePhone=(TextView) findViewById(R.id.detail_title_phone);
-        textTitleNote=(TextView) findViewById(R.id.detail_title_note);
-        imageView=(ImageView) findViewById(R.id.user_image);
+        textName = (TextView) findViewById(R.id.detail_name_person);
+        textAge = (TextView) findViewById(R.id.detail_age_person);
+        textDate = (TextView) findViewById(R.id.detail_date_person);
+        textNote = (TextView) findViewById(R.id.detail_note_person);
+        textPhone = (TextView) findViewById(R.id.detail_phone_person);
+        textTitlePhone = (TextView) findViewById(R.id.detail_title_phone);
+        textTitleNote = (TextView) findViewById(R.id.detail_title_note);
+        imageView = (ImageView) findViewById(R.id.user_image);
 
 
         loadDataUser();
@@ -72,22 +66,22 @@ public class ActivityDetailPerson extends Activity implements ConfirmDeleteUserD
         super.onResume();
     }
 
-    void loadDataUser(){
-        ContentResolver cr=getContentResolver();
-        String where=RememberContentProvider.UID + "=" + position;
-        Cursor c=cr.query(RememberContentProvider.CONTENT_URI, null, where, null, null);
+    void loadDataUser() {
+        ContentResolver cr = getContentResolver();
+        String where = RememberContentProvider.UID + "=" + position;
+        Cursor c = cr.query(RememberContentProvider.CONTENT_URI, null, where, null, null);
 
-        if (c.getCount()!=0) {
+        if (c.getCount() != 0) {
             while (c.moveToNext()) {
-                name =        c.getString(c.getColumnIndex(RememberContentProvider.NAME));
-                note =        c.getString(c.getColumnIndex(RememberContentProvider.NOTE));
-                date =        c.getString(c.getColumnIndex(RememberContentProvider.DATE_BIRTHDAY));
-                age =         c.getInt(c.getColumnIndex(RememberContentProvider.AGE_PERSON));
-                pathImage=    c.getString(c.getColumnIndex(RememberContentProvider.PATHIMAGE));
-                milliseconds= c.getLong(c.getColumnIndex(RememberContentProvider.DATE_BIRTHDAY_IN_SECONDS));
-                phone=        c.getString(c.getColumnIndex(RememberContentProvider.PHONE_NUMBER));
+                name = c.getString(c.getColumnIndex(RememberContentProvider.NAME));
+                note = c.getString(c.getColumnIndex(RememberContentProvider.NOTE));
+                date = c.getString(c.getColumnIndex(RememberContentProvider.DATE_BIRTHDAY));
+                age = c.getInt(c.getColumnIndex(RememberContentProvider.AGE_PERSON));
+                pathImage = c.getString(c.getColumnIndex(RememberContentProvider.PATHIMAGE));
+                milliseconds = c.getLong(c.getColumnIndex(RememberContentProvider.DATE_BIRTHDAY_IN_SECONDS));
+                phone = c.getString(c.getColumnIndex(RememberContentProvider.PHONE_NUMBER));
 
-                ViewGroup viewGroup=(ViewGroup) findViewById(R.id.detail_relative);
+                ViewGroup viewGroup = (ViewGroup) findViewById(R.id.detail_relative);
                 if ("".equals(phone)) {
                     textTitlePhone.setVisibility(View.GONE);
                     viewGroup.setVisibility(View.GONE);
@@ -100,13 +94,13 @@ public class ActivityDetailPerson extends Activity implements ConfirmDeleteUserD
             }
         }
 
-        if (MyHelperClass.isUserBirthdayToday(milliseconds)==true) {
-            date=getApplicationContext().getString(R.string.today);
+        if (MyHelperClass.isUserBirthdayToday(milliseconds) == true) {
+            date = getApplicationContext().getString(R.string.today);
             age++;
         }
 
-        Bitmap userImage=MyHelperClass.loadImageFromStorage(pathImage, position);
-        if (userImage!=null)
+        Bitmap userImage = MyHelperClass.loadImageFromStorage(pathImage, position);
+        if (userImage != null)
             imageView.setImageBitmap(userImage);
 
         textName.setText(name);
@@ -115,8 +109,7 @@ public class ActivityDetailPerson extends Activity implements ConfirmDeleteUserD
         if (note.equals("")) {
             textNote.setVisibility(View.GONE);
             textTitleNote.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             textNote.setVisibility(View.VISIBLE);
             textTitleNote.setVisibility(View.VISIBLE);
             textNote.setText(note);
@@ -132,16 +125,17 @@ public class ActivityDetailPerson extends Activity implements ConfirmDeleteUserD
 
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {
             case android.R.id.home:
-                intent=new Intent(getApplicationContext(), MainActivity.class);
+                intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.action_user_edit:
-                intent=new Intent(this, ActivityAddPerson.class);
+                intent = new Intent(this, EditPersonActivity.class);
                 intent.putExtra("position", position);
                 startActivityForResult(intent, REQUEST_ADD_CODE);
                 return true;
@@ -151,7 +145,7 @@ public class ActivityDetailPerson extends Activity implements ConfirmDeleteUserD
                 return true;
 
             case R.id.action_settings:
-                Intent i=new Intent(this, SettingsActivity.class);
+                Intent i = new Intent(this, SettingsActivity.class);
                 startActivity(i);
                 return true;
             default:
@@ -163,8 +157,8 @@ public class ActivityDetailPerson extends Activity implements ConfirmDeleteUserD
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==RESULT_OK) {
-            if (requestCode==0) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 0) {
                 loadDataUser();
             }
         }
@@ -172,8 +166,8 @@ public class ActivityDetailPerson extends Activity implements ConfirmDeleteUserD
 
     @Override
     public void onDialogPositiveClick() {
-        ContentResolver cr=getContentResolver();
-        String where=RememberContentProvider.UID+"="+position;
+        ContentResolver cr = getContentResolver();
+        String where = RememberContentProvider.UID + "=" + position;
         cr.delete(RememberContentProvider.CONTENT_URI, where, null);
         Toast.makeText(this, R.string.success_delete_user, Toast.LENGTH_LONG).show();
         finish();

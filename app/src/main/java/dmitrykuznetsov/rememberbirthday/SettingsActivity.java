@@ -1,14 +1,11 @@
 package dmitrykuznetsov.rememberbirthday;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.view.WindowManager;
 
 /**
- * Created by ִלטענטי on 06.01.2016.
+ * Created by Dmitry Kuznetsov on 06.01.2016.
  */
 public class SettingsActivity extends PreferenceActivity {
 

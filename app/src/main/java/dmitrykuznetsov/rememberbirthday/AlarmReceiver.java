@@ -4,13 +4,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
 /**
- * Created by Дмитрий on 23.07.2015.
+ * Created by Dmitry Kuznetsov on 23.07.2015.
  */
 public class AlarmReceiver extends BroadcastReceiver {
-    public static final String ACTION_REFRESH_DATA="dmitrykuznetsov.rememberbirthday.ACTION_REFRESH_DATA";
+    public static final String ACTION_REFRESH_DATA = "dmitrykuznetsov.rememberbirthday.ACTION_REFRESH_DATA";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -18,7 +17,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Log.d("AlarmReceiver", "AlarmReceiver");
 //        Toast.makeText(context, "Запустилась сигнализация обновления",
 //                Toast.LENGTH_LONG).show();
-        Intent servIntent=new Intent(context, ServiceDateUpdater.class);
+        Intent servIntent = new Intent(context, ServiceDateUpdater.class);
         context.startService(servIntent);
 
     }

@@ -4,22 +4,19 @@
     <string name="add_first_person">Добавьте первого именинника</string>
 
     <string name="near_daybirthdays">Ближайшие дни рождения:</string>
-    <string name="UpdateUsers">Ближайшие дни рождения:</string>
-    <string name="Add_name">Добавить именника</string>
-    <string name="Add_name_dialog">Добавление именника</string>
-    <string name="Add_date_birthday">Добавить дату рождения</string>
+
+
     <string name="yes">Да</string>
     <string name="cancel">Нет</string>
     <string name="success_delete_user">Пользователь был успешно удален.</string>
 
-    <string name="choose_name">Введите имя именника</string>
 
     <string name="enter_name">Имя</string>
-    <string name="enter_day">Дата рождения:</string>
+
     <string name="enter_note">Заметка</string>
-    <string name="enter_contact">Импортировать данные контакта</string>
+    <string name="import_phone">Импортировать телефон</string>
     <string name="enter_phone">+7 987-654-32-10</string>
-    <string name="happy_birthday">С днем рождения!</string>
+
 
     <string name="action_search">Поиск</string>
     <string name="action_add_name">Добавить именника</string>
@@ -29,7 +26,7 @@
     <string name="action_detail_delete">Удалить контакт</string>
     <string name="action_save">Сохранить</string>
 
-    <string name="summary_confirm_delete_user">Подтверждая действие, вы удалите полностью пользователя со всеми данными.</string>
+
     <string name="confirm_delete_user_dialog_title">Удалить контакт?</string>
     <string name="confirm_delete_user_dialog_message">Подтверждая действие, вы удалите полностью пользователя со всеми данными.</string>
 
@@ -44,39 +41,43 @@
     <string name="pref_enablecall_summary">Установите, чтобы приложение сигнализировало об именинниках</string>
 
     <string name="pref_enablevibrate">Вибрация</string>
-    <string name="pref_enablevibrate_summary">Установите, чтобы телефон вибрировал при уведомлении</string>
+
 
     <string name="pref_ringtone">Мелодия</string>
     <string name="pref_ringtone_summary">Установите мелодию для оповещения</string>
 
     <string name="pref_title_ringtonetime">Время для оповещения</string>
 
-    <string name="settings_listview">Настройки показа именинников</string>
-    <string name="pref_title_listdr_lastdays">Показ имен. за период времени</string>
 
     <string name="settime">Выбрать</string>
     <string name="canceltime">Отмена</string>
     <!--         END   PREFERENCES            -->
 
-    <string name="dont_put_data">Данные введены не правильно или неполно, пожалуйста, повторите ввод!</string>
-    <string name="hint_day">11</string>
-    <string name="hint_month">11</string>
-    <string name="hint_year">2011</string>
 
     <string name="age_person_let">лет</string>
     <string name="age_person_goda">года</string>
     <string name="age_person_god">год</string>
 
-    <string name="notificate_contenttitle">Ваш друг сегодня справляет день рождения!</string>
-    <string name="age_contenttext">Внимание!</string>
-    <string name="age_contentinfo">Срочно поздравь</string>
-    <string name="age_ticker">Имя Друга</string>
 
     <string name="title_main_actionbar">Напоминалка ДР</string>
     <string name="title_detailperson">Имя пользователя</string>
     <string name="title_addperson">Добавить именинника</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="wrong_name">Пожалуйста, введите имя!</string>
     <string name="wrong_date">Пожалуйста, введите дату рождения!</string>
+    <string name="error_user_not_found">Ошибка: пользователь не найден в базе данных</string>
+    <string name="image">Картинка</string>
+    <string name="age">Возраст</string>
+    <string name="nearest_birthday">День рождения</string>
+    <string name="note_birthday">Заметка об имениннике</string>
+    <string name="phone">Телефон</string>
+    <string name="bind_phone">Присоединенный номер</string>
+    <string name="add_date_birthday">добавить дату рождения</string>
+    <string name="date_bithday">День рождения</string>
+    <string name="bind_account">Присоединить контакт</string>
+    <string name="error_name">Заполните, пожалуйста, имя!</string>
+    <string name="error_date_millis">Заполните, пожалуйста, дату рождения</string>
+    <string name="dialog_select_date">Выберите дату рождения</string>
+    <string name="dialog_hint_date_message">Год рождения</string>
 </resources>

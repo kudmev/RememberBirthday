@@ -10,14 +10,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Дмитрий on 26.07.2015.
+ * Created by Dmitry Kuznetsov on 26.07.2015.
  */
 public class ServiceUpdateAlarmAfterReboot extends IntentService {
 
@@ -28,7 +27,7 @@ public class ServiceUpdateAlarmAfterReboot extends IntentService {
 
     private String ALARM_ACTION=AlarmNotificationReceiver.ACTION_SEND_NOTIFICATION;
     private Intent intentToFire=new Intent(ALARM_ACTION);
-    private int alarmType=AlarmManager.RTC_WAKEUP;
+    private int alarmType = AlarmManager.RTC_WAKEUP;
 
     @Override
     public void onCreate() {

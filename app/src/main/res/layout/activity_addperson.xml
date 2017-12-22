@@ -13,8 +13,7 @@
         android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
-        android:paddingBottom="5dp"
-    >
+        android:paddingBottom="5dp">
 
         <ImageView
             android:id="@+id/user_image"
@@ -40,7 +39,7 @@
             android:paddingBottom="5dp"
             android:textColor="#333"
             android:textSize="18dp"
-            android:background="@drawable/textlines"
+            android:background="@drawable/all_borders_one_pixel"
             android:inputType="textCapWords"/>
     </LinearLayout>
 
@@ -78,12 +77,12 @@
         android:paddingBottom="5dp"
         android:textColor="#333"
         android:textSize="18dp"
-        android:background="@drawable/textlines"
+        android:background="@drawable/all_borders_one_pixel"
         android:inputType="textCapSentences"/>
 
     <Button
         android:id="@+id/add_contact_person"
-        android:text="@string/enter_contact"
+        android:text="@string/import_phone"
         android:gravity="left|center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -120,6 +119,6 @@
         android:paddingBottom="5dp"
         android:textColor="#333"
         android:textSize="18dp"
-        android:background="@drawable/textlines"
+        android:background="@drawable/all_borders_one_pixel"
         android:inputType="textCapSentences"/>
 </LinearLayout>

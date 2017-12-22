@@ -6,6 +6,7 @@ import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TimePicker;
+
 import org.joda.time.LocalTime;
 
 public class TimePreference extends DialogPreference {
@@ -25,7 +26,7 @@ public class TimePreference extends DialogPreference {
         picker = new TimePicker(getContext());
         picker.setIs24HourView(true);
 
-        return(picker);
+        return (picker);
     }
 
     @Override
@@ -55,7 +56,7 @@ public class TimePreference extends DialogPreference {
 
     @Override
     protected Object onGetDefaultValue(TypedArray a, int index) {
-        return(a.getString(index));
+        return (a.getString(index));
     }
 
     @Override
@@ -65,8 +66,7 @@ public class TimePreference extends DialogPreference {
         if (restoreValue) {
             if (defaultValue == null) {
                 time = LocalTime.parse(getPersistedString("08:00:00.000"));
-            }
-            else {
+            } else {
                 time = LocalTime.parse(getPersistedString(defaultValue.toString()));
             }
         } else {

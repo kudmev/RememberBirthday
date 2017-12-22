@@ -8,17 +8,17 @@
         android:title="@string/action_search"
         android:icon="@drawable/search"
         android:actionViewClass="android.widget.SearchView"
-        android:showAsAction="ifRoom|collapseActionView"/>
+        app:showAsAction="ifRoom|collapseActionView"/>
     <item android:id="@+id/action_add_name"
 
         android:icon="@drawable/person_add"
         android:title="@string/action_add_name"
-        android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/action_settings"
         android:icon="@drawable/more"
         android:title="@string/action_settings"
-        android:showAsAction="never" />
+        app:showAsAction="never" />
 
 
 </menu>

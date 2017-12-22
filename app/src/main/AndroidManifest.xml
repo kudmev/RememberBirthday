@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dmitrykuznetsov.rememberbirthday"
-    android:versionName="1.0"
-    android:versionCode="1">
+    package="dmitrykuznetsov.rememberbirthday">
+
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.QUICKBOOT_POWERON" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-    <uses-sdk android:targetSdkVersion="22" android:minSdkVersion="16"/>
     <application
+        android:name=".App"
         android:allowBackup="true"
+        android:largeHeap="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
@@ -20,46 +22,54 @@
             android:name="android.app.default_searchable"
             android:value=".RememberSearchResults"/>
 
+
         <activity
-            android:name=".MainActivity"
+            android:name=".features.birthday.main.BirthdayActivity"
             android:label="@string/title_main_actionbar"
             android:theme="@style/AppTheme"
-            android:logo="@mipmap/logo"
-            android:launchMode="singleTop">
+            android:logo="@mipmap/logo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name=".features.birthday.add.AddPersonActivity"
+            android:label="@string/title_addperson"
+            android:theme="@style/AppTheme" />
+
+        <!--<activity-->
+            <!--android:name=".MainActivity"-->
+            <!--android:label="@string/title_main_actionbar"-->
+            <!--android:theme="@style/AppTheme"-->
+            <!--android:logo="@mipmap/logo">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+
         <activity
             android:name=".ActivityDetailPerson"
             android:label="@string/title_detailperson"
-            android:theme="@style/AppTheme"
-            android:icon="@drawable/backspace"
-            android:launchMode="singleTop">
-
-        </activity>
+            android:theme="@style/AppTheme" />
 
         <activity
             android:name=".ActivityAddPerson"
             android:label="@string/title_addperson"
+            android:theme="@style/AppTheme"/>
 
-            android:theme="@style/AppTheme"
-           >
-
-        </activity>
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/activity_pref_name">
-        </activity>
+            android:label="@string/activity_pref_name"/>
 
         <activity
             android:name=".RememberSearchResults"
-            android:label="@string/search_view_birthdays"
-            android:launchMode="singleTop">
+            android:label="@string/search_view_birthdays">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
                 <category android:name="ANDROID.INTENT.CATEGORY.DEFAULT"/>
@@ -67,24 +77,26 @@
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>
-
         </activity>
+        <activity android:name=".features.birthday.detail.DetailBirthdayActivity" />
+        <activity android:name=".features.birthday.edit.EditPersonActivity" />
+
 
         <receiver
-            android:name=".AlarmReceiver">
+            android:name=".AlarmReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="dmitrykuznetsov.rememberbirthday.ACTION_REFRESH_DATA"/>
             </intent-filter>
         </receiver>
 
-
         <receiver
-            android:name=".AlarmNotificationReceiver">
+            android:name=".AlarmNotificationReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="dmitrykuznetsov.rememberbirthday.ACTION_SEND_NOTIFICATION"/>
             </intent-filter>
         </receiver>
-
 
         <receiver
             android:name=".UpdateAlarmReceiverAfterReboot">
@@ -105,15 +117,14 @@
             android:permission="dmitrykuznetsov.rememberbirthday.MY_SERVICE_PERMISSION" />
 
         <service
-            android:name=".ServiceUpdateAlarmAfterReboot"
-            />
+            android:name=".ServiceUpdateAlarmAfterReboot"/>
 
         <provider
             android:name=".RememberContentProvider"
             android:authorities="dmitrykuznetsov.rememberbirthday.provider"
             android:enabled="true"
-            android:exported="true" >
-        </provider>
+            android:exported="false"/>
+
     </application>
 
 </manifest>

@@ -10,36 +10,37 @@ import java.io.FileNotFoundException;
 import java.util.Calendar;
 
 /**
- * Created by ִלטענטי on 31.01.2016.
+ * Created by Dmitry Kuznetsov on 31.01.2016.
  */
 public class MyHelperClass {
     public static final String TAG = "myLogs";
+
     public static String getAgeSuffix(int age, Context ctx, int flag) {
         String ageSuffix;
 
-        if (age%10>=2 && age%10<=4 && (age<5 || age>20)) {
-            ageSuffix=ctx.getString(R.string.age_person_goda);
-        }
-        else {
-            if (age%10!=1) {
-                ageSuffix=ctx.getString(R.string.age_person_let);
-            }
-            else {ageSuffix=ctx.getString(R.string.age_person_god);}
-        }
-        if (flag==0) {
-            return age + "\n" + ageSuffix ;
+        if (age % 10 >= 2 && age % 10 <= 4 && (age < 5 || age > 20)) {
+            ageSuffix = ctx.getString(R.string.age_person_goda);
         } else {
-            return age + " " + ageSuffix ;
+            if (age % 10 != 1) {
+                ageSuffix = ctx.getString(R.string.age_person_let);
+            } else {
+                ageSuffix = ctx.getString(R.string.age_person_god);
+            }
+        }
+        if (flag == 0) {
+            return age + "\n" + ageSuffix;
+        } else {
+            return age + " " + ageSuffix;
         }
 
     }
 
     public static boolean isUserBirthdayToday(long milliseconds) {
-        Calendar calendar=Calendar.getInstance();
-        Calendar userCalendar=Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
+        Calendar userCalendar = Calendar.getInstance();
         userCalendar.setTimeInMillis(milliseconds);
 
-        if (calendar.get(Calendar.DAY_OF_YEAR)==userCalendar.get(Calendar.DAY_OF_YEAR)) {
+        if (calendar.get(Calendar.DAY_OF_YEAR) == userCalendar.get(Calendar.DAY_OF_YEAR)) {
             return true;
         } else {
             return false;
@@ -50,11 +51,11 @@ public class MyHelperClass {
     public static Bitmap loadImageFromStorage(String path, int position) {
         Bitmap b;
         try {
-            File f=new File(path, position + ".jpg");
+            File f = new File(path, position + ".jpg");
             b = BitmapFactory.decodeStream(new FileInputStream(f));
 
         } catch (FileNotFoundException e) {
-            b=null;
+            b = null;
             e.printStackTrace();
         }
         return b;

@@ -2,6 +2,7 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.add;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.databinding.ObservableField;
 import android.net.Uri;
@@ -19,8 +20,7 @@ import java.io.File;
 
 import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.common.base.BaseActivityVM;
-import dmitrykuznetsov.rememberbirthday.common.model.Person;
-import dmitrykuznetsov.rememberbirthday.common.support.Constants;
+import dmitrykuznetsov.rememberbirthday.model.Person;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPersonInteractor;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPersonInteractorImpl;
 
@@ -43,7 +43,7 @@ public class AddPersonActivityVM extends BaseActivityVM<AddPersonActivity> imple
 //    public final ObservableField<String> pathImage = new ObservableField<>();
 //    public final ObservableField<Long> dateInMillis = new ObservableField<>();
 
-    private AddPersonInteractor addPersonInteractor = new AddPersonInteractorImpl();
+    public AddPersonInteractor addPersonInteractor;
 
     public AddPersonActivityVM(AddPersonActivity activity) {
         super(activity);

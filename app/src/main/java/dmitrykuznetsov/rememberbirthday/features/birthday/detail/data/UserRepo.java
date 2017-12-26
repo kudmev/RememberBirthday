@@ -2,9 +2,8 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.detail.data;
 
 import android.content.Context;
 
-import dmitrykuznetsov.rememberbirthday.common.data.PersonData;
-import dmitrykuznetsov.rememberbirthday.common.interfaces.ServiceCallback;
-import dmitrykuznetsov.rememberbirthday.common.model.Person;
+import dmitrykuznetsov.rememberbirthday.data.PersonData;
+import dmitrykuznetsov.rememberbirthday.interfaces.ServiceCallback;
 
 /**
  * Created by dmitry on 11.03.17.

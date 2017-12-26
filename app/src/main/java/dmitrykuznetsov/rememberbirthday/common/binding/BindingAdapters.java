@@ -1,8 +1,10 @@
 package dmitrykuznetsov.rememberbirthday.common.binding;
 
+import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -20,6 +22,61 @@ import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 
 public class BindingAdapters {
     private static final String TAG = Constants.LOG_TAG + BindingAdapters.class.getSimpleName();
+
+    @BindingAdapter({"onClick"})
+    public static void bindOnClick(View view, final Runnable runnable) {
+        view.setOnClickListener(view1 -> runnable.run());
+    }
+
+    @BindingAdapter({"imageUrl"})
+    public static void loadImage(ImageView imageView, String path) {
+        Drawable drawable = Drawable.createFromPath(path);
+        imageView.setImageDrawable(drawable);
+    }
+
+    @BindingAdapter({"bindTouchListener"})
+    public static void setListener(View view, View.OnTouchListener listener) {
+        view.setOnTouchListener(listener);
+    }
+
+    @BindingAdapter({"startAnimation"})
+    public static void startAnimation(final View view, Animation animation) {
+        final AnimationSet animationSet = (AnimationSet) animation;
+
+        animationSet.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                view.startAnimation(animation);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
+        view.startAnimation(animation);
+    }
+
+    @BindingAdapter({"drawable"})
+    public static void setDrawable(ImageView imageView, int resourceId) {
+        Context context = imageView.getContext();
+        Drawable drawable;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            drawable = context.getResources().getDrawable(resourceId, context.getTheme());
+        } else {
+            drawable = context.getResources().getDrawable(resourceId);
+        }
+        imageView.setImageDrawable(drawable);
+    }
+
+    @BindingAdapter({"drawable"})
+    public static void setDrawable(ImageView imageView, Drawable drawable) {
+        imageView.setImageDrawable(drawable);
+    }
+
 
     @BindingAdapter({"age"})
     public static void setAge(TextView view, long dateInMillis) {
@@ -55,48 +112,4 @@ public class BindingAdapters {
         Years years = Years.yearsBetween(birthDate, now);
         return years.getYears();
     }
-
-    @BindingAdapter({"imageUrl"})
-    public static void loadImage(ImageView imageView, String path) {
-        Drawable drawable = Drawable.createFromPath(path);
-        imageView.setImageDrawable(drawable);
-    }
-
-//    @BindingAdapter({"imageUrl"})
-//    public static void loadImage2(ImageView imageView, ObservableField<String> path) {
-//        Drawable drawable = Drawable.createFromPath(path.get());
-//        imageView.setImageDrawable(drawable);
-//    }
-
-    @BindingAdapter({"startAnimation"})
-    public static void startAnimation(final View view, Animation animation) {
-        final AnimationSet animationSet = (AnimationSet) animation;
-
-        animationSet.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                view.startAnimation(animation);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-        });
-        view.startAnimation(animation);
-    }
-
-    @BindingAdapter({"onClick"})
-    public static void bindOnClick(View view, final Runnable runnable) {
-        view.setOnClickListener(view1 -> runnable.run());
-    }
-
-    @BindingAdapter({"bindTouchListener"})
-    public static void setListener(View view, View.OnTouchListener listener) {
-        view.setOnTouchListener(listener);
-    }
-
 }

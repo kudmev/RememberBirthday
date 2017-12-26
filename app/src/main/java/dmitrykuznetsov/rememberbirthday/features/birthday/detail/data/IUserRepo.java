@@ -6,10 +6,9 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 
 import dmitrykuznetsov.rememberbirthday.R;
-import dmitrykuznetsov.rememberbirthday.RememberContentProvider;
-import dmitrykuznetsov.rememberbirthday.common.data.PersonData;
-import dmitrykuznetsov.rememberbirthday.common.interfaces.ServiceCallback;
-import dmitrykuznetsov.rememberbirthday.common.model.Person;
+import dmitrykuznetsov.rememberbirthday.old.RememberContentProvider;
+import dmitrykuznetsov.rememberbirthday.data.PersonData;
+import dmitrykuznetsov.rememberbirthday.interfaces.ServiceCallback;
 
 /**
  * Created by dmitry on 11.03.17.

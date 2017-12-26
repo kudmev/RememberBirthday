@@ -14,8 +14,10 @@ import dmitrykuznetsov.rememberbirthday.App;
 import dmitrykuznetsov.rememberbirthday.BR;
 import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerBindingAdapter;
+import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
+import dmitrykuznetsov.rememberbirthday.common.base.AbstractListActivityVM;
 import dmitrykuznetsov.rememberbirthday.common.base.AbstractListVM;
-import dmitrykuznetsov.rememberbirthday.common.data.PersonData;
+import dmitrykuznetsov.rememberbirthday.data.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.repo.UsersRepo;
@@ -27,17 +29,16 @@ import static android.app.Activity.RESULT_OK;
  * Created by dmitry on 12.05.17.
  */
 
-public class BirthdayActivityVM extends AbstractListVM<BirthdayActivity, PersonData> {
+public class BirthdayActivityVM extends AbstractListActivityVM<BirthdayActivity, PersonData> {
 
 
     private RecyclerBindingAdapter<PersonData> adapter;
     private List<PersonData> users = new ArrayList<>();
     private UsersRepo usersRepo = new UsersRepoImpl();
 
-    public BirthdayActivityVM(BirthdayActivity activity) {
-        super(activity);
-        adapter = initAdapter(new LinearLayoutManager(App.getAppContext(), LinearLayoutManager.VERTICAL, false));
-
+    public BirthdayActivityVM(BirthdayActivity activity, RecyclerConfiguration recyclerConfiguration) {
+        super(activity, recyclerConfiguration);
+        adapter = initAdapter();
         refreshData();
     }
 

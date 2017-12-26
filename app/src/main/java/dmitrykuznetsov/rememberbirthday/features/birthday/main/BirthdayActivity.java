@@ -5,6 +5,7 @@ import dmitrykuznetsov.rememberbirthday.BR;
 
 import com.stfalcon.androidmvvmhelper.mvvm.activities.BindingActivity;
 
+import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
 import dmitrykuznetsov.rememberbirthday.databinding.ActivityBirthdayBinding;
 
 
@@ -14,9 +15,11 @@ import dmitrykuznetsov.rememberbirthday.databinding.ActivityBirthdayBinding;
 
 public class BirthdayActivity extends BindingActivity<ActivityBirthdayBinding, BirthdayActivityVM> {
 
+    public RecyclerConfiguration recyclerConfiguration;
+
     @Override
     public BirthdayActivityVM onCreate() {
-        return new BirthdayActivityVM(this);
+        return new BirthdayActivityVM(this, recyclerConfiguration);
     }
 
     @Override

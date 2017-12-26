@@ -1,6 +1,6 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.add.repo;
 
-import dmitrykuznetsov.rememberbirthday.common.data.PersonData;
+import dmitrykuznetsov.rememberbirthday.data.PersonData;
 
 /**
  * Created by dmitry on 14.05.17.

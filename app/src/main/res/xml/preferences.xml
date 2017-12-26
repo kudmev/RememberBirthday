@@ -25,7 +25,7 @@
             android:summary="@string/pref_enablecall_summary"
             android:defaultValue="false"
             />
-        <dmitrykuznetsov.rememberbirthday.TimePreference
+        <dmitrykuznetsov.rememberbirthday.old.TimePreference
             android:key="timePrefA_Key"
             android:title="@string/pref_title_ringtonetime"
 

@@ -52,23 +52,23 @@
         <!--</activity>-->
 
         <activity
-            android:name=".ActivityDetailPerson"
+            android:name=".old.ActivityDetailPerson"
             android:label="@string/title_detailperson"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".ActivityAddPerson"
+            android:name=".old.ActivityAddPerson"
             android:label="@string/title_addperson"
             android:theme="@style/AppTheme"/>
 
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".old.SettingsActivity"
             android:label="@string/activity_pref_name"/>
 
         <activity
-            android:name=".RememberSearchResults"
+            android:name=".old.RememberSearchResults"
             android:label="@string/search_view_birthdays">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
@@ -83,7 +83,7 @@
 
 
         <receiver
-            android:name=".AlarmReceiver"
+            android:name=".old.AlarmReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="dmitrykuznetsov.rememberbirthday.ACTION_REFRESH_DATA"/>
@@ -91,7 +91,7 @@
         </receiver>
 
         <receiver
-            android:name=".AlarmNotificationReceiver"
+            android:name=".old.AlarmNotificationReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="dmitrykuznetsov.rememberbirthday.ACTION_SEND_NOTIFICATION"/>
@@ -99,7 +99,7 @@
         </receiver>
 
         <receiver
-            android:name=".UpdateAlarmReceiverAfterReboot">
+            android:name=".old.UpdateAlarmReceiverAfterReboot">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
@@ -107,20 +107,20 @@
         </receiver>
 
         <service
-            android:name=".ServiceDateUpdater"
+            android:name=".old.ServiceDateUpdater"
             android:enabled="true"
             android:permission="dmitrykuznetsov.rememberbirthday.MY_SERVICE_PERMISSION" />
 
         <service
-            android:name=".ServiceSendNotification"
+            android:name=".old.ServiceSendNotification"
             android:enabled="true"
             android:permission="dmitrykuznetsov.rememberbirthday.MY_SERVICE_PERMISSION" />
 
         <service
-            android:name=".ServiceUpdateAlarmAfterReboot"/>
+            android:name=".old.ServiceUpdateAlarmAfterReboot"/>
 
         <provider
-            android:name=".RememberContentProvider"
+            android:name=".old.RememberContentProvider"
             android:authorities="dmitrykuznetsov.rememberbirthday.provider"
             android:enabled="true"
             android:exported="false"/>

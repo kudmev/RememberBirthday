@@ -2,8 +2,8 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor;
 
 import android.net.Uri;
 
-import dmitrykuznetsov.rememberbirthday.common.data.PersonData;
-import dmitrykuznetsov.rememberbirthday.common.model.Person;
+import dmitrykuznetsov.rememberbirthday.data.PersonData;
+import dmitrykuznetsov.rememberbirthday.model.Person;
 
 /**
  * Created by dmitry on 25.05.17.

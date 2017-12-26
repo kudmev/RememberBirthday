@@ -2,7 +2,7 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.main.repo;
 
 import java.util.List;
 
-import dmitrykuznetsov.rememberbirthday.common.data.PersonData;
+import dmitrykuznetsov.rememberbirthday.data.PersonData;
 import io.realm.Realm;
 import io.realm.Sort;
 

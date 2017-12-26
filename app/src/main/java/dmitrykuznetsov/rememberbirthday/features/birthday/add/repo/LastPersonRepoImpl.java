@@ -1,7 +1,6 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.add.repo;
 
-import dmitrykuznetsov.rememberbirthday.common.data.PersonData;
-import io.realm.OrderedRealmCollection;
+import dmitrykuznetsov.rememberbirthday.data.PersonData;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;

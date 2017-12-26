@@ -2,25 +2,28 @@ package dmitrykuznetsov.rememberbirthday.common.base;
 
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.MenuItem;
 
 import com.stfalcon.androidmvvmhelper.mvvm.activities.ActivityViewModel;
 import com.stfalcon.androidmvvmhelper.mvvm.activities.BindingActivity;
 
+import dagger.android.AndroidInjection;
+
 /**
- * Created by dmitry on 17.03.17.
+ * Created by vernau on 3/15/17.
  */
 
 public abstract class BaseActivity<B extends ViewDataBinding, VM extends ActivityViewModel> extends BindingActivity<B, VM> {
 
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     @Override

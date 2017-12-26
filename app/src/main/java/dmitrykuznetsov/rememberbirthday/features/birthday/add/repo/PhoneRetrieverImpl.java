@@ -12,9 +12,15 @@ import dmitrykuznetsov.rememberbirthday.App;
  */
 
 public class PhoneRetrieverImpl implements PhoneRetriever {
+
+    public Context context;
+
+    public PhoneRetrieverImpl(Context context) {
+        this.context = context;
+    }
+
     @Override
     public String getPhone(Uri contactData) {
-        Context context = App.getAppContext();
         Cursor cursor = context.getContentResolver().query(contactData, null, null,
                 null, null);
 

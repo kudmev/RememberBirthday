@@ -9,7 +9,7 @@ import com.stfalcon.androidmvvmhelper.mvvm.activities.ActivityViewModel;
 import dmitrykuznetsov.rememberbirthday.common.support.Utils;
 
 /**
- * Created by dmitry on 17.03.17.
+ * Created by vernau on 3/15/17.
  */
 
 public class BaseActivityVM<A extends AppCompatActivity> extends ActivityViewModel<A> {
@@ -19,10 +19,11 @@ public class BaseActivityVM<A extends AppCompatActivity> extends ActivityViewMod
         @Override
         public void set(String value) {
             super.set(value);
-            Utils.showToastBar(getActivity(), value);
+            if (value != null) {
+                Utils.showToastBar(getActivity(), value);
+            }
         }
     };
-
 
     public BaseActivityVM(A activity) {
         super(activity);

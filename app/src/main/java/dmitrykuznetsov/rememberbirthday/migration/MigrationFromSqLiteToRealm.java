@@ -9,8 +9,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import dmitrykuznetsov.rememberbirthday.RememberContentProvider;
-import dmitrykuznetsov.rememberbirthday.common.data.PersonData;
+import dmitrykuznetsov.rememberbirthday.old.RememberContentProvider;
+import dmitrykuznetsov.rememberbirthday.data.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import io.realm.Realm;
 

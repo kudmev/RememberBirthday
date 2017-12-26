@@ -1,9 +1,10 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor;
 
+import android.content.Context;
 import android.net.Uri;
 
-import dmitrykuznetsov.rememberbirthday.common.data.PersonData;
-import dmitrykuznetsov.rememberbirthday.common.model.Person;
+import dmitrykuznetsov.rememberbirthday.data.PersonData;
+import dmitrykuznetsov.rememberbirthday.model.Person;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.AddPersonRepo;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.AddPersonRepoImpl;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.LastPersonRepo;
@@ -17,9 +18,16 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.PhoneRetrieve
 
 public class AddPersonInteractorImpl implements AddPersonInteractor {
 
-    private LastPersonRepo lastPersonRepo = new LastPersonRepoImpl();
-    private AddPersonRepo addPersonRepo = new AddPersonRepoImpl();
-    private PhoneRetriever phoneRetriever = new PhoneRetrieverImpl();
+    private LastPersonRepo lastPersonRepo;
+    private AddPersonRepo addPersonRepo;
+
+    public PhoneRetriever phoneRetriever;
+
+    public AddPersonInteractorImpl() {
+        lastPersonRepo = new LastPersonRepoImpl();
+        addPersonRepo = new AddPersonRepoImpl();
+
+    }
 
     @Override
     public void addPersonData(Person p) {

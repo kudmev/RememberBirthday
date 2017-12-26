@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import java.util.List;
 
 import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerBindingAdapter;
-import dmitrykuznetsov.rememberbirthday.common.binding.RecyclerConfiguration;
+import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
 
 /**
  * Created by vernau on 4/18/17.

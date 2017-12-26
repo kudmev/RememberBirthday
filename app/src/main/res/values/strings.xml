@@ -1,5 +1,19 @@
 <resources>
     <string name="app_name">RememberBirthday</string>
+
+    <!-- ERRORS -->
+    <string name="error_network_not_available">Интернет не доступен, проверьте настройки подключения</string>
+    <string name="error_access_denied">Доступ запрещен</string>
+    <string name="error_server_return_incorrect_data">Сервер вернул некорректные данные.</string>
+    <string name="error_unknown">Неизвестная ошибка, обратитесь к разработчику</string>
+
+    <string name="error_401">401: не авторизован</string>
+    <string name="error_403">403: доступ запрещен</string>
+    <string name="error_404">404: информация не найдена</string>
+
+    <string name="error_unknown_http_error">Неизвестная ошибка HTTP</string>
+    <!-- END ERRORS -->
+
     <string name="activity_pref_name">Экран настроек</string>
     <string name="add_first_person">Добавьте первого именинника</string>
 

@@ -60,6 +60,11 @@ public class RecyclerBindingAdapter<T> extends RecyclerView.Adapter<RecyclerBind
         return items.size();
     }
 
+    public void setItems(List<T> items) {
+        this.items = items;
+        notifyDataSetChanged();
+    }
+
     public void setOnItemClickListener(OnItemClickListener<T> onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }

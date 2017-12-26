@@ -8,7 +8,7 @@
 
         <variable
             name="person"
-            type="dmitrykuznetsov.rememberbirthday.common.data.PersonData" />
+            type="dmitrykuznetsov.rememberbirthday.data.PersonData" />
 
         <variable
             name="drawable"

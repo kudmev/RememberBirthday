@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="dmitrykuznetsov.rememberbirthday.features.birthday.main.BirthdayActivityVM" />
+            type="dmitrykuznetsov.rememberbirthday.features.birthday.main.BirthdaysActivityVM" />
     </data>
 
     <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">

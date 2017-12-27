@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import dmitrykuznetsov.rememberbirthday.common.support.Convert;
@@ -17,16 +19,19 @@ import dmitrykuznetsov.rememberbirthday.common.support.Utils;
 public class SupportModule {
 
     @Provides
+    @Singleton
     Gson provideGson() {
         return new Gson();
     }
 
     @Provides
+    @Singleton
     Utils provideUtils(Context context) {
         return new Utils(context);
     }
 
     @Provides
+    @Singleton
     Convert provideConvert() {
         return new Convert();
     }

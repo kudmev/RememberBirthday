@@ -1,16 +1,14 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor;
 
-import android.content.Context;
 import android.net.Uri;
 
 import dmitrykuznetsov.rememberbirthday.data.PersonData;
 import dmitrykuznetsov.rememberbirthday.model.Person;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.AddPersonRepo;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.AddPersonRepoImpl;
-import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.LastPersonRepo;
-import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.LastPersonRepoImpl;
+import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.LastPersonIdRepo;
+import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.LastPersonIdRepoImpl;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.PhoneRetriever;
-import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.PhoneRetrieverImpl;
 
 /**
  * Created by dmitry on 25.05.17.
@@ -18,20 +16,19 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.PhoneRetrieve
 
 public class AddPersonInteractorImpl implements AddPersonInteractor {
 
-    private LastPersonRepo lastPersonRepo;
+    private LastPersonIdRepo lastPersonIdRepo;
     private AddPersonRepo addPersonRepo;
+    private PhoneRetriever phoneRetriever;
 
-    public PhoneRetriever phoneRetriever;
-
-    public AddPersonInteractorImpl() {
-        lastPersonRepo = new LastPersonRepoImpl();
-        addPersonRepo = new AddPersonRepoImpl();
-
+    public AddPersonInteractorImpl(LastPersonIdRepo lastPersonIdRepo, AddPersonRepo addPersonRepo, PhoneRetriever phoneRetriever) {
+        this.lastPersonIdRepo = lastPersonIdRepo;
+        this.addPersonRepo = addPersonRepo;
+        this.phoneRetriever = phoneRetriever;
     }
 
     @Override
     public void addPersonData(Person p) {
-        int id = lastPersonRepo.getNextId();
+        int id = lastPersonIdRepo.getNextId();
         PersonData personData = new PersonData(id, p.name.get(), p.note.get(), p.bindPhone.get(), p.pathImage.get(), p.dateInMillis.get(), null);
         addPersonRepo.addPerson(personData);
     }

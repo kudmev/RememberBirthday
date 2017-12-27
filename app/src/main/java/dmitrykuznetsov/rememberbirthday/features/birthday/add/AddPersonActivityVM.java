@@ -45,8 +45,9 @@ public class AddPersonActivityVM extends BaseActivityVM<AddPersonActivity> imple
 
     public AddPersonInteractor addPersonInteractor;
 
-    public AddPersonActivityVM(AddPersonActivity activity) {
+    public AddPersonActivityVM(AddPersonActivity activity, AddPersonInteractor addPersonInteractor) {
         super(activity);
+        this.addPersonInteractor = addPersonInteractor;
     }
 
     private Person getPerson() {

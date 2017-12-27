@@ -2,6 +2,8 @@ package dmitrykuznetsov.rememberbirthday;
 
 import android.app.Application;
 
+import javax.inject.Singleton;
+
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
@@ -14,11 +16,11 @@ import dmitrykuznetsov.rememberbirthday.common.support.di.SupportModule;
 /**
  * Created by vernau on 5/23/17.
  */
-
+@Singleton
 @Component(modules = {
         AndroidInjectionModule.class,
         AndroidSupportInjectionModule.class,
-        ContextModule.class,
+        AppModule.class,
         StorageModule.class,
         SupportModule.class,
         NetworkModule.class,

@@ -1,7 +1,6 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.main;
 
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -10,16 +9,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import dmitrykuznetsov.rememberbirthday.App;
 import dmitrykuznetsov.rememberbirthday.BR;
 import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerBindingAdapter;
 import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
 import dmitrykuznetsov.rememberbirthday.common.base.AbstractListActivityVM;
-import dmitrykuznetsov.rememberbirthday.common.base.AbstractListVM;
 import dmitrykuznetsov.rememberbirthday.data.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivity;
+import dmitrykuznetsov.rememberbirthday.features.birthday.main.interactor.BirthdaysInteractor;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.repo.UsersRepo;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.repo.UsersRepoImpl;
 
@@ -29,21 +27,21 @@ import static android.app.Activity.RESULT_OK;
  * Created by dmitry on 12.05.17.
  */
 
-public class BirthdayActivityVM extends AbstractListActivityVM<BirthdayActivity, PersonData> {
-
+public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivity, PersonData> {
 
     private RecyclerBindingAdapter<PersonData> adapter;
     private List<PersonData> users = new ArrayList<>();
-    private UsersRepo usersRepo = new UsersRepoImpl();
+    private BirthdaysInteractor birthdaysInteractor;
 
-    public BirthdayActivityVM(BirthdayActivity activity, RecyclerConfiguration recyclerConfiguration) {
-        super(activity, recyclerConfiguration);
+    public BirthdaysActivityVM(BirthdaysActivity activity, RecyclerConfiguration configuration, BirthdaysInteractor birthdaysInteractor) {
+        super(activity, configuration);
+        this.birthdaysInteractor = birthdaysInteractor;
         adapter = initAdapter();
         refreshData();
     }
 
     private void refreshData() {
-        List<PersonData> loadedUsers = usersRepo.getUsers();
+        List<PersonData> loadedUsers = birthdaysInteractor.getPersonDataList();
         users.clear();
         users.addAll(loadedUsers);
         adapter.notifyDataSetChanged();
@@ -93,7 +91,6 @@ public class BirthdayActivityVM extends AbstractListActivityVM<BirthdayActivity,
 
     @Override
     public void onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.action_add_name:
                 AddPersonActivity.open(getActivity(), Constants.RESULT_ADD_PERSON);

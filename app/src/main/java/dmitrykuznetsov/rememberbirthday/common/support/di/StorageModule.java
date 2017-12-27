@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import dmitrykuznetsov.rememberbirthday.common.support.AppSharedPreferences;
@@ -20,16 +22,19 @@ import dmitrykuznetsov.rememberbirthday.common.support.Utils;
 public class StorageModule {
 
     @Provides
+    @Singleton
     Config provideConfig(AppSharedPreferences saver, Gson gson, Convert convert, Utils utils) {
         return new Config(saver, gson, convert, utils);
     }
 
     @Provides
+    @Singleton
     AppSharedPreferences provideAppSharedPreferences(SharedPreferences sharedPreferences, Utils utils) {
         return new AppSharedPreferences(sharedPreferences, utils);
     }
 
     @Provides
+    @Singleton
     SharedPreferences provideSharedPreferences(Context context) {
         final String config = "config";
         return context.getSharedPreferences(config, Context.MODE_PRIVATE);

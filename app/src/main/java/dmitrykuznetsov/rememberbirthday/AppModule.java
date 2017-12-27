@@ -3,6 +3,8 @@ package dmitrykuznetsov.rememberbirthday;
 import android.app.Application;
 import android.content.Context;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -11,9 +13,10 @@ import dagger.Provides;
  */
 
 @Module
-public class ContextModule {
+public class AppModule {
 
     @Provides
+    @Singleton
     Context provideContext(Application application) {
         return application;
     }

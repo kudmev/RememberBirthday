@@ -1,6 +1,8 @@
 package dmitrykuznetsov.rememberbirthday.common.base;
 
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 
 import java.util.List;
 

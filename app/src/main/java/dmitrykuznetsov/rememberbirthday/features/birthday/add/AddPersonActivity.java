@@ -3,6 +3,8 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.add;
 import android.app.Activity;
 import android.content.Intent;
 
+import javax.inject.Inject;
+
 import dmitrykuznetsov.rememberbirthday.BR;
 import dmitrykuznetsov.rememberbirthday.R;
 
@@ -15,6 +17,9 @@ import dmitrykuznetsov.rememberbirthday.common.base.BaseActivity;
 
 public class AddPersonActivity extends BaseActivity<ActivityAddPersonBinding, AddPersonActivityVM> {
 
+    @Inject
+    public AddPersonActivityVM addPersonActivityVM;
+
     public static void open(Activity activity, int resultCode) {
         Intent intent = new Intent(activity, AddPersonActivity.class);
         activity.startActivityForResult(intent, resultCode);
@@ -22,7 +27,7 @@ public class AddPersonActivity extends BaseActivity<ActivityAddPersonBinding, Ad
 
     @Override
     public AddPersonActivityVM onCreate() {
-        return new AddPersonActivityVM(this);
+        return addPersonActivityVM;
     }
 
     @Override

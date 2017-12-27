@@ -9,7 +9,7 @@ import io.realm.Sort;
  * Created by dmitry on 14.05.17.
  */
 
-public class LastPersonRepoImpl implements LastPersonRepo {
+public class LastPersonIdRepoImpl implements LastPersonIdRepo {
     @Override
     public int getNextId() {
         Realm realm = Realm.getDefaultInstance();

@@ -2,6 +2,8 @@ package dmitrykuznetsov.rememberbirthday.common.background.di;
 
 
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import dmitrykuznetsov.rememberbirthday.common.background.AddTokenInterceptor;
@@ -24,11 +26,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetworkModule {
 
     @Provides
+    @Singleton
     OkHttpClient.Builder provideOkHttpClientBuilder() {
         return new OkHttpClient.Builder();
     }
 
     @Provides
+    @Singleton
     Retrofit.Builder provideRetrofitBuilder() {
         return new Retrofit.Builder()
                 .baseUrl(Constants.API_BASE_URL)
@@ -39,16 +43,19 @@ public class NetworkModule {
     }
 
     @Provides
+    @Singleton
     RetrofitInitializer provideRetrofitInitializer(OkHttpClient.Builder httpClient, Retrofit.Builder builder, AddTokenInterceptor addTokenInterceptor, ReceiveTokenInterceptor receiveTokenInterceptor) {
         return new RetrofitInitializer(httpClient, builder, addTokenInterceptor, receiveTokenInterceptor);
     }
 
     @Provides
+    @Singleton
     AddTokenInterceptor provideAddTokenInterceptor(Config config) {
         return new AddTokenInterceptor(config);
     }
 
     @Provides
+    @Singleton
     ReceiveTokenInterceptor provideReceiveTokenInterceptor(Config config) {
         return new ReceiveTokenInterceptor(config);
     }

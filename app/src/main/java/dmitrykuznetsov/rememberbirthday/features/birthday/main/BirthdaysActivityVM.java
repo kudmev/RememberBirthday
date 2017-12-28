@@ -14,12 +14,10 @@ import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerBindingAdapter;
 import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
 import dmitrykuznetsov.rememberbirthday.common.base.AbstractListActivityVM;
-import dmitrykuznetsov.rememberbirthday.data.PersonData;
+import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.interactor.BirthdaysInteractor;
-import dmitrykuznetsov.rememberbirthday.features.birthday.main.repo.UsersRepo;
-import dmitrykuznetsov.rememberbirthday.features.birthday.main.repo.UsersRepoImpl;
 
 import static android.app.Activity.RESULT_OK;
 

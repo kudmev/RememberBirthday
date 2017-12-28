@@ -2,7 +2,6 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.add;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.ObservableField;
 import android.net.Uri;
@@ -20,9 +19,8 @@ import java.io.File;
 
 import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.common.base.BaseActivityVM;
-import dmitrykuznetsov.rememberbirthday.model.Person;
+import dmitrykuznetsov.rememberbirthday.common.data.model.Person;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPersonInteractor;
-import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPersonInteractorImpl;
 
 /**
  * Created by dmitry on 18.03.17.

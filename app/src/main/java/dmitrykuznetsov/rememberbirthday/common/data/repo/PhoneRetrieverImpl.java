@@ -1,11 +1,9 @@
-package dmitrykuznetsov.rememberbirthday.features.birthday.add.repo;
+package dmitrykuznetsov.rememberbirthday.common.data.repo;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
-
-import dmitrykuznetsov.rememberbirthday.App;
 
 /**
  * Created by dmitry on 14.05.17.

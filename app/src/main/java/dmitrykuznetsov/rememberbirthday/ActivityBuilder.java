@@ -18,8 +18,8 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.main.scope.Birthdays;
 @Module
 public abstract class ActivityBuilder {
 
-//    @ContributesAndroidInjector(modules = AddPersonModule.class)
-//    abstract AddPersonActivity bindAddPersonActivity();
+    @ContributesAndroidInjector(modules = AddPersonModule.class)
+    abstract AddPersonActivity bindAddPersonActivity();
 
     @Birthdays
     @ContributesAndroidInjector(modules = BirthdaysModule.class)

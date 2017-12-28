@@ -2,8 +2,8 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.main.interactor;
 
 import java.util.List;
 
-import dmitrykuznetsov.rememberbirthday.data.PersonData;
-import dmitrykuznetsov.rememberbirthday.features.birthday.main.repo.UsersRepo;
+import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
+import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepo;
 
 /**
  * Created by Alena on 26.12.2017.
@@ -11,14 +11,14 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.main.repo.UsersRepo;
 
 public class BirthdaysInteractorImpl implements BirthdaysInteractor {
 
-    private UsersRepo usersRepo;
+    private PersonRepo personRepo;
 
-    public BirthdaysInteractorImpl(UsersRepo usersRepo) {
-        this.usersRepo = usersRepo;
+    public BirthdaysInteractorImpl(PersonRepo personRepo) {
+        this.personRepo = personRepo;
     }
 
     @Override
     public List<PersonData> getPersonDataList() {
-        return usersRepo.getUsers();
+        return personRepo.getPersons();
     }
 }

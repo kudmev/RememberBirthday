@@ -1,4 +1,4 @@
-package dmitrykuznetsov.rememberbirthday.model;
+package dmitrykuznetsov.rememberbirthday.common.data.model;
 
 import android.content.Context;
 import android.databinding.ObservableField;

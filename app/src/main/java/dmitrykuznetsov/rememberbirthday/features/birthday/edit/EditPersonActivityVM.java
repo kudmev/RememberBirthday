@@ -15,9 +15,9 @@ import org.joda.time.LocalDate;
 import java.io.File;
 
 import dmitrykuznetsov.rememberbirthday.R;
-import dmitrykuznetsov.rememberbirthday.data.PersonData;
-import dmitrykuznetsov.rememberbirthday.interfaces.ServiceCallback;
-import dmitrykuznetsov.rememberbirthday.model.Person;
+import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
+import dmitrykuznetsov.rememberbirthday.common.callback.ServiceCallback;
+import dmitrykuznetsov.rememberbirthday.common.data.model.Person;
 import dmitrykuznetsov.rememberbirthday.common.base.BaseActivityVM;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.data.IUserRepo;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.data.UserRepo;

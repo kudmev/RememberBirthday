@@ -2,13 +2,10 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor;
 
 import android.net.Uri;
 
-import dmitrykuznetsov.rememberbirthday.data.PersonData;
-import dmitrykuznetsov.rememberbirthday.model.Person;
-import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.AddPersonRepo;
-import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.AddPersonRepoImpl;
-import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.LastPersonIdRepo;
-import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.LastPersonIdRepoImpl;
-import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.PhoneRetriever;
+import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
+import dmitrykuznetsov.rememberbirthday.common.data.model.Person;
+import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepo;
+import dmitrykuznetsov.rememberbirthday.common.data.repo.PhoneRetriever;
 
 /**
  * Created by dmitry on 25.05.17.
@@ -16,21 +13,19 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.add.repo.PhoneRetrieve
 
 public class AddPersonInteractorImpl implements AddPersonInteractor {
 
-    private LastPersonIdRepo lastPersonIdRepo;
-    private AddPersonRepo addPersonRepo;
+    private PersonRepo personRepo;
     private PhoneRetriever phoneRetriever;
 
-    public AddPersonInteractorImpl(LastPersonIdRepo lastPersonIdRepo, AddPersonRepo addPersonRepo, PhoneRetriever phoneRetriever) {
-        this.lastPersonIdRepo = lastPersonIdRepo;
-        this.addPersonRepo = addPersonRepo;
+    public AddPersonInteractorImpl(PersonRepo personRepo, PhoneRetriever phoneRetriever) {
+        this.personRepo = personRepo;
         this.phoneRetriever = phoneRetriever;
     }
 
     @Override
     public void addPersonData(Person p) {
-        int id = lastPersonIdRepo.getNextId();
+        int id = personRepo.getPersonNextId();
         PersonData personData = new PersonData(id, p.name.get(), p.note.get(), p.bindPhone.get(), p.pathImage.get(), p.dateInMillis.get(), null);
-        addPersonRepo.addPerson(personData);
+        personRepo.addPerson(personData);
     }
 
     @Override

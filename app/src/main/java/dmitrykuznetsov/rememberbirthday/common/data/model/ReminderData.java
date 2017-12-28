@@ -1,4 +1,4 @@
-package dmitrykuznetsov.rememberbirthday.data;
+package dmitrykuznetsov.rememberbirthday.common.data.model;
 
 import io.realm.RealmObject;
 

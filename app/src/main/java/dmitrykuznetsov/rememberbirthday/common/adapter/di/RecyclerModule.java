@@ -22,18 +22,18 @@ import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
 @Module
 public class RecyclerModule {
 
-//    @Named("linear")
+    @Named("linear")
     @Provides
     @Singleton
     RecyclerView.LayoutManager provideLayoutManager(Context context) {
         return new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
     }
 
-//    @Named("grid")
-//    @Provides
-//    RecyclerView.LayoutManager provideGridLayoutManager(Context context) {
-//        return new GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false);
-//    }
+    @Named("grid")
+    @Provides
+    RecyclerView.LayoutManager provideGridLayoutManager(Context context) {
+        return new GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false);
+    }
 
     @Provides
     @Singleton
@@ -50,7 +50,7 @@ public class RecyclerModule {
 //    @Named("recycler_linear")
     @Provides
     @Singleton
-    RecyclerConfiguration provideLinearRecyclerConfiguration(/*@Named("linear")*/ RecyclerView.LayoutManager manager, RecyclerView.ItemDecoration itemDecoration) {
+    RecyclerConfiguration provideLinearRecyclerConfiguration(@Named("linear") RecyclerView.LayoutManager manager, RecyclerView.ItemDecoration itemDecoration) {
         RecyclerConfiguration recyclerConfiguration = new RecyclerConfiguration();
         recyclerConfiguration.setLayoutManager(manager);
         recyclerConfiguration.setItemDecoration(itemDecoration);

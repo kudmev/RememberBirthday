@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dmitrykuznetsov.rememberbirthday.old.RememberContentProvider;
-import dmitrykuznetsov.rememberbirthday.data.PersonData;
+import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import io.realm.Realm;
 

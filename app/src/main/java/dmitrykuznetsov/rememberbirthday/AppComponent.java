@@ -10,6 +10,7 @@ import dagger.android.AndroidInjectionModule;
 import dagger.android.support.AndroidSupportInjectionModule;
 import dmitrykuznetsov.rememberbirthday.common.adapter.di.RecyclerModule;
 import dmitrykuznetsov.rememberbirthday.common.background.di.NetworkModule;
+import dmitrykuznetsov.rememberbirthday.common.data.di.RepoModule;
 import dmitrykuznetsov.rememberbirthday.common.support.di.StorageModule;
 import dmitrykuznetsov.rememberbirthday.common.support.di.SupportModule;
 
@@ -25,6 +26,7 @@ import dmitrykuznetsov.rememberbirthday.common.support.di.SupportModule;
         SupportModule.class,
         NetworkModule.class,
         RecyclerModule.class,
+        RepoModule.class,
         ActivityBuilder.class,
         FragmentBuilder.class})
 public interface AppComponent {

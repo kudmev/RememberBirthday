@@ -1,4 +1,4 @@
-package dmitrykuznetsov.rememberbirthday.features.birthday.add.repo;
+package dmitrykuznetsov.rememberbirthday.common.data.repo;
 
 import android.net.Uri;
 

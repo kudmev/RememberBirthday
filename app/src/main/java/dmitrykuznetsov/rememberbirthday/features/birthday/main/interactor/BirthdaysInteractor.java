@@ -2,7 +2,7 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.main.interactor;
 
 import java.util.List;
 
-import dmitrykuznetsov.rememberbirthday.data.PersonData;
+import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 
 /**
  * Created by Alena on 26.12.2017.

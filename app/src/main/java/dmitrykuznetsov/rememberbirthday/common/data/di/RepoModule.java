@@ -11,9 +11,7 @@ import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepoImpl;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PhoneRetriever;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PhoneRetrieverImpl;
 
-/**
- * Created by Alena on 28.12.2017.
- */
+
 @Module
 public class RepoModule {
 

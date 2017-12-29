@@ -27,22 +27,19 @@ import static android.app.Activity.RESULT_OK;
 
 public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivity, PersonData> {
 
-    private RecyclerBindingAdapter<PersonData> adapter;
     private List<PersonData> users = new ArrayList<>();
     private BirthdaysInteractor birthdaysInteractor;
 
     public BirthdaysActivityVM(BirthdaysActivity activity, RecyclerConfiguration configuration, BirthdaysInteractor birthdaysInteractor) {
         super(activity, configuration);
         this.birthdaysInteractor = birthdaysInteractor;
-        adapter = initAdapter();
+
         refreshData();
     }
 
     private void refreshData() {
-        List<PersonData> loadedUsers = birthdaysInteractor.getPersonDataList();
-        users.clear();
-        users.addAll(loadedUsers);
-        adapter.notifyDataSetChanged();
+        users = birthdaysInteractor.getPersonDataList();
+        adapter.setItems(users);
     }
 
     @Override

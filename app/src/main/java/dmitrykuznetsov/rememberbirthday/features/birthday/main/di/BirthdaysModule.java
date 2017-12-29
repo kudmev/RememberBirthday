@@ -22,12 +22,6 @@ public class BirthdaysModule {
 
     @Provides
     @Birthdays
-    PersonRepo provideUserRepo(){
-        return new PersonRepoImpl();
-    }
-
-    @Provides
-    @Birthdays
     BirthdaysInteractor provideBirthdayInteractor(@Birthdays PersonRepo personRepo) {
         return new BirthdaysInteractorImpl(personRepo);
     }
@@ -35,9 +29,8 @@ public class BirthdaysModule {
     @Provides
     @Birthdays
     BirthdaysActivityVM provideBirthdayActivityVM(BirthdaysActivity activity,
-                                                  /*@Named("recycler_linear") */ RecyclerConfiguration configuration,
-                                                   BirthdaysInteractor interactor) {
-        Log.e("Dagger", "Provide BirthdayActivityVM");
+                                                    RecyclerConfiguration configuration,
+                                                    BirthdaysInteractor interactor) {
         return new BirthdaysActivityVM(activity, configuration, interactor);
     }
 }

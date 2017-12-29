@@ -12,9 +12,6 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPers
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PhoneRetriever;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PhoneRetrieverImpl;
 
-/**
- * Created by Alena on 26.12.2017.
- */
 @Module
 public class AddPersonModule {
 

@@ -16,25 +16,22 @@ import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
 public abstract class AbstractListActivityVM<A extends AppCompatActivity, T> extends NetworkActivityVM<A> {
 
     public final RecyclerConfiguration recyclerConfiguration;
+    protected final RecyclerBindingAdapter<T> adapter;
 
     public AbstractListActivityVM(A activity, RecyclerConfiguration recyclerConfiguration) {
         super(activity);
         this.recyclerConfiguration = recyclerConfiguration;
-    }
-
-    protected RecyclerBindingAdapter<T> initAdapter() {
-        RecyclerBindingAdapter<T> adapter = new RecyclerBindingAdapter<>(getLayoutId(), getVariable(), getAdapterList());
-        adapter.setOnItemClickListener(((position, item, holder) -> onRecyclerItemClick(item)));
+        this.adapter = new RecyclerBindingAdapter<>(getLayoutId(), getVariable(), getAdapterList());
+        this.adapter.setOnItemClickListener(((position, item, holder) -> onRecyclerItemClick(item)));
         recyclerConfiguration.setAdapter(adapter);
-        return adapter;
     }
 
-    protected abstract void onRecyclerItemClick(T t);
-
-    protected abstract List<T> getAdapterList();
+    protected abstract int getLayoutId();
 
     protected abstract int getVariable();
 
-    protected abstract int getLayoutId();
+    protected abstract List<T> getAdapterList();
+
+    protected abstract void onRecyclerItemClick(T t);
 
 }

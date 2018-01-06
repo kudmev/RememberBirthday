@@ -77,15 +77,15 @@ public class ActivityAddPerson extends Activity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addperson);
+        //setContentView(R.layout.activity_addperson);
 
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        textName = (EditText) findViewById(R.id.add_name_person);
-        textNote = (EditText) findViewById(R.id.add_note_person);
-        textDate = (TextView) findViewById(R.id.add_date_person);
-        textTitlePhone = (TextView) findViewById(R.id.text_title_phone);
-        textPhone = (EditText) findViewById(R.id.add_phone_person);
-        button = (Button) findViewById(R.id.add_contact_person);
+//        textName = (EditText) findViewById(R.id.add_name_person);
+//        textNote = (EditText) findViewById(R.id.add_note_person);
+//        textDate = (TextView) findViewById(R.id.add_date_person);
+//        textTitlePhone = (TextView) findViewById(R.id.text_title_phone);
+//        textPhone = (EditText) findViewById(R.id.add_phone_person);
+//        button = (Button) findViewById(R.id.add_contact_person);
 
         imageView = (ImageView) findViewById(R.id.user_image);
 
@@ -129,7 +129,7 @@ public class ActivityAddPerson extends Activity  {
             }
         }
 
-        getActionBar().setTitle(R.string.action_add_name);
+        getActionBar().setTitle(R.string.title_add_name);
         getActionBar().setDisplayUseLogoEnabled(false);
         getActionBar().setDisplayShowHomeEnabled(false);
 

@@ -96,7 +96,7 @@ public class ActivityDetailPerson extends Activity implements ConfirmDeleteUserD
         }
 
         if (MyHelperClass.isUserBirthdayToday(milliseconds) == true) {
-            date = getApplicationContext().getString(R.string.today);
+            //date = getApplicationContext().getString(R.string.today);
             age++;
         }
 
@@ -170,7 +170,7 @@ public class ActivityDetailPerson extends Activity implements ConfirmDeleteUserD
         ContentResolver cr = getContentResolver();
         String where = RememberContentProvider.UID + "=" + position;
         cr.delete(RememberContentProvider.CONTENT_URI, where, null);
-        Toast.makeText(this, R.string.success_delete_user, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.toast_success_delete_user, Toast.LENGTH_LONG).show();
         finish();
     }
 

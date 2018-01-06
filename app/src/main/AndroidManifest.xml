@@ -22,6 +22,8 @@
             android:name="android.app.default_searchable"
             android:value=".RememberSearchResults"/>
 
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
 
         <activity
             android:name=".features.birthday.main.BirthdaysActivity"
@@ -38,7 +40,8 @@
         <activity
             android:name=".features.birthday.add.AddPersonActivity"
             android:label="@string/title_addperson"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|stateVisible|stateAlwaysHidden"/>
 
         <!--<activity-->
             <!--android:name=".MainActivity"-->
@@ -65,7 +68,7 @@
 
         <activity
             android:name=".old.SettingsActivity"
-            android:label="@string/activity_pref_name"/>
+            android:label="@string/title_activity_settings"/>
 
         <activity
             android:name=".old.RememberSearchResults"

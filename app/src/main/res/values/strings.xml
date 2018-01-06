@@ -1,97 +1,84 @@
 <resources>
     <string name="app_name">RememberBirthday</string>
 
+    <!-- Activity title -->
+    <string name="title_main_actionbar">Напоминалка ДР</string>
+    <string name="title_detailperson">Имя пользователя</string>
+    <string name="title_addperson">Добавить именинника</string>
+    <string name="title_add_name">Добавить именинника</string>
+    <string name="title_activity_settings">Экран настроек</string>
+
     <!-- ERRORS -->
     <string name="error_network_not_available">Интернет не доступен, проверьте настройки подключения</string>
-    <string name="error_access_denied">Доступ запрещен</string>
     <string name="error_server_return_incorrect_data">Сервер вернул некорректные данные.</string>
     <string name="error_unknown">Неизвестная ошибка, обратитесь к разработчику</string>
+    <string name="error_unknown_http_error">Неизвестная ошибка HTTP</string>
 
     <string name="error_401">401: не авторизован</string>
     <string name="error_403">403: доступ запрещен</string>
     <string name="error_404">404: информация не найдена</string>
 
-    <string name="error_unknown_http_error">Неизвестная ошибка HTTP</string>
-    <!-- END ERRORS -->
+    <string name="error_person_not_found">Ошибка: пользователь не найден!</string>
+    <string name="error_user_not_found">Ошибка: пользователь не найден в базе данных</string>
 
-    <string name="activity_pref_name">Экран настроек</string>
-    <string name="add_first_person">Добавьте первого именинника</string>
-
-    <string name="near_daybirthdays">Ближайшие дни рождения:</string>
-
-
-    <string name="yes">Да</string>
-    <string name="cancel">Нет</string>
-    <string name="success_delete_user">Пользователь был успешно удален.</string>
-
-
-    <string name="enter_name">Имя</string>
-
-    <string name="enter_note">Заметка</string>
-    <string name="import_phone">Импортировать телефон</string>
-    <string name="enter_phone">+7 987-654-32-10</string>
-
-
-    <string name="action_search">Поиск</string>
-    <string name="action_add_name">Добавить именника</string>
-    <string name="search_view_birthdays">Поиск именинника</string>
-
-    <string name="action_detail_edit">Редактировать контакт</string>
-    <string name="action_detail_delete">Удалить контакт</string>
-    <string name="action_save">Сохранить</string>
-
-
-    <string name="confirm_delete_user_dialog_title">Удалить контакт?</string>
-    <string name="confirm_delete_user_dialog_message">Подтверждая действие, вы удалите полностью пользователя со всеми данными.</string>
-
-    <string name="today">Сегодня</string>
-
-    <!--            PREFERENCES            -->
-    <string name="action_settings">Настройки</string>
-
-    <string name="settings_notification">Настройка уведомлений</string>
-
-    <string name="pref_enablecall">Звуковое уведомление</string>
-    <string name="pref_enablecall_summary">Установите, чтобы приложение сигнализировало об именинниках</string>
-
-    <string name="pref_enablevibrate">Вибрация</string>
-
-
-    <string name="pref_ringtone">Мелодия</string>
-    <string name="pref_ringtone_summary">Установите мелодию для оповещения</string>
-
-    <string name="pref_title_ringtonetime">Время для оповещения</string>
-
-
-    <string name="settime">Выбрать</string>
-    <string name="canceltime">Отмена</string>
-    <!--         END   PREFERENCES            -->
-
-
-    <string name="age_person_let">лет</string>
-    <string name="age_person_goda">года</string>
-    <string name="age_person_god">год</string>
-
-
-    <string name="title_main_actionbar">Напоминалка ДР</string>
-    <string name="title_detailperson">Имя пользователя</string>
-    <string name="title_addperson">Добавить именинника</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="wrong_date_millis">Заполните, пожалуйста, дату рождения</string>
     <string name="wrong_name">Пожалуйста, введите имя!</string>
     <string name="wrong_date">Пожалуйста, введите дату рождения!</string>
-    <string name="error_user_not_found">Ошибка: пользователь не найден в базе данных</string>
-    <string name="image">Картинка</string>
+    <!-- END ERRORS -->
+
+    <!-- Main activity -->
+    <string name="upcoming_birthdays">Ближайшие дни рождения:</string>
+    <string name="label_add_first_person">Добавьте первого именинника</string>
+
+    <!-- Detail activity -->
     <string name="age">Возраст</string>
-    <string name="nearest_birthday">День рождения</string>
-    <string name="note_birthday">Заметка об имениннике</string>
+    <string name="birthday">День рождения</string>
     <string name="phone">Телефон</string>
-    <string name="bind_phone">Присоединенный номер</string>
-    <string name="add_date_birthday">добавить дату рождения</string>
-    <string name="date_bithday">День рождения</string>
+
+    <!-- Add, Edit activity -->
+    <string name="image_description">Картинка</string>
+    <string name="note">Заметка</string>
+    <string name="pick_phone">Присоединить номер</string>
+    <string name="hint_pick_phone">Звоните и отсылайте смс</string>
+    <string name="hint_add_date">Выберите дату рождения</string>
+    <string name="date_birthday">День рождения</string>
     <string name="bind_account">Присоединить контакт</string>
-    <string name="error_name">Заполните, пожалуйста, имя!</string>
-    <string name="error_date_millis">Заполните, пожалуйста, дату рождения</string>
+    <string name="hint_enter_name">Имя</string>
+    <string name="hint_enter_note">Заметка напомнит вам о желаниях именинника в канун праздника.</string>
+
+    <!-- Search Activity -->
+    <string name="search_view_birthdays">Поиск именинника</string>
+
+    <!-- Dialog + toast -->
+    <string name="yes">Да</string>
+    <string name="cancel">Отмена</string>
+    <string name="toast_success_delete_user">Пользователь был успешно удален.</string>
+    <string name="dialog_title_confirm_delete_user">Удалить контакт?</string>
+    <string name="dialog_message_confirm_delete_user">Подтверждая действие, вы удалите полностью пользователя со всеми данными.</string>
     <string name="dialog_select_date">Выберите дату рождения</string>
-    <string name="dialog_hint_date_message">Год рождения</string>
+
+    <!-- Menu -->
+    <string name="menu_search">Поиск</string>
+    <string name="menu_edit">Редактировать контакт</string>
+    <string name="menu_delete">Удалить контакт</string>
+    <string name="menu_save">Сохранить</string>
+    <string name="menu_settings">Настройки</string>
+
+    <!-- Preferences -->
+    <string name="settings_notification">Настройка уведомлений</string>
+    <string name="pref_enable_call">Звуковое уведомление</string>
+    <string name="pref_enable_call_summary">Установите, чтобы приложение сигнализировало об именинниках</string>
+    <string name="pref_enable_vibrate">Вибрация</string>
+    <string name="pref_ringtone">Мелодия</string>
+    <string name="pref_ringtone_summary">Установите мелодию для оповещения</string>
+    <string name="pref_title_ringtone_time">Время для оповещения</string>
+
+    <string name="select">Выбрать</string>
+
+    <!-- Helper -->
+    <string name="years">лет</string>
+    <string name="year_rus">года</string>
+    <string name="year">год</string>
+
+
 </resources>

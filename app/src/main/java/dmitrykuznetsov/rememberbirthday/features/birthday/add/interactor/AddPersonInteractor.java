@@ -11,4 +11,5 @@ import dmitrykuznetsov.rememberbirthday.common.data.model.Person;
 public interface AddPersonInteractor {
     void addPersonData(Person personData);
     String getPhone(Uri uri);
+    int getNextIdPerson();
 }

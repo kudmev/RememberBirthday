@@ -76,5 +76,6 @@ dependencies {
     //Work with image, crop
     compile 'com.soundcloud.android:android-crop:1.0.1@aar'
     compile 'de.hdodenhof:circleimageview:2.2.0'
+    compile 'com.theartofdev.edmodo:android-image-cropper:2.6.0'
 
 }

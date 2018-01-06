@@ -49,31 +49,31 @@
 
             <EditText
                 style="@style/AddEditText"
-                android:hint="@string/enter_name"
+                android:hint="@string/hint_enter_name"
                 android:inputType="textCapWords"
                 android:text="@{viewModel.userObservable.name}" />
         </LinearLayout>
 
         <TextView
             style="@style/MyH2TextViewStyle"
-            android:text="@string/date_bithday" />
+            android:text="@string/date_birthday" />
 
         <TextView
             style="@style/AddEditText"
             android:drawableEnd="@drawable/calendar"
             android:drawableRight="@drawable/button_selector"
-            android:hint="@string/add_date_birthday"
+            android:hint="@string/hint_add_date"
             app:onClick="@{viewModel::showDatePickerDialog}"
             bind:birthday="@{viewModel.userObservable.dateInMillis}" />
 
         <TextView
             style="@style/MyH2TextViewStyle"
-            android:text="@string/note_birthday" />
+            android:text="@string/note" />
 
         <EditText
             style="@style/AddEditText"
             android:gravity="start|top"
-            android:hint="@string/enter_note"
+            android:hint="@string/hint_enter_note"
             android:inputType="textMultiLine|textCapSentences"
             android:maxLines="5"
             android:scrollbars="vertical"
@@ -87,7 +87,7 @@
             style="@style/AddEditText"
             android:drawableEnd="@drawable/button_selector"
             android:drawableRight="@drawable/button_selector"
-            android:hint="@string/import_phone"
+            android:hint="@string/hint_pick_phone"
             android:text="@{viewModel.userObservable.bindPhone}"
             bind:onClick="@{viewModel::pickContact}" />
 

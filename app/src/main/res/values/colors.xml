@@ -4,13 +4,7 @@
     <color name="colorPrimaryDark">#401C12</color>
     <color name="colorAccent">#401c12</color>
 
-
-    <color name="custom_theme_color">#F1F1F1</color>
-
-
-
-    <color name="mySolidColor">#FFFFFF</color>
-
-    <color name="dialogcolor">#F1F1F1</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBackground">#F1F1F1</color>
+
 </resources>

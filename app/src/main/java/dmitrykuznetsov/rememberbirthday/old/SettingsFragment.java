@@ -43,7 +43,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         switch (key) {
             case timePrefA_Key:
                 connectionPref = findPreference(key);
-                connectionPref.setTitle(R.string.pref_title_ringtonetime);
+                connectionPref.setTitle(R.string.pref_title_ringtone_time);
                 connectionPref.setSummary(sharedPreferences.getString(key, "10:00:00.000").substring(0, 5));
                 break;
 

@@ -1,7 +1,5 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.main.di;
 
-import android.util.Log;
-
 import dagger.Module;
 import dagger.Provides;
 import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
@@ -10,8 +8,7 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.main.BirthdaysActivity
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.BirthdaysActivityVM;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.interactor.BirthdaysInteractor;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.interactor.BirthdaysInteractorImpl;
-import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepoImpl;
-import dmitrykuznetsov.rememberbirthday.features.birthday.main.scope.Birthdays;
+import dmitrykuznetsov.rememberbirthday.features.birthday.main.scope.ActivityScope;
 
 /**
  * Created by Alena on 26.12.2017.
@@ -21,13 +18,13 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.main.scope.Birthdays;
 public class BirthdaysModule {
 
     @Provides
-    @Birthdays
-    BirthdaysInteractor provideBirthdayInteractor(@Birthdays PersonRepo personRepo) {
+    @ActivityScope
+    BirthdaysInteractor provideBirthdayInteractor(PersonRepo personRepo) {
         return new BirthdaysInteractorImpl(personRepo);
     }
 
     @Provides
-    @Birthdays
+    @ActivityScope
     BirthdaysActivityVM provideBirthdayActivityVM(BirthdaysActivity activity,
                                                     RecyclerConfiguration configuration,
                                                     BirthdaysInteractor interactor) {

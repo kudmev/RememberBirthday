@@ -14,74 +14,130 @@
             type="android.graphics.drawable.Drawable" />
     </data>
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/activity_vertical_margin">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_face_add"
+            app:civ_border_color="#00000000"
+            app:civ_border_width="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:onClick="@{viewModel::addImage}"
+            bind:imageUrl="@{viewModel.person.pathImage}" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/profile_name"
+            style="@style/AddConstraintEditText"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                app:civ_border_color="#00000000"
-                app:civ_border_width="2dp"
-                app:onClick="@{viewModel::addImage}"
-                android:background="@drawable/ic_face_add"
-                bind:imageUrl="@{viewModel.personObservable.pathImage}" />
-
-            <android.support.v7.widget.AppCompatEditText
-                style="@style/AddEditText"
-                android:hint="@string/enter_name"
-                android:inputType="textCapWords"
-                android:text="@={viewModel.personObservable.name}" />
-        </LinearLayout>
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/hint_enter_name"
+            android:inputType="textCapWords"
+            android:text="@={viewModel.person.name}"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintTop_toTopOf="@+id/profile_image" />
 
         <TextView
-            style="@style/MyH2TextViewStyle"
-            android:text="@string/date_bithday" />
+            android:id="@+id/profile_h2_date"
+            style="@style/AddConstraintTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/date_birthday"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
         <TextView
-            style="@style/AddEditText"
+            android:id="@+id/profile_date"
+            style="@style/AddConstraintEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:drawableEnd="@drawable/calendar"
             android:drawableRight="@drawable/button_selector"
-            android:hint="@string/add_date_birthday"
+            android:hint="@string/hint_add_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_h2_date"
             app:onClick="@{viewModel::showDatePickerDialog}"
-            bind:birthdayAndIcon="@{viewModel.personObservable.dateInMillis}" />
+            bind:birthdayAndIcon="@{viewModel.person.dateInMillis}" />
 
         <TextView
-            style="@style/MyH2TextViewStyle"
-            android:text="@string/note_birthday" />
+            android:id="@+id/profile_h2_note"
+            style="@style/AddConstraintTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/note"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_date" />
 
         <EditText
-            style="@style/AddEditText"
+            android:id="@+id/profile_note"
+            style="@style/AddConstraintEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:gravity="start|top"
-            android:hint="@string/enter_note"
+            android:hint="@string/hint_enter_note"
             android:inputType="textMultiLine|textCapSentences"
+            android:lines="3"
             android:maxLines="5"
             android:scrollbars="vertical"
-            android:text="@={viewModel.personObservable.note}" />
+            android:text="@={viewModel.person.note}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_h2_note" />
 
         <TextView
-            style="@style/MyH2TextViewStyle"
-            android:text="@string/bind_account" />
+            android:id="@+id/profile_h2_phone"
+            style="@style/AddConstraintTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/pick_phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_note" />
 
         <TextView
-            style="@style/AddEditText"
+            android:id="@+id/profile_phone"
+            style="@style/AddConstraintEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:drawableEnd="@drawable/button_selector"
             android:drawableRight="@drawable/button_selector"
-            android:hint="@string/import_phone"
-            android:text="@={viewModel.personObservable.bindPhone}"
-            bind:onClick="@{viewModel::pickContact}" />
+            android:hint="@string/hint_pick_phone"
+            android:text="@={viewModel.person.bindPhone}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_h2_phone"
+            bind:onClick="@{viewModel::pickPhone}" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 
 </layout>

@@ -6,8 +6,8 @@
         android:textSize="8dp">
         <CheckBoxPreference
             android:key="pref_sync"
-            android:title="@string/pref_enablecall"
-            android:summary="@string/pref_enablecall_summary"
+            android:title="@string/pref_enable_call"
+            android:summary="@string/pref_enable_call_summary"
             android:defaultValue="false"
             />
         <RingtonePreference
@@ -21,13 +21,13 @@
 
         <CheckBoxPreference
             android:key="pref_vibrate"
-            android:title="@string/pref_enablevibrate"
-            android:summary="@string/pref_enablecall_summary"
+            android:title="@string/pref_enable_vibrate"
+            android:summary="@string/pref_enable_call_summary"
             android:defaultValue="false"
             />
         <dmitrykuznetsov.rememberbirthday.old.TimePreference
             android:key="timePrefA_Key"
-            android:title="@string/pref_title_ringtonetime"
+            android:title="@string/pref_title_ringtone_time"
 
 
             android:defaultValue="10:00:00.000"/>

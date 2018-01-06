@@ -24,7 +24,6 @@ public class RecyclerModule {
 
     @Named("linear")
     @Provides
-    @Singleton
     RecyclerView.LayoutManager provideLayoutManager(Context context) {
         return new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
     }
@@ -36,20 +35,17 @@ public class RecyclerModule {
     }
 
     @Provides
-    @Singleton
     RecyclerView.ItemAnimator provideItemAnimator() {
         return new DefaultItemAnimator();
     }
 
     @Provides
-    @Singleton
     RecyclerView.ItemDecoration provideItemDecoration(Context context) {
         return new DividerItemDecoration(context, LinearLayout.VERTICAL);
     }
 
 //    @Named("recycler_linear")
     @Provides
-    @Singleton
     RecyclerConfiguration provideLinearRecyclerConfiguration(@Named("linear") RecyclerView.LayoutManager manager, RecyclerView.ItemDecoration itemDecoration) {
         RecyclerConfiguration recyclerConfiguration = new RecyclerConfiguration();
         recyclerConfiguration.setLayoutManager(manager);

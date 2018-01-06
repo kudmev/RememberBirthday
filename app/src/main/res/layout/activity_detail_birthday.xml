@@ -46,7 +46,7 @@
 
             <TextView
                 style="@style/MyH2TextViewStyle"
-                android:text="@string/nearest_birthday" />
+                android:text="@string/birthday" />
 
             <TextView
                 android:id="@+id/detail_date_person"
@@ -56,7 +56,7 @@
             <TextView
                 android:id="@+id/detail_title_note"
                 style="@style/MyH2TextViewStyle"
-                android:text="@string/note_birthday" />
+                android:text="@string/note" />
 
             <TextView
                 android:id="@+id/detail_note_person"
@@ -100,7 +100,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/all_borders_one_pixel"
-                    android:contentDescription="@string/image"
+                    android:contentDescription="@string/image_description"
                     android:onClick="onClickSms"
                     android:paddingBottom="3dp"
                     android:paddingLeft="7dp"

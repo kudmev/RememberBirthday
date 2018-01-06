@@ -4,10 +4,20 @@ import android.databinding.ObservableField;
 
 public class InputDialogVM {
 
-    public ObservableField<Boolean> select;
+    public ObservableField<Boolean> select = new ObservableField<Boolean>(){
+        @Override
+        public Boolean get() {
+            return super.get();
+        }
 
-    public InputDialogVM(ObservableField<Boolean> select) {
-        this.select = select;
+        @Override
+        public void set(Boolean value) {
+            super.set(value);
+        }
+    };
+
+    public InputDialogVM() {
+
     }
 
 }

@@ -11,12 +11,12 @@ import java.util.List;
 
 import dmitrykuznetsov.rememberbirthday.BR;
 import dmitrykuznetsov.rememberbirthday.R;
-import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerBindingAdapter;
 import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
 import dmitrykuznetsov.rememberbirthday.common.base.AbstractListActivityVM;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivity;
+import dmitrykuznetsov.rememberbirthday.features.birthday.detail.DetailBirthdayActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.interactor.BirthdaysInteractor;
 
 import static android.app.Activity.RESULT_OK;
@@ -44,7 +44,7 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
 
     @Override
     protected void onRecyclerItemClick(PersonData item) {
-        Toast.makeText(getActivity(), String.valueOf(item.getId()), Toast.LENGTH_LONG).show();
+        DetailBirthdayActivity.open(activity, item.getId());
     }
 
     @Override

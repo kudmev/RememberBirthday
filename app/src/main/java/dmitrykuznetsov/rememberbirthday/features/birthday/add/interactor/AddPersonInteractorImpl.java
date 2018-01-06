@@ -23,13 +23,21 @@ public class AddPersonInteractorImpl implements AddPersonInteractor {
 
     @Override
     public void addPersonData(Person p) {
-        int id = personRepo.getPersonNextId();
-        PersonData personData = new PersonData(id, p.name.get(), p.note.get(), p.bindPhone.get(), p.pathImage.get(), p.dateInMillis.get(), null);
+        int id = getNextIdPerson();
+        PersonData personData = new PersonData(id, p.getName(), p.getNote(), p.getBindPhone(),
+                p.getPathImage(), p.getDateInMillis(), null);
         personRepo.addPerson(personData);
     }
 
     @Override
     public String getPhone(Uri uri) {
         return phoneRetriever.getPhone(uri);
+    }
+
+    @Override
+    public int getNextIdPerson() {
+        int id = personRepo.getPersonLastId();
+        id++;
+        return id;
     }
 }

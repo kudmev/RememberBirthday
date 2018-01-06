@@ -32,7 +32,7 @@ public class EditPersonActivityVM extends BaseActivityVM<EditPersonActivity> imp
     private static final int PICK_CONTACT = 2;
     private UserRepo userRepo = new IUserRepo();
 
-    public final ObservableField<Person> userObservable = new ObservableField<>();
+    public Person userObservable;
 
     public EditPersonActivityVM(EditPersonActivity activity, int id) {
         super(activity);
@@ -59,7 +59,7 @@ public class EditPersonActivityVM extends BaseActivityVM<EditPersonActivity> imp
     }
 
     public void showDatePickerDialog() {
-        LocalDate localDate = new LocalDate(userObservable.get().dateInMillis.get());
+        LocalDate localDate = new LocalDate(userObservable.getDateInMillis());
 
         DatePickerDialog dialog = new DatePickerDialog(getActivity(), R.style.DatePickerTheme,
                 this, localDate.getYear(), localDate.getMonthOfYear(), localDate.getDayOfYear());
@@ -69,7 +69,7 @@ public class EditPersonActivityVM extends BaseActivityVM<EditPersonActivity> imp
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
         LocalDate localDate = new LocalDate(year, month + 1, day);
-        userObservable.get().dateInMillis.set(localDate.toDate().getTime());
+        userObservable.setDateInMillis(localDate.toDate().getTime());
     }
 
     public void pickContact() {
@@ -92,7 +92,7 @@ public class EditPersonActivityVM extends BaseActivityVM<EditPersonActivity> imp
                 case Crop.REQUEST_CROP:
                     Uri cropUri = Crop.getOutput(data);
                     String path = cropUri.getPath();
-                    userObservable.get().pathImage.set(path);
+                    userObservable.setPathImage(path);
 //                    try {
 //                        Bitmap userBitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(),
 //                                cropUri);

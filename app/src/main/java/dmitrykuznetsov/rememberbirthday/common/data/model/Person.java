@@ -1,43 +1,102 @@
 package dmitrykuznetsov.rememberbirthday.common.data.model;
 
 import android.content.Context;
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.databinding.ObservableLong;
 
+import dmitrykuznetsov.rememberbirthday.BR;
 import dmitrykuznetsov.rememberbirthday.R;
 
 /**
  * Created by dmitry on 11.03.17.
  */
 
-public class Person {
-    public final ObservableInt id = new ObservableInt();
-    public final ObservableField<String> name = new ObservableField<>();
-    public final ObservableField<String> note = new ObservableField<>();
-    public final ObservableField<String> bindPhone = new ObservableField<>();
-    public final ObservableField<String> pathImage = new ObservableField<>();
-    public final ObservableLong dateInMillis = new ObservableLong();
+public class Person extends BaseObservable {
+    public int id;
+    public String name;
+    public String note;
+    public String bindPhone;
+    public String pathImage;
+    public long dateInMillis;
 
-    public Person(int id, String name, String note, String bindPhone, String pathImage, long dateInMillis) {
-        this.id.set(id);
-        this.name.set(name);
-        this.note.set(note);
-        this.bindPhone.set(bindPhone);
-        this.pathImage.set(pathImage);
-        this.dateInMillis.set(dateInMillis);
+    public Person() {
+        this.id = 0;
+        this.name = "";
+        this.note = "";
+        this.bindPhone = "";
+        this.pathImage = "";
+        this.dateInMillis = 0;
     }
 
-    public String getMessageIfError(Context context){
-        String message = null;
+    public Person(PersonData personData) {
+        this.id = personData.getId();
+        this.name = personData.getName();
+        this.note = personData.getNote();
+        this.bindPhone = personData.getBindPhone();
+        this.pathImage = personData.getPathImage();
+        this.dateInMillis = personData.getDateInMillis();
+    }
 
-        if (name.get() == null || name.get().equals("")) {
-            message = context.getString(R.string.error_name);
-        }
+    @Bindable
+    public int getId() {
+        return id;
+    }
 
-        if (dateInMillis.get() == 0) {
-            message = context.getString(R.string.error_date_millis);
-        }
-        return message;
+    public void setId(int id) {
+        this.id = id;
+        notifyPropertyChanged(BR.id);
+    }
+
+    @Bindable
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+        notifyPropertyChanged(BR.name);
+    }
+
+    @Bindable
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+        notifyPropertyChanged(BR.note);
+    }
+
+    @Bindable
+    public String getBindPhone() {
+        return bindPhone;
+    }
+
+    public void setBindPhone(String bindPhone) {
+        this.bindPhone = bindPhone;
+        notifyPropertyChanged(BR.bindPhone);
+    }
+
+    @Bindable
+    public String getPathImage() {
+        return pathImage;
+    }
+
+    public void setPathImage(String pathImage) {
+        this.pathImage = pathImage;
+        notifyPropertyChanged(BR.pathImage);
+    }
+
+    @Bindable
+    public long getDateInMillis() {
+        return dateInMillis;
+    }
+
+    public void setDateInMillis(long dateInMillis) {
+        this.dateInMillis = dateInMillis;
+        notifyPropertyChanged(BR.dateInMillis);
     }
 }

@@ -4,7 +4,7 @@
     tools:context=".old.MainActivity">
 
     <item android:id="@+id/action_save"
-        android:title="@string/action_save"
+        android:title="@string/menu_save"
         android:icon="@drawable/save"
         app:showAsAction="withText|ifRoom"/>
 

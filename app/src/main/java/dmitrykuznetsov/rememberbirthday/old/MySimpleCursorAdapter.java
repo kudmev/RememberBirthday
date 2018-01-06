@@ -51,7 +51,7 @@ class MySimpleCursorAdapter extends SimpleCursorAdapter {
 
 
             if (MyHelperClass.isUserBirthdayToday(milliseconds) == true) {
-                date = ctx.getString(R.string.today);
+                //date = ctx.getString(R.string.today);
                 age++;
             }
 

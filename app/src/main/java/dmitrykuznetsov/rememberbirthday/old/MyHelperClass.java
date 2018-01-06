@@ -21,12 +21,12 @@ public class MyHelperClass {
         String ageSuffix;
 
         if (age % 10 >= 2 && age % 10 <= 4 && (age < 5 || age > 20)) {
-            ageSuffix = ctx.getString(R.string.age_person_goda);
+            ageSuffix = ctx.getString(R.string.year_rus);
         } else {
             if (age % 10 != 1) {
-                ageSuffix = ctx.getString(R.string.age_person_let);
+                ageSuffix = ctx.getString(R.string.years);
             } else {
-                ageSuffix = ctx.getString(R.string.age_person_god);
+                ageSuffix = ctx.getString(R.string.year);
             }
         }
         if (flag == 0) {

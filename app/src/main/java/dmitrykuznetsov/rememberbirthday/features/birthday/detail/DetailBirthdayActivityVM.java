@@ -8,73 +8,50 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import dmitrykuznetsov.rememberbirthday.R;
-import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
-import dmitrykuznetsov.rememberbirthday.common.callback.ServiceCallback;
-import dmitrykuznetsov.rememberbirthday.common.data.model.Person;
-import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import dmitrykuznetsov.rememberbirthday.common.base.BaseActivityVM;
-import dmitrykuznetsov.rememberbirthday.features.birthday.detail.data.IUserRepo;
-import dmitrykuznetsov.rememberbirthday.features.birthday.detail.data.UserRepo;
+import dmitrykuznetsov.rememberbirthday.common.data.model.Person;
+import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
+import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.input.InputDialog;
+import dmitrykuznetsov.rememberbirthday.features.birthday.detail.interactor.DetailBirthdayInteractor;
 
-/**
- * Created by dmitry on 11.03.17.
- */
-
-public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActivity> {
+public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActivity>  {
 
     private final static String TAG = Constants.LOG_TAG + DetailBirthdayActivityVM.class.getSimpleName();
-    private UserRepo userRepo = new IUserRepo();
-    private int userId;
+
+    private DetailBirthdayInteractor interactor;
+    private InputDialog inputDialog;
+    private int personId;
 
     public final ObservableField<Person> person = new ObservableField<>();
-    public final ObservableField<Boolean> isNeedUserDelete = new ObservableField<Boolean>(false) {
-        @Override
-        public void set(Boolean value) {
-            super.set(value);
-            if (value) {
-                userRepo.deleteUser(activity, userId, new ServiceCallback<Integer>() {
-                    @Override
-                    public void onSuccess(Integer integer) {
-                        Toast.makeText(activity, R.string.success_delete_user, Toast.LENGTH_LONG).show();
-                        finish();
-                    }
 
-                    @Override
-                    public void onFailed(String error) {
-                        errorMessage.set(error);
-                    }
-                });
-            }
-        }
-    };
-
-    public DetailBirthdayActivityVM(final DetailBirthdayActivity activity, int userId) {
+    public DetailBirthdayActivityVM(final DetailBirthdayActivity activity, int personId, DetailBirthdayInteractor interactor, InputDialog inputDialog) {
         super(activity);
-        this.userId = userId;
-        refreshUser();
+        this.personId = personId;
+        this.interactor = interactor;
+        this.inputDialog = inputDialog;
+        getUser();
     }
 
-    private void refreshUser() {
-        userRepo.getUser(activity, userId, new ServiceCallback<PersonData>() {
-            @Override
-            public void onSuccess(PersonData p) {
-                Person person = new Person(p.getId(), p.getName(), p.getNote(), p.getBindPhone(), p.getPathImage(), p.getDateInMillis());
-                DetailBirthdayActivityVM.this.person.set(person);
-            }
+    private void getUser() {
+        interactor.getPerson(personId)
+                .subscribe(this::onSuccessGetPerson, this::onErrorGetPerson);
+    }
 
-            @Override
-            public void onFailed(String error) {
-                Log.d(TAG, error);
-                Toast.makeText(activity, error, Toast.LENGTH_LONG).show();
-            }
-        });
+    private void onSuccessGetPerson(PersonData p) {
+        Person person = new Person(p);
+        DetailBirthdayActivityVM.this.person.set(person);
+    }
+
+    private void onErrorGetPerson(Throwable throwable) {
+        String error = throwable.getMessage();
+        Log.d(TAG, error);
+        Toast.makeText(activity, error, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-
         MenuInflater inflater = activity.getMenuInflater();
         inflater.inflate(R.menu.menu_detail, menu);
     }
@@ -85,17 +62,34 @@ public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActiv
         switch (item.getItemId()) {
             case R.id.action_user_edit:
 //                Intent intent = new Intent(this, ActivityAddPerson.class);
-//                intent.putExtra("position", userId);
+//                intent.putExtra("position", personId);
 //                activity.startActivityForResult(intent, REQUEST_ADD_CODE);
+                break;
             case R.id.action_user_delete:
-                InputDialog.show(activity, isNeedUserDelete, R.string.confirm_delete_user_dialog_title, R.string.confirm_delete_user_dialog_message,
-                        R.string.yes, R.string.cancel);
-
-//                DialogFragment newFragment = new ConfirmDeleteUserDialogFragment();
-//                newFragment.show(activity.getFragmentManager(), "actionDeleteUser");
+                inputDialog.show();
+                break;
             case R.id.action_settings:
 //                Intent settings = new Intent(this, SettingsActivity.class);
 //                startActivity(settings);
+                break;
+        }
+    }
+
+
+    public void deletePerson() {
+        Log.d(TAG, "on click positive");
+        interactor.deletePerson(personId)
+                .subscribe(this::onSuccessDeletePerson, this::onErrorDeletePerson);
+    }
+
+    private void onErrorDeletePerson(Throwable throwable) {
+        Log.d(TAG, throwable.getMessage());
+    }
+
+    private void onSuccessDeletePerson(Boolean result) {
+        if (result) {
+            Toast.makeText(activity, R.string.toast_success_delete_user, Toast.LENGTH_LONG).show();
+            activity.finish();
         }
     }
 

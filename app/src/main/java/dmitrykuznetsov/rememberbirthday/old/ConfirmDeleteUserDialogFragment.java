@@ -3,7 +3,6 @@ package dmitrykuznetsov.rememberbirthday.old;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -15,8 +14,8 @@ public class ConfirmDeleteUserDialogFragment extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        builder.setMessage(R.string.confirm_delete_user_dialog_message)
-                .setTitle(R.string.confirm_delete_user_dialog_title)
+        builder.setMessage(R.string.dialog_message_confirm_delete_user)
+                .setTitle(R.string.dialog_title_confirm_delete_user)
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         mListener.onDialogPositiveClick();

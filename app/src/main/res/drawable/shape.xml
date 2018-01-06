@@ -9,7 +9,7 @@
     </stroke>
 
     <solid
-        android:color="@color/mySolidColor">
+        android:color="@color/colorWhite">
 
     </solid>
     <padding

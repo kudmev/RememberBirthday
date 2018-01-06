@@ -1,5 +1,6 @@
 package dmitrykuznetsov.rememberbirthday.common.data.di;
 
+import android.content.ContentResolver;
 import android.content.Context;
 
 import javax.inject.Singleton;
@@ -17,8 +18,14 @@ public class RepoModule {
 
     @Provides
     @Singleton
-    PersonRepo providePersonRepo(){
-        return new PersonRepoImpl();
+    ContentResolver provideContentResolver(Context context){
+        return context.getContentResolver();
+    }
+
+    @Provides
+    @Singleton
+    PersonRepo providePersonRepo(ContentResolver contentResolver){
+        return new PersonRepoImpl(contentResolver);
     }
 
     @Provides

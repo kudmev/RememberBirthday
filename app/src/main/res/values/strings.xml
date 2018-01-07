@@ -2,10 +2,9 @@
     <string name="app_name">RememberBirthday</string>
 
     <!-- Activity title -->
-    <string name="title_main_actionbar">Напоминалка ДР</string>
-    <string name="title_detailperson">Имя пользователя</string>
-    <string name="title_addperson">Добавить именинника</string>
-    <string name="title_add_name">Добавить именинника</string>
+    <string name="title_main">Напоминалка ДР</string>
+    <string name="title_detail_person">Информация об имениннике</string>
+    <string name="title_add_person">Добавить именинника</string>
     <string name="title_activity_settings">Экран настроек</string>
 
     <!-- ERRORS -->
@@ -44,7 +43,7 @@
     <string name="date_birthday">День рождения</string>
     <string name="bind_account">Присоединить контакт</string>
     <string name="hint_enter_name">Имя</string>
-    <string name="hint_enter_note">Заметка напомнит вам о желаниях именинника в канун праздника.</string>
+    <string name="hint_enter_note">Составьте краткое описание увлечений и интересов именинника.</string>
 
     <!-- Search Activity -->
     <string name="search_view_birthdays">Поиск именинника</string>

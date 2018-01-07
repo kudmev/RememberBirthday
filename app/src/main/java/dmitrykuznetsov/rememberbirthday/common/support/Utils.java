@@ -42,7 +42,7 @@ public class Utils {
         TextView messageView = linearLayout.findViewById(android.R.id.message);
         messageView.setGravity(Gravity.CENTER);
         messageView.setTextColor(resources.getColor(R.color.colorWhite));
-        messageView.setPadding(10, 7, 10, 7);
+        messageView.setPadding(13, 5, 13, 5);
 
         toast.show();
     }

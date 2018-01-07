@@ -7,6 +7,7 @@ import android.widget.Toast;
 import dagger.Module;
 import dagger.Provides;
 import dmitrykuznetsov.rememberbirthday.R;
+import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepo;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.DetailBirthdayActivity;
@@ -69,8 +70,8 @@ public class DetailBirthdayModule {
                                                              DetailBirthdayInteractor interactor, InputDialog inputDialog) {
         Intent intent = activity.getIntent();
         if (intent != null) {
-            int id = intent.getIntExtra(Constants.USER_ID, 0);
-            return new DetailBirthdayActivityVM(activity, id, interactor, inputDialog);
+            PersonData personData = intent.getParcelableExtra(Constants.PERSON_DATA);
+            return new DetailBirthdayActivityVM(activity, personData, interactor, inputDialog);
         } else {
             Toast.makeText(activity, R.string.error_person_not_found, Toast.LENGTH_LONG).show();
             activity.finish();

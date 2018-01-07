@@ -7,12 +7,12 @@
     <item android:id="@+id/action_search"
         android:title="@string/menu_search"
         android:icon="@drawable/search"
-        android:actionViewClass="android.widget.SearchView"
+        app:actionViewClass="android.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView"/>
     <item android:id="@+id/action_add_name"
 
         android:icon="@drawable/person_add"
-        android:title="@string/title_add_name"
+        android:title="@string/title_add_person"
         app:showAsAction="ifRoom" />
 
     <item android:id="@+id/action_settings"

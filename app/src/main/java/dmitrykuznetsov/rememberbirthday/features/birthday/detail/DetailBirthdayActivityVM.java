@@ -15,26 +15,26 @@ import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.input.InputDialog;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.interactor.DetailBirthdayInteractor;
 
-public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActivity>  {
+public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActivity> {
 
     private final static String TAG = Constants.LOG_TAG + DetailBirthdayActivityVM.class.getSimpleName();
 
     private DetailBirthdayInteractor interactor;
     private InputDialog inputDialog;
-    private int personId;
+    private PersonData personData;
 
     public final ObservableField<Person> person = new ObservableField<>();
 
-    public DetailBirthdayActivityVM(final DetailBirthdayActivity activity, int personId, DetailBirthdayInteractor interactor, InputDialog inputDialog) {
+    public DetailBirthdayActivityVM(final DetailBirthdayActivity activity, PersonData personData, DetailBirthdayInteractor interactor, InputDialog inputDialog) {
         super(activity);
-        this.personId = personId;
+        this.personData = personData;
         this.interactor = interactor;
         this.inputDialog = inputDialog;
         getUser();
     }
 
     private void getUser() {
-        interactor.getPerson(personId)
+        interactor.getPerson(personData.getId())
                 .subscribe(this::onSuccessGetPerson, this::onErrorGetPerson);
     }
 
@@ -78,7 +78,7 @@ public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActiv
 
     public void deletePerson() {
         Log.d(TAG, "on click positive");
-        interactor.deletePerson(personId)
+        interactor.deletePerson(personData.getId())
                 .subscribe(this::onSuccessDeletePerson, this::onErrorDeletePerson);
     }
 

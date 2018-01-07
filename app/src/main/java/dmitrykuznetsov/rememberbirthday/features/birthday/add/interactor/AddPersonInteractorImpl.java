@@ -1,6 +1,9 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor;
 
+import android.content.Intent;
 import android.net.Uri;
+
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.data.model.Person;
@@ -30,12 +33,19 @@ public class AddPersonInteractorImpl implements AddPersonInteractor {
     }
 
     @Override
-    public String getPhone(Uri uri) {
+    public String getPhone(Intent data) {
+        Uri uri = data.getData();
         return phoneRetriever.getPhone(uri);
     }
 
     @Override
-    public int getNextIdPerson() {
+    public String getPathImage(Intent data) {
+        CropImage.ActivityResult result = CropImage.getActivityResult(data);
+        Uri resultUri = result.getUri();
+        return resultUri.getPath();
+    }
+
+    private int getNextIdPerson() {
         int id = personRepo.getPersonLastId();
         id++;
         return id;

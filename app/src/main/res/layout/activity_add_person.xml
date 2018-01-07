@@ -18,6 +18,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include layout="@layout/toolbar"
+            android:id="@+id/toolbar" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image"
@@ -30,7 +33,7 @@
             app:civ_border_color="#00000000"
             app:civ_border_width="2dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:onClick="@{viewModel::addImage}"
             bind:imageUrl="@{viewModel.person.pathImage}" />
 
@@ -53,7 +56,7 @@
 
         <TextView
             android:id="@+id/profile_h2_date"
-            style="@style/AddConstraintTextView"
+            style="@style/HeaderTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -81,7 +84,7 @@
 
         <TextView
             android:id="@+id/profile_h2_note"
-            style="@style/AddConstraintTextView"
+            style="@style/HeaderTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -101,7 +104,6 @@
             android:gravity="start|top"
             android:hint="@string/hint_enter_note"
             android:inputType="textMultiLine|textCapSentences"
-            android:lines="3"
             android:maxLines="5"
             android:scrollbars="vertical"
             android:text="@={viewModel.person.note}"
@@ -111,7 +113,7 @@
 
         <TextView
             android:id="@+id/profile_h2_phone"
-            style="@style/AddConstraintTextView"
+            style="@style/HeaderTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"

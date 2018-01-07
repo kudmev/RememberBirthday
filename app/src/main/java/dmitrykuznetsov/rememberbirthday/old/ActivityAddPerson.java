@@ -129,7 +129,7 @@ public class ActivityAddPerson extends Activity  {
             }
         }
 
-        getActionBar().setTitle(R.string.title_add_name);
+        getActionBar().setTitle(R.string.title_add_person);
         getActionBar().setDisplayUseLogoEnabled(false);
         getActionBar().setDisplayShowHomeEnabled(false);
 

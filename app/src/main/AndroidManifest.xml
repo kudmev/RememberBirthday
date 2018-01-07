@@ -27,7 +27,7 @@
 
         <activity
             android:name=".features.birthday.main.BirthdaysActivity"
-            android:label="@string/title_main_actionbar"
+            android:label="@string/title_main"
             android:theme="@style/AppTheme"
             android:logo="@mipmap/logo">
             <intent-filter>
@@ -39,9 +39,10 @@
 
         <activity
             android:name=".features.birthday.add.AddPersonActivity"
-            android:label="@string/title_addperson"
+            android:label="@string/title_add_person"
+            android:parentActivityName=".features.birthday.main.BirthdaysActivity"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustResize|stateVisible|stateAlwaysHidden"/>
+            android:windowSoftInputMode="adjustPan"/>
 
         <!--<activity-->
             <!--android:name=".MainActivity"-->
@@ -56,12 +57,13 @@
 
         <activity
             android:name=".old.ActivityDetailPerson"
-            android:label="@string/title_detailperson"
+            android:label="@string/title_detail_person"
+            android:parentActivityName=".features.birthday.main.BirthdaysActivity"
             android:theme="@style/AppTheme" />
 
         <activity
             android:name=".old.ActivityAddPerson"
-            android:label="@string/title_addperson"
+            android:label="@string/title_add_person"
             android:theme="@style/AppTheme"/>
 
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />

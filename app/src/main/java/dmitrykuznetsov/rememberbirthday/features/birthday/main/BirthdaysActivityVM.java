@@ -43,8 +43,8 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
     }
 
     @Override
-    protected void onRecyclerItemClick(PersonData item) {
-        DetailBirthdayActivity.open(activity, item.getId());
+    protected void onRecyclerItemClick(PersonData personData) {
+        DetailBirthdayActivity.open(activity, personData);
     }
 
     @Override

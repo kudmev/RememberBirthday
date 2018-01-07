@@ -62,7 +62,7 @@ class MySimpleCursorAdapter extends SimpleCursorAdapter {
             rowView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DetailBirthdayActivity.open(ctx, uid);
+//                    DetailBirthdayActivity.open(ctx, uid);
 //                    Intent intent = new Intent();
 //                    intent.setClass(ctx, ActivityDetailPerson.class);
 //                    intent.putExtra("position", uid);

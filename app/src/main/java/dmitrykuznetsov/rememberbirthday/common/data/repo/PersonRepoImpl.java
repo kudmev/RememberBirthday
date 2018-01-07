@@ -69,7 +69,7 @@ public class PersonRepoImpl implements PersonRepo {
         String sortOrder = RememberContentProvider.UID + " DESC";
         Cursor c = contentResolver.query(RememberContentProvider.CONTENT_URI, projection, null, null, sortOrder);
         int lastId = 0;
-        if (c != null) {
+        if (c != null && c.getCount() != 0) {
             c.moveToFirst();
             lastId = c.getInt(c.getColumnIndex(RememberContentProvider.UID));
             c.close();

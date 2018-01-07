@@ -65,19 +65,17 @@ public class AddPersonActivityVM extends BaseActivityVM<AddPersonActivity> imple
                 case REQUEST_GALLERY:
                     Uri inputUri = data.getData();
                     CropImage.activity(inputUri)
-                            .setMinCropResultSize(128,128)
-                            .setAspectRatio(1,1)
+                            .setMinCropResultSize(128, 128)
+                            .setAspectRatio(1, 1)
+                            .setRequestedSize(256, 256)
                             .start(getActivity());
                     break;
                 case CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE:
-                    CropImage.ActivityResult result = CropImage.getActivityResult(data);
-                    Uri resultUri = result.getUri();
-                    String pathImage = resultUri.getPath();
+                    String pathImage = addPersonInteractor.getPathImage(data);
                     person.setPathImage(pathImage);
                     break;
                 case PICK_PHONE:
-                    Uri contactData = data.getData();
-                    String phone = addPersonInteractor.getPhone(contactData);
+                    String phone = addPersonInteractor.getPhone(data);
                     person.setBindPhone(phone);
                     break;
             }

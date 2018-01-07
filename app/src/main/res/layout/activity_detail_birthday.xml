@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -10,105 +11,168 @@
             type="dmitrykuznetsov.rememberbirthday.features.birthday.detail.DetailBirthdayActivityVM" />
     </data>
 
-    <android.support.design.widget.CoordinatorLayout
 
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
 
-            android:layout_width="match_parent"
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_face_add"
+            app:civ_border_color="#00000000"
+            app:civ_border_width="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            bind:imageUrl="@{viewModel.person.pathImage}" />
+
+        <TextView
+            android:id="@+id/tvDetailName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            tools:context=".old.ActivityDetailPerson">
+            android:layout_margin="10dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@{viewModel.person.name}"
+            android:textColor="#333"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintTop_toTopOf="@+id/profile_image" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:drawableLeft="@drawable/ic_face"
-                android:drawablePadding="7dp"
-                android:drawableStart="@drawable/ic_face"
-                android:gravity="center_vertical"
-                android:text="@{viewModel.person.name}"
-                android:textColor="#333"
-                android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tvHeaderDetailAge"
+            style="@style/HeaderTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/age"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
-            <TextView
-                style="@style/MyH2TextViewStyle"
-                android:text="@string/age" />
+        <TextView
+            android:id="@+id/tvDetailAge"
+            style="@style/TextViewDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            app:age="@{viewModel.person.dateInMillis}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHeaderDetailAge" />
 
-            <TextView
-                style="@style/TextViewDetail"
-                app:age="@{viewModel.person.dateInMillis}" />
+        <TextView
+            android:id="@+id/tvHeaderDetailBirthday"
+            style="@style/HeaderTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/birthday"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailAge" />
 
-            <TextView
-                style="@style/MyH2TextViewStyle"
-                android:text="@string/birthday" />
+        <TextView
+            android:id="@+id/tvDetailBirthday"
+            style="@style/TextViewDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            app:birthday="@{viewModel.person.dateInMillis}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHeaderDetailBirthday" />
 
-            <TextView
-                android:id="@+id/detail_date_person"
-                style="@style/TextViewDetail"
-                app:birthday="@{viewModel.person.dateInMillis}" />
+        <TextView
+            android:id="@+id/tvHeaderDetailNote"
+            style="@style/HeaderTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/note"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailBirthday" />
 
-            <TextView
-                android:id="@+id/detail_title_note"
-                style="@style/MyH2TextViewStyle"
-                android:text="@string/note" />
+        <TextView
+            android:id="@+id/tvDetailNote"
+            style="@style/TextViewDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@{viewModel.person.note}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHeaderDetailNote" />
 
-            <TextView
-                android:id="@+id/detail_note_person"
-                style="@style/TextViewDetail"
-                android:text="@{viewModel.person.note}" />
+        <TextView
+            android:id="@+id/tvHeaderDetailPhone"
+            style="@style/HeaderTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailNote" />
 
-            <TextView
-                android:id="@+id/detail_title_phone"
-                style="@style/MyH2TextViewStyle"
-                android:text="@string/phone" />
 
-            <RelativeLayout
-                android:id="@+id/detail_relative"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvDetailPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/detail_sms_image"
-                    android:layout_toStartOf="@+id/detail_sms_image"
-                    android:background="@drawable/all_borders_one_pixel"
-                    android:drawableEnd="@drawable/call"
-                    android:drawableRight="@drawable/call"
-                    android:gravity="start|center_vertical"
-                    android:onClick="onClickCall"
-                    android:paddingBottom="3dp"
-                    android:paddingLeft="7dp"
-                    android:paddingRight="7dp"
-                    android:paddingTop="3dp"
-                    android:text="@{viewModel.person.bindPhone}"
-                    android:textColor="#333"
-                    android:textSize="18sp" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/all_borders_one_pixel"
+            android:drawableEnd="@drawable/call"
+            android:drawableRight="@drawable/call"
+            android:gravity="start|center_vertical"
+            android:onClick="onClickCall"
+            android:paddingBottom="3dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:paddingTop="3dp"
+            android:text="@{viewModel.person.bindPhone}"
+            android:textColor="#333"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/ivDetailSms"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHeaderDetailPhone" />
 
-                <ImageView
-                    android:id="@+id/detail_sms_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/all_borders_one_pixel"
-                    android:contentDescription="@string/image_description"
-                    android:onClick="onClickSms"
-                    android:paddingBottom="3dp"
-                    android:paddingLeft="7dp"
-                    android:paddingRight="7dp"
-                    android:paddingTop="3dp"
-                    android:src="@drawable/textsms" />
-            </RelativeLayout>
+        <ImageView
+            android:id="@+id/ivDetailSms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/all_borders_one_pixel"
+            android:onClick="onClickSms"
+            android:paddingBottom="3dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:paddingTop="3dp"
+            android:src="@drawable/textsms"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHeaderDetailPhone"
+            tools:ignore="contentDescription" />
 
-        </LinearLayout>
-    </android.support.design.widget.CoordinatorLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
 </layout>

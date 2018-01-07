@@ -17,13 +17,13 @@ public class EditPersonActivity extends BaseActivity<ActivityEditPersonBinding, 
 
     public static void open(Activity activity, int id, int resultCode) {
         Intent intent = new Intent(activity, EditPersonActivity.class);
-        intent.putExtra(Constants.USER_ID, id);
+        intent.putExtra(Constants.PERSON_DATA, id);
         activity.startActivityForResult(intent, resultCode);
     }
 
     @Override
     public EditPersonActivityVM onCreate() {
-        int id = getIntent().getIntExtra(Constants.USER_ID, 0);
+        int id = getIntent().getIntExtra(Constants.PERSON_DATA, 0);
         return new EditPersonActivityVM(this, id);
     }
 

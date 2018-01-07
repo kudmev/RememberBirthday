@@ -11,7 +11,7 @@ import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
  * Created by vernau on 4/18/17.
  */
 
-public abstract class AbstractListFragmentVM<F extends BindingFragment, T> extends NetworkFragmentVM<F> {
+public abstract class AbstractListFragmentVM<F extends BindingFragment, T> extends BaseFragmentVM<F> {
 
     public final RecyclerConfiguration recyclerConfiguration;
 

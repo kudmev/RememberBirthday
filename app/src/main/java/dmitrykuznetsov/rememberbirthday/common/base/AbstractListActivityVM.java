@@ -13,7 +13,7 @@ import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
  * Created by vernau on 4/18/17.
  */
 
-public abstract class AbstractListActivityVM<A extends AppCompatActivity, T> extends NetworkActivityVM<A> {
+public abstract class AbstractListActivityVM<A extends AppCompatActivity, T> extends BaseActivityVM<A> {
 
     public final RecyclerConfiguration recyclerConfiguration;
     protected final RecyclerBindingAdapter<T> adapter;

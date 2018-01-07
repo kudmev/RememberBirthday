@@ -25,7 +25,7 @@ public class AddPersonInteractorImpl implements AddPersonInteractor {
     public void addPersonData(Person p) {
         int id = getNextIdPerson();
         PersonData personData = new PersonData(id, p.getName(), p.getNote(), p.getBindPhone(),
-                p.getPathImage(), p.getDateInMillis(), null);
+                p.getPathImage(), p.getDateInMillis()/*, null*/);
         personRepo.addPerson(personData);
     }
 

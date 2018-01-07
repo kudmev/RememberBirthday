@@ -15,9 +15,9 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import io.realm.Realm;
-import io.realm.RealmResults;
-import io.realm.Sort;
+//import io.realm.Realm;
+//import io.realm.RealmResults;
+//import io.realm.Sort;
 
 /**
  * Created by dmitry on 14.05.17.
@@ -120,7 +120,7 @@ public class PersonRepoImpl implements PersonRepo {
             String pathImage = c.getString(c.getColumnIndex(RememberContentProvider.PATHIMAGE));
             long dateInMillis = c.getLong(c.getColumnIndex(RememberContentProvider.DATE_BIRTHDAY_IN_SECONDS));
             String bindPhone = c.getString(c.getColumnIndex(RememberContentProvider.PHONE_NUMBER));
-            PersonData personData = new PersonData(personId, name, note, bindPhone, pathImage, dateInMillis, null);
+            PersonData personData = new PersonData(personId, name, note, bindPhone, pathImage, dateInMillis/*, null*/);
             c.close();
             return Observable.just(personData);
         } else {
@@ -135,7 +135,7 @@ public class PersonRepoImpl implements PersonRepo {
         String pathImage = c.getString(c.getColumnIndex(RememberContentProvider.PATHIMAGE));
         long dateInMillis = c.getLong(c.getColumnIndex(RememberContentProvider.DATE_BIRTHDAY_IN_SECONDS));
         String bindPhone = c.getString(c.getColumnIndex(RememberContentProvider.PHONE_NUMBER));
-        PersonData personData = new PersonData(id, name, note, bindPhone, pathImage, dateInMillis, null);
+        PersonData personData = new PersonData(id, name, note, bindPhone, pathImage, dateInMillis/*, null*/);
         return  personData;
     }
 }

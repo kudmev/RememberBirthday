@@ -1,12 +1,12 @@
 package dmitrykuznetsov.rememberbirthday.common.data.model;
 
-import io.realm.RealmObject;
+//import io.realm.RealmObject;
 
 /**
  * Created by dmitry on 09.05.17.
  */
 
-public class ReminderData extends RealmObject {
+public class ReminderData /*extends RealmObject*/ {
     private int id;
     private long time;
 

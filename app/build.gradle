@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'realm-android'
+//apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 27
@@ -57,7 +57,6 @@ dependencies {
     //Rxjava
     implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation "com.github.akarnokd:rxjava2-interop:0.10.2"
 
     //Calendar
     compile 'joda-time:joda-time:2.9.9'
@@ -69,7 +68,6 @@ dependencies {
     implementation 'com.github.stfalcon:androidmvvmhelper:0.4'
 
     //Work with image, crop
-    compile 'com.soundcloud.android:android-crop:1.0.1@aar'
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.theartofdev.edmodo:android-image-cropper:2.6.0'
 

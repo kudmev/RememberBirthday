@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.DatePicker;
 
-import com.soundcloud.android.crop.Crop;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import org.joda.time.LocalDate;

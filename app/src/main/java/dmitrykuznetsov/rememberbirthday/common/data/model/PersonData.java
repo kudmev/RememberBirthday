@@ -1,13 +1,13 @@
 package dmitrykuznetsov.rememberbirthday.common.data.model;
 
-import io.realm.RealmList;
-import io.realm.RealmObject;
+//import io.realm.RealmList;
+//import io.realm.RealmObject;
 
 /**
  * Created by dmitry on 09.05.17.
  */
 
-public class PersonData extends RealmObject {
+public class PersonData /*extends RealmObject*/ {
 
     public static final String DATE = "dateInMillis";
     public static final String ID = "id";
@@ -18,19 +18,19 @@ public class PersonData extends RealmObject {
     private String bindPhone;
     private String pathImage;
     private long dateInMillis;
-    private RealmList<ReminderData> reminders;
+//    private RealmList<ReminderData> reminders;
 
     public PersonData() {
     }
 
-    public PersonData(int id, String name, String note, String bindPhone, String pathImage, long dateInMillis, RealmList<ReminderData> reminders) {
+    public PersonData(int id, String name, String note, String bindPhone, String pathImage, long dateInMillis/*, RealmList<ReminderData> reminders*/) {
         this.id = id;
         this.name = name;
         this.note = note;
         this.bindPhone = bindPhone;
         this.pathImage = pathImage;
         this.dateInMillis = dateInMillis;
-        this.reminders = reminders;
+//        this.reminders = reminders;
     }
 
     public int getId() {
@@ -81,11 +81,11 @@ public class PersonData extends RealmObject {
         this.dateInMillis = dateInMillis;
     }
 
-    public RealmList<ReminderData> getReminders() {
-        return reminders;
-    }
-
-    public void setReminders(RealmList<ReminderData> reminders) {
-        this.reminders = reminders;
-    }
+//    public RealmList<ReminderData> getReminders() {
+//        return reminders;
+//    }
+//
+//    public void setReminders(RealmList<ReminderData> reminders) {
+//        this.reminders = reminders;
+//    }
 }

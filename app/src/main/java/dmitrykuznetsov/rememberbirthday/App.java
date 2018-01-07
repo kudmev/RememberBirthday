@@ -11,8 +11,8 @@ import dagger.android.HasActivityInjector;
 import dagger.android.HasFragmentInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 import dmitrykuznetsov.rememberbirthday.migration.MigrationFromSqLiteToRealm;
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
+//import io.realm.Realm;
+//import io.realm.RealmConfiguration;
 
 public class App extends android.app.Application implements HasActivityInjector, HasSupportFragmentInjector {
 
@@ -24,9 +24,9 @@ public class App extends android.app.Application implements HasActivityInjector,
 
     public void onCreate() {
         super.onCreate();
-        Realm.init(this);
-        RealmConfiguration config = new RealmConfiguration.Builder().build();
-        Realm.setDefaultConfiguration(config);
+//        Realm.init(this);
+//        RealmConfiguration config = new RealmConfiguration.Builder().build();
+//        Realm.setDefaultConfiguration(config);
         MigrationFromSqLiteToRealm.migration(this);
 
         DaggerAppComponent

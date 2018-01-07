@@ -8,8 +8,6 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.widget.DatePicker;
 
-import com.soundcloud.android.crop.Crop;
-
 import org.joda.time.LocalDate;
 
 import java.io.File;
@@ -86,24 +84,10 @@ public class EditPersonActivityVM extends BaseActivityVM<EditPersonActivity> imp
                 case REQUEST_GALLERY:
                     Uri inputUri = data.getData();
 
-                    Uri destination = Uri.fromFile(new File(activity.getCacheDir(), "cropped"));
-                    Crop.of(inputUri, destination).asSquare().start(activity);
+//                    Uri destination = Uri.fromFile(new File(activity.getCacheDir(), "cropped"));
+//                    Crop.of(inputUri, destination).asSquare().start(activity);
                     break;
-                case Crop.REQUEST_CROP:
-                    Uri cropUri = Crop.getOutput(data);
-                    String path = cropUri.getPath();
-                    userObservable.setPathImage(path);
-//                    try {
-//                        Bitmap userBitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(),
-//                                cropUri);
-//                        userBitmap = getRoundedShape(userBitmap);
-//
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    imageView.setImageBitmap(userBitmap);
-//                    break;
-//
+
                 case PICK_CONTACT:
 //                    Uri contactData = data.getData();
 //

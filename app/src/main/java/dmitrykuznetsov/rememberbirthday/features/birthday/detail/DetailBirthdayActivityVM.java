@@ -1,6 +1,6 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.detail;
 
-import android.databinding.ObservableField;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,44 +9,30 @@ import android.widget.Toast;
 
 import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.common.base.BaseActivityVM;
-import dmitrykuznetsov.rememberbirthday.common.data.model.Person;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.input.InputDialog;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.interactor.DetailBirthdayInteractor;
+import dmitrykuznetsov.rememberbirthday.features.birthday.edit.EditPersonActivity;
+import io.reactivex.disposables.CompositeDisposable;
 
 public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActivity> {
 
     private final static String TAG = Constants.LOG_TAG + DetailBirthdayActivityVM.class.getSimpleName();
+    private static final int EDIT_PERSON = 9;
 
     private DetailBirthdayInteractor interactor;
     private InputDialog inputDialog;
-    private PersonData personData;
 
-    public final ObservableField<Person> person = new ObservableField<>();
+    private CompositeDisposable disposables = new CompositeDisposable();
+
+    public final PersonData personData;
 
     public DetailBirthdayActivityVM(final DetailBirthdayActivity activity, PersonData personData, DetailBirthdayInteractor interactor, InputDialog inputDialog) {
         super(activity);
         this.personData = personData;
         this.interactor = interactor;
         this.inputDialog = inputDialog;
-        getUser();
-    }
-
-    private void getUser() {
-        interactor.getPerson(personData.getId())
-                .subscribe(this::onSuccessGetPerson, this::onErrorGetPerson);
-    }
-
-    private void onSuccessGetPerson(PersonData p) {
-        Person person = new Person(p);
-        DetailBirthdayActivityVM.this.person.set(person);
-    }
-
-    private void onErrorGetPerson(Throwable throwable) {
-        String error = throwable.getMessage();
-        Log.d(TAG, error);
-        Toast.makeText(activity, error, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -61,9 +47,9 @@ public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActiv
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case R.id.action_user_edit:
-//                Intent intent = new Intent(this, ActivityAddPerson.class);
-//                intent.putExtra("position", personId);
-//                activity.startActivityForResult(intent, REQUEST_ADD_CODE);
+                Intent intent = new Intent(activity, EditPersonActivity.class);
+                intent.putExtra(Constants.PERSON_DATA, personData);
+                activity.startActivityForResult(intent, EDIT_PERSON);
                 break;
             case R.id.action_user_delete:
                 inputDialog.show();
@@ -75,11 +61,9 @@ public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActiv
         }
     }
 
-
     public void deletePerson() {
-        Log.d(TAG, "on click positive");
-        interactor.deletePerson(personData.getId())
-                .subscribe(this::onSuccessDeletePerson, this::onErrorDeletePerson);
+        disposables.add(interactor.deletePerson(personData.getId())
+                .subscribe(this::onSuccessDeletePerson, this::onErrorDeletePerson));
     }
 
     private void onErrorDeletePerson(Throwable throwable) {
@@ -93,5 +77,9 @@ public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActiv
         }
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        disposables.dispose();
+    }
 }

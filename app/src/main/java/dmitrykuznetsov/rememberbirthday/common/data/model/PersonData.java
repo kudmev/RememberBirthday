@@ -3,17 +3,18 @@ package dmitrykuznetsov.rememberbirthday.common.data.model;
 //import io.realm.RealmList;
 //import io.realm.RealmObject;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import dmitrykuznetsov.rememberbirthday.BR;
 
 /**
  * Created by dmitry on 09.05.17.
  */
 
-public class PersonData implements Parcelable /*extends RealmObject*/ {
-
-    public static final String DATE = "dateInMillis";
-    public static final String ID = "id";
+public class PersonData extends BaseObservable implements Parcelable /*extends RealmObject*/ {
 
     private int id;
     private String name;
@@ -24,6 +25,12 @@ public class PersonData implements Parcelable /*extends RealmObject*/ {
 //    private RealmList<ReminderData> reminders;
 
     public PersonData() {
+        this.id = 0;
+        this.name = "";
+        this.note = "";
+        this.bindPhone = "";
+        this.pathImage = "";
+        this.dateInMillis = 0;
     }
 
     public PersonData(int id, String name, String note, String bindPhone, String pathImage, long dateInMillis/*, RealmList<ReminderData> reminders*/) {
@@ -36,52 +43,64 @@ public class PersonData implements Parcelable /*extends RealmObject*/ {
 //        this.reminders = reminders;
     }
 
+    @Bindable
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+        notifyPropertyChanged(BR.id);
     }
 
+    @Bindable
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+        notifyPropertyChanged(BR.name);
     }
 
+    @Bindable
     public String getNote() {
         return note;
     }
 
     public void setNote(String note) {
         this.note = note;
+        notifyPropertyChanged(BR.note);
     }
 
+    @Bindable
     public String getBindPhone() {
         return bindPhone;
     }
 
     public void setBindPhone(String bindPhone) {
         this.bindPhone = bindPhone;
+        notifyPropertyChanged(BR.bindPhone);
     }
 
+    @Bindable
     public String getPathImage() {
         return pathImage;
     }
 
     public void setPathImage(String pathImage) {
         this.pathImage = pathImage;
+        notifyPropertyChanged(BR.pathImage);
     }
 
+    @Bindable
     public long getDateInMillis() {
         return dateInMillis;
     }
 
     public void setDateInMillis(long dateInMillis) {
         this.dateInMillis = dateInMillis;
+        notifyPropertyChanged(BR.dateInMillis);
     }
 
 

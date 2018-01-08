@@ -18,8 +18,6 @@ public class InputDialog {
     }
 
     public interface OnClickDialogButton {
-        void confirmDeletePerson();
-
-        void rejectDeletePerson();
+        void onClickConfirm();
     }
 }

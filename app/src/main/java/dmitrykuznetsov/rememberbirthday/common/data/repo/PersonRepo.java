@@ -11,11 +11,11 @@ import io.reactivex.Observable;
  */
 
 public interface PersonRepo {
-    List<PersonData> getPersons();
+    Observable<List<PersonData>> getPersons();
 
     void addPerson(PersonData personData);
 
-    int getPersonLastId();
+    int getLastPersonId();
 
     Observable<Boolean> deletePerson(int personId);
 

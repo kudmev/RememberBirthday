@@ -49,7 +49,7 @@ dependencies {
     compile "com.android.support:cardview-v7:$version"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    // Dagger
+    //Dagger
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
     implementation 'com.google.dagger:dagger-android-support:2.11'
@@ -67,7 +67,7 @@ dependencies {
     //MVVM + Data Binding
     implementation 'com.github.stfalcon:androidmvvmhelper:0.4'
 
-    //Work with image, crop
+    //Image, crop
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.theartofdev.edmodo:android-image-cropper:2.6.0'
 

@@ -9,10 +9,5 @@ import dagger.android.ContributesAndroidInjector;
 
 @Module
 public abstract class FragmentBuilder {
-//    @ContributesAndroidInjector(modules = CasesModule.class)
-//    abstract CasesInProgressFragment bindCasesInProgressFragment();
-//
-//    @ContributesAndroidInjector(modules = CasesModule.class)
-//    abstract CasesViewedFragment bindCasesViewedFragment();
 
 }

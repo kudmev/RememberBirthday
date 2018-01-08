@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,8 +16,10 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import org.joda.time.LocalDate;
 
 import dmitrykuznetsov.rememberbirthday.R;
+import dmitrykuznetsov.rememberbirthday.common.base.BaseActivity;
 import dmitrykuznetsov.rememberbirthday.common.base.BaseActivityVM;
-import dmitrykuznetsov.rememberbirthday.common.data.model.Person;
+import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
+import dmitrykuznetsov.rememberbirthday.common.data.model.PersonObservable;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPersonInteractor;
 
 public class AddPersonActivityVM extends BaseActivityVM<AddPersonActivity> implements DatePickerDialog.OnDateSetListener {
@@ -24,13 +27,14 @@ public class AddPersonActivityVM extends BaseActivityVM<AddPersonActivity> imple
     private static final int REQUEST_GALLERY = 1;
     private static final int PICK_PHONE = 2;
 
-    public final Person person = new Person();
+    public final PersonData person;
 
     private AddPersonInteractor addPersonInteractor;
 
-    public AddPersonActivityVM(AddPersonActivity activity, AddPersonInteractor addPersonInteractor) {
+    public AddPersonActivityVM(AddPersonActivity activity, AddPersonInteractor addPersonInteractor, PersonData person) {
         super(activity);
         this.addPersonInteractor = addPersonInteractor;
+        this.person = person;
     }
 
     public void addImage() {

@@ -40,7 +40,7 @@ public class DetailBirthdayModule {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.Theme_AppCompat_Dialog_Alert);
         builder.setTitle(R.string.dialog_title_confirm_delete_user);
         builder.setMessage(R.string.dialog_message_confirm_delete_user);
-        builder.setPositiveButton(R.string.yes, (dialog, which) -> activity.confirmDeletePerson());
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> activity.onClickConfirm());
         builder.setNegativeButton(R.string.cancel, null);
         builder.setOnCancelListener(null);
         return builder;

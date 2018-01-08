@@ -20,76 +20,68 @@
         android:orientation="vertical"
         android:paddingTop="@dimen/activity_vertical_margin">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="5dp">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:padding="5dp">-->
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_face"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#00000000"
-                bind:imageUrl="@{viewModel.userObservable.pathImage}"
-                app:onClick="@{viewModel::addImage}"/>
-
-            <!--<ImageView-->
-                <!--android:id="@+id/user_image"-->
+            <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                <!--android:id="@+id/profile_image"-->
                 <!--android:layout_width="36dp"-->
                 <!--android:layout_height="36dp"-->
-                <!--android:background="@drawable/ic_face"-->
-                <!--android:contentDescription="@string/image"-->
-                <!--app:imageUrl="@{viewMouserDataObservableable.pathImage}"-->
-                <!--app:onClick="@{viewModel::addImage}" />-->
+                <!--android:src="@drawable/ic_face"-->
+                <!--app:civ_border_width="2dp"-->
+                <!--app:civ_border_color="#00000000"-->
+                <!--bind:imageUrl="@{viewModel.userObservable.pathImage}"-->
+                <!--app:onClick="@{viewModel::addImage}"/>-->
 
-            <EditText
-                style="@style/AddEditText"
-                android:hint="@string/hint_enter_name"
-                android:inputType="textCapWords"
-                android:text="@{viewModel.userObservable.name}" />
-        </LinearLayout>
 
-        <TextView
-            style="@style/MyH2TextViewStyle"
-            android:text="@string/date_birthday" />
+            <!--<EditText-->
+                <!--style="@style/AddEditText"-->
+                <!--android:hint="@string/hint_enter_name"-->
+                <!--android:inputType="textCapWords"-->
+                <!--android:text="@{viewModel.userObservable.name}" />-->
+        <!--</LinearLayout>-->
 
-        <TextView
-            style="@style/AddEditText"
-            android:drawableEnd="@drawable/calendar"
-            android:drawableRight="@drawable/button_selector"
-            android:hint="@string/hint_add_date"
-            app:onClick="@{viewModel::showDatePickerDialog}"
-            bind:birthday="@{viewModel.userObservable.dateInMillis}" />
+        <!--<TextView-->
+            <!--style="@style/MyH2TextViewStyle"-->
+            <!--android:text="@string/date_birthday" />-->
 
-        <TextView
-            style="@style/MyH2TextViewStyle"
-            android:text="@string/note" />
+        <!--<TextView-->
+            <!--style="@style/AddEditText"-->
+            <!--android:drawableEnd="@drawable/calendar"-->
+            <!--android:drawableRight="@drawable/button_selector"-->
+            <!--android:hint="@string/hint_add_date"-->
+            <!--app:onClick="@{viewModel::showDatePickerDialog}"-->
+            <!--bind:birthday="@{viewModel.userObservable.dateInMillis}" />-->
 
-        <EditText
-            style="@style/AddEditText"
-            android:gravity="start|top"
-            android:hint="@string/hint_enter_note"
-            android:inputType="textMultiLine|textCapSentences"
-            android:maxLines="5"
-            android:scrollbars="vertical"
-            android:text="@{viewModel.userObservable.note}" />
+        <!--<TextView-->
+            <!--style="@style/MyH2TextViewStyle"-->
+            <!--android:text="@string/note" />-->
 
-        <TextView
-            style="@style/MyH2TextViewStyle"
-            android:text="@string/bind_account" />
+        <!--<EditText-->
+            <!--style="@style/AddEditText"-->
+            <!--android:gravity="start|top"-->
+            <!--android:hint="@string/hint_enter_note"-->
+            <!--android:inputType="textMultiLine|textCapSentences"-->
+            <!--android:maxLines="5"-->
+            <!--android:scrollbars="vertical"-->
+            <!--android:text="@{viewModel.userObservable.note}" />-->
 
-        <TextView
-            style="@style/AddEditText"
-            android:drawableEnd="@drawable/button_selector"
-            android:drawableRight="@drawable/button_selector"
-            android:hint="@string/hint_pick_phone"
-            android:text="@{viewModel.userObservable.bindPhone}"
-            bind:onClick="@{viewModel::pickContact}" />
+        <!--<TextView-->
+            <!--style="@style/MyH2TextViewStyle"-->
+            <!--android:text="@string/bind_account" />-->
+
+        <!--<TextView-->
+            <!--style="@style/AddEditText"-->
+            <!--android:drawableEnd="@drawable/button_selector"-->
+            <!--android:drawableRight="@drawable/button_selector"-->
+            <!--android:hint="@string/hint_pick_phone"-->
+            <!--android:text="@{viewModel.userObservable.bindPhone}"-->
+            <!--bind:onClick="@{viewModel::pickContact}" />-->
 
     </LinearLayout>
 

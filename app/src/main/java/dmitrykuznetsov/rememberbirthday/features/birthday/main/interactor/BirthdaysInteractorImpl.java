@@ -4,6 +4,7 @@ import java.util.List;
 
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepo;
+import io.reactivex.Observable;
 
 public class BirthdaysInteractorImpl implements BirthdaysInteractor {
 
@@ -14,7 +15,7 @@ public class BirthdaysInteractorImpl implements BirthdaysInteractor {
     }
 
     @Override
-    public List<PersonData> getPersonDataList() {
+    public Observable<List<PersonData>> getPersons() {
         return personRepo.getPersons();
     }
 }

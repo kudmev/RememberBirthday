@@ -1,16 +1,16 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor;
 
 import android.content.Intent;
-import android.net.Uri;
 
-import dmitrykuznetsov.rememberbirthday.common.data.model.Person;
+import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
+import dmitrykuznetsov.rememberbirthday.common.data.model.PersonObservable;
 
 /**
  * Created by dmitry on 25.05.17.
  */
 
 public interface AddPersonInteractor {
-    void addPersonData(Person personData);
+    void addPersonData(PersonData personData);
     String getPhone(Intent data);
     String getPathImage(Intent data);
 }

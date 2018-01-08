@@ -7,12 +7,9 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
-import dmitrykuznetsov.rememberbirthday.R;
-import dmitrykuznetsov.rememberbirthday.common.data.model.Person;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.old.RememberContentProvider;
 import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 //import io.realm.Realm;
@@ -32,7 +29,7 @@ public class PersonRepoImpl implements PersonRepo {
     }
 
     @Override
-    public List<PersonData> getPersons() {
+    public Observable<List<PersonData>> getPersons() {
 //        Realm realm = Realm.getDefaultInstance();
 //        List<PersonData> persons = realm.where(PersonData.class).findAll().sort(PersonData.DATE, Sort.ASCENDING);
         List<PersonData> persons = new ArrayList<>();
@@ -44,13 +41,15 @@ public class PersonRepoImpl implements PersonRepo {
             }
             c.close();
         }
-        return persons;
+        return Observable.just(persons)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override
     public void addPerson(PersonData personData) {
         ContentValues cv = new ContentValues();
-        cv.put(RememberContentProvider.UID, personData.getId());
+//        cv.put(RememberContentProvider.UID, personData.getId());
         cv.put(RememberContentProvider.NAME, personData.getName());
         cv.put(RememberContentProvider.DATE_BIRTHDAY_IN_SECONDS, personData.getDateInMillis());
         cv.put(RememberContentProvider.NOTE, personData.getNote());
@@ -64,7 +63,7 @@ public class PersonRepoImpl implements PersonRepo {
     }
 
     @Override
-    public int getPersonLastId() {
+    public int getLastPersonId() {
         String[] projection = {RememberContentProvider.UID};
         String sortOrder = RememberContentProvider.UID + " DESC";
         Cursor c = contentResolver.query(RememberContentProvider.CONTENT_URI, projection, null, null, sortOrder);
@@ -136,6 +135,6 @@ public class PersonRepoImpl implements PersonRepo {
         long dateInMillis = c.getLong(c.getColumnIndex(RememberContentProvider.DATE_BIRTHDAY_IN_SECONDS));
         String bindPhone = c.getString(c.getColumnIndex(RememberContentProvider.PHONE_NUMBER));
         PersonData personData = new PersonData(id, name, note, bindPhone, pathImage, dateInMillis/*, null*/);
-        return  personData;
+        return personData;
     }
 }

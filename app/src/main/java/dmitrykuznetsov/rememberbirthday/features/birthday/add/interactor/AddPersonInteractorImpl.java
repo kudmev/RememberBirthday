@@ -6,7 +6,6 @@ import android.net.Uri;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
-import dmitrykuznetsov.rememberbirthday.common.data.model.Person;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepo;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PhoneRetriever;
 
@@ -25,10 +24,10 @@ public class AddPersonInteractorImpl implements AddPersonInteractor {
     }
 
     @Override
-    public void addPersonData(Person p) {
-        int id = getNextIdPerson();
-        PersonData personData = new PersonData(id, p.getName(), p.getNote(), p.getBindPhone(),
-                p.getPathImage(), p.getDateInMillis()/*, null*/);
+    public void addPersonData(PersonData personData) {
+//        int id = getNextIdPerson();
+//        PersonData personData = new PersonData(p.id, p.getName(), p.getNote(), p.getBindPhone(),
+//                p.getPathImage(), p.getDateInMillis()/*, null*/);
         personRepo.addPerson(personData);
     }
 
@@ -46,7 +45,7 @@ public class AddPersonInteractorImpl implements AddPersonInteractor {
     }
 
     private int getNextIdPerson() {
-        int id = personRepo.getPersonLastId();
+        int id = personRepo.getLastPersonId();
         id++;
         return id;
     }

@@ -36,8 +36,8 @@ public class IUserRepo implements UserRepo {
 //                    long dateInMillis = c.getLong(c.getColumnIndex(RememberContentProvider.DATE_BIRTHDAY_IN_SECONDS));
 //                    String bindPhone = c.getString(c.getColumnIndex(RememberContentProvider.PHONE_NUMBER));
 //
-//                    PersonData person = new PersonData(userId, name, note, bindPhone, pathImage, dateInMillis);
-//                    callBack.onSuccess(person);
+//                    PersonData observablePerson = new PersonData(userId, name, note, bindPhone, pathImage, dateInMillis);
+//                    callBack.onSuccess(observablePerson);
 //                    c.close();
 //                } else {
 //                    callBack.onFailed(context.getString(R.string.error_user_not_found));

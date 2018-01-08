@@ -50,12 +50,8 @@ public class DetailBirthdayActivity extends NextStackActivity<ActivityDetailBirt
     }
 
     @Override
-    public void confirmDeletePerson() {
+    public void onClickConfirm() {
         detailBirthdayActivityVM.deletePerson();
     }
 
-    @Override
-    public void rejectDeletePerson() {
-        //Not use now
-    }
 }

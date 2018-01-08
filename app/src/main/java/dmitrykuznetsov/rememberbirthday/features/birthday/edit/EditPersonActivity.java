@@ -3,38 +3,31 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.edit;
 import android.app.Activity;
 import android.content.Intent;
 
-import dmitrykuznetsov.rememberbirthday.BR;
-import dmitrykuznetsov.rememberbirthday.R;
+import javax.inject.Inject;
+
+import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
-import dmitrykuznetsov.rememberbirthday.databinding.ActivityEditPersonBinding;
-import dmitrykuznetsov.rememberbirthday.common.base.BaseActivity;
+import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivity;
 
 /**
  * Created by dmitry on 18.03.17.
  */
 
-public class EditPersonActivity extends BaseActivity<ActivityEditPersonBinding, EditPersonActivityVM> {
+public class EditPersonActivity extends AddPersonActivity {
 
-    public static void open(Activity activity, int id, int resultCode) {
+    @Inject
+    EditPersonActivityVM editPersonActivityVM;
+
+    public static void open(Activity activity, PersonData personData, int resultCode) {
         Intent intent = new Intent(activity, EditPersonActivity.class);
-        intent.putExtra(Constants.PERSON_DATA, id);
+        intent.putExtra(Constants.PERSON_DATA, personData);
         activity.startActivityForResult(intent, resultCode);
     }
 
     @Override
     public EditPersonActivityVM onCreate() {
-        int id = getIntent().getIntExtra(Constants.PERSON_DATA, 0);
-        return new EditPersonActivityVM(this, id);
+        return editPersonActivityVM;
     }
 
-    @Override
-    public int getVariable() {
-        return BR.viewModel;
-    }
-
-    @Override
-    public int getLayoutId() {
-        return R.layout.activity_edit_person;
-    }
 
 }

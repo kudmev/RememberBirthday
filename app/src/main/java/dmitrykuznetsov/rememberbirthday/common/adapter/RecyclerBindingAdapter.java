@@ -25,7 +25,9 @@ public class RecyclerBindingAdapter<T> extends RecyclerView.Adapter<RecyclerBind
     public RecyclerBindingAdapter(int holderLayout, int variableId, List<T> items) {
         this.holderLayout = holderLayout;
         this.variableId = variableId;
-        this.items = items;
+        if (items != null) {
+            this.items = items;
+        }
     }
 
     @Override
@@ -44,12 +46,9 @@ public class RecyclerBindingAdapter<T> extends RecyclerView.Adapter<RecyclerBind
 
         final T item = items.get(position);
 
-        holder.getBinding().getRoot().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onItemClick(adapterPosition, item,  holder);
-                }
+        holder.getBinding().getRoot().setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(adapterPosition, item,  holder);
             }
         });
         holder.getBinding().setVariable(variableId, item);

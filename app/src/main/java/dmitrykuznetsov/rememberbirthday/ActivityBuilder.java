@@ -6,6 +6,8 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.di.AddPersonModule;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.DetailBirthdayActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.di.DetailBirthdayModule;
+import dmitrykuznetsov.rememberbirthday.features.birthday.edit.EditPersonActivity;
+import dmitrykuznetsov.rememberbirthday.features.birthday.edit.di.EditPersonModule;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.BirthdaysActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.di.BirthdaysModule;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.scope.ActivityScope;
@@ -24,6 +26,10 @@ public abstract class ActivityBuilder {
     @ActivityScope
     @ContributesAndroidInjector(modules = AddPersonModule.class)
     abstract AddPersonActivity bindAddPersonActivity();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = {EditPersonModule.class, AddPersonModule.class})
+    abstract EditPersonActivity bindEditPersonActivity();
 
     @ActivityScope
     @ContributesAndroidInjector(modules = DetailBirthdayModule.class)

@@ -1,20 +1,15 @@
 package dmitrykuznetsov.rememberbirthday.common.data.model;
 
-import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.databinding.ObservableField;
-import android.databinding.ObservableInt;
-import android.databinding.ObservableLong;
 
 import dmitrykuznetsov.rememberbirthday.BR;
-import dmitrykuznetsov.rememberbirthday.R;
 
 /**
  * Created by dmitry on 11.03.17.
  */
 
-public class Person extends BaseObservable {
+public class PersonObservable extends BaseObservable {
     public int id;
     public String name;
     public String note;
@@ -22,7 +17,7 @@ public class Person extends BaseObservable {
     public String pathImage;
     public long dateInMillis;
 
-    public Person() {
+    public PersonObservable() {
         this.id = 0;
         this.name = "";
         this.note = "";
@@ -31,7 +26,7 @@ public class Person extends BaseObservable {
         this.dateInMillis = 0;
     }
 
-    public Person(PersonData personData) {
+    public PersonObservable(PersonData personData) {
         this.id = personData.getId();
         this.name = personData.getName();
         this.note = personData.getNote();

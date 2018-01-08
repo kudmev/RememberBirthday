@@ -17,8 +17,5 @@ public class DetailBirthdayInteractorImpl implements DetailBirthdayInteractor {
         return personRepo.deletePerson(personId);
     }
 
-    @Override
-    public Observable<PersonData> getPerson(int personId) {
-        return personRepo.getPerson(personId);
-    }
+
 }

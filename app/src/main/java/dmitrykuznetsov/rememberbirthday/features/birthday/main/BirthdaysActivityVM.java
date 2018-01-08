@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +17,7 @@ import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.DetailBirthdayActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.interactor.BirthdaysInteractor;
+import io.reactivex.disposables.CompositeDisposable;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -27,19 +27,27 @@ import static android.app.Activity.RESULT_OK;
 
 public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivity, PersonData> {
 
-    private List<PersonData> users = new ArrayList<>();
+    private CompositeDisposable disposables = new CompositeDisposable();
+    private List<PersonData> persons = new ArrayList<>();
     private BirthdaysInteractor birthdaysInteractor;
 
     public BirthdaysActivityVM(BirthdaysActivity activity, RecyclerConfiguration configuration, BirthdaysInteractor birthdaysInteractor) {
         super(activity, configuration);
         this.birthdaysInteractor = birthdaysInteractor;
-
-        refreshData();
     }
 
     private void refreshData() {
-        users = birthdaysInteractor.getPersonDataList();
-        adapter.setItems(users);
+        disposables.add(birthdaysInteractor.getPersons()
+                            .subscribe(this::onSuccess, this::onError));
+    }
+
+    private void onSuccess(List<PersonData> persons) {
+        this.persons = persons;
+        adapter.setItems(getAdapterList());
+    }
+
+    private void onError(Throwable throwable) {
+        errorMessage.set(activity.getString(R.string.error_unknown));
     }
 
     @Override
@@ -49,7 +57,7 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
 
     @Override
     protected List<PersonData> getAdapterList() {
-        return users;
+        return persons;
     }
 
     @Override
@@ -109,4 +117,15 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshData();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        disposables.dispose();
+    }
 }

@@ -22,16 +22,16 @@ import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonObservable;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPersonInteractor;
 
-public class AddPersonActivityVM extends BaseActivityVM<AddPersonActivity> implements DatePickerDialog.OnDateSetListener {
+public class AddPersonActivityVM extends BaseActivityVM<BaseActivity> implements DatePickerDialog.OnDateSetListener {
 
     private static final int REQUEST_GALLERY = 1;
     private static final int PICK_PHONE = 2;
 
     public final PersonData person;
 
-    private AddPersonInteractor addPersonInteractor;
+    protected AddPersonInteractor addPersonInteractor;
 
-    public AddPersonActivityVM(AddPersonActivity activity, AddPersonInteractor addPersonInteractor, PersonData person) {
+    public AddPersonActivityVM(BaseActivity activity, AddPersonInteractor addPersonInteractor, PersonData person) {
         super(activity);
         this.addPersonInteractor = addPersonInteractor;
         this.person = person;
@@ -109,7 +109,7 @@ public class AddPersonActivityVM extends BaseActivityVM<AddPersonActivity> imple
         }
     }
 
-    private String getMessageIfError() {
+    protected String getMessageIfError() {
         String message = null;
 
         if (person.getName().equals("")) {

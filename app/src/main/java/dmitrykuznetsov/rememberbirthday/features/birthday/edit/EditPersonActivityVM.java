@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.view.MenuItem;
 import android.widget.DatePicker;
 
 import org.joda.time.LocalDate;
@@ -29,4 +30,22 @@ public class EditPersonActivityVM extends AddPersonActivityVM implements DatePic
     public EditPersonActivityVM(EditPersonActivity activity, AddPersonInteractor addPersonInteractor, PersonData person) {
         super(activity, addPersonInteractor, person);
     }
+
+    @Override
+    public void onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_save:
+                String errMessage = getMessageIfError();
+
+                if (errMessage == null) {
+                    addPersonInteractor.updatePersonData(person);
+                    getActivity().setResult(Activity.RESULT_OK);
+                    getActivity().finish();
+                } else {
+                    errorMessage.set(errMessage);
+                }
+                break;
+        }
+    }
+
 }

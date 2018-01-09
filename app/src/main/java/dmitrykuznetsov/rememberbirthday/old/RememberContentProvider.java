@@ -156,15 +156,15 @@ public class RememberContentProvider extends ContentProvider {
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
-        switch (uriMatcher.match(uri)) {
-            case SINGLE_ROW:
-                String rowID = uri.getPathSegments().get(1);
-                selection = UID + "=" + rowID
-                        + (!TextUtils.isEmpty(selection) ?
-                        " AND (" + selection + ')' : "");
-            default:
-                break;
-        }
+//        switch (uriMatcher.match(uri)) {
+//            case SINGLE_ROW:
+//                String rowID = uri.getPathSegments().get(1);
+//                selection = UID + "=" + rowID
+//                        + (!TextUtils.isEmpty(selection) ?
+//                        " AND (" + selection + ')' : "");
+//            default:
+//                break;
+//        }
 
         int updateCount = db.update(FriendsBirthdayHelper.TABLE_NAME,
                 values, selection, selectionArgs);

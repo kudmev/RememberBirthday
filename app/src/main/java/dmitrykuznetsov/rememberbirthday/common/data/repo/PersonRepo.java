@@ -15,9 +15,13 @@ public interface PersonRepo {
 
     void addPerson(PersonData personData);
 
+    void updatePerson(PersonData personData);
+
     int getLastPersonId();
 
     Observable<Boolean> deletePerson(int personId);
 
     Observable<PersonData> getPerson(int personId);
+
+
 }

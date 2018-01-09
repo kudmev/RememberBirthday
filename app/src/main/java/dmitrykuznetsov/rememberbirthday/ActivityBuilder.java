@@ -28,7 +28,7 @@ public abstract class ActivityBuilder {
     abstract AddPersonActivity bindAddPersonActivity();
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = {EditPersonModule.class, AddPersonModule.class})
+    @ContributesAndroidInjector(modules = {EditPersonModule.class})
     abstract EditPersonActivity bindEditPersonActivity();
 
     @ActivityScope

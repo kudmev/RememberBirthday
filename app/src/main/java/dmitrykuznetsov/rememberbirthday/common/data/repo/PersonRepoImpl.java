@@ -63,6 +63,20 @@ public class PersonRepoImpl implements PersonRepo {
     }
 
     @Override
+    public void updatePerson(PersonData personData) {
+        ContentValues cv = new ContentValues();
+//        cv.put(RememberContentProvider.UID, personData.getId());
+        cv.put(RememberContentProvider.NAME, personData.getName());
+        cv.put(RememberContentProvider.DATE_BIRTHDAY_IN_SECONDS, personData.getDateInMillis());
+        cv.put(RememberContentProvider.NOTE, personData.getNote());
+        cv.put(RememberContentProvider.PATHIMAGE, personData.getPathImage());
+        cv.put(RememberContentProvider.PHONE_NUMBER, personData.getBindPhone());
+
+        String where = RememberContentProvider.UID + " = " + personData.getId();
+        contentResolver.update(RememberContentProvider.CONTENT_URI, cv, where, null);
+    }
+
+    @Override
     public int getLastPersonId() {
         String[] projection = {RememberContentProvider.UID};
         String sortOrder = RememberContentProvider.UID + " DESC";

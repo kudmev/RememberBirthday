@@ -11,6 +11,7 @@ import dmitrykuznetsov.rememberbirthday.common.data.model.PersonObservable;
 
 public interface AddPersonInteractor {
     void addPersonData(PersonData personData);
+    void updatePersonData(PersonData personData);
     String getPhone(Intent data);
     String getPathImage(Intent data);
 }

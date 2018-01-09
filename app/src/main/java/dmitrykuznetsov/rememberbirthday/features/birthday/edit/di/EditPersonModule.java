@@ -22,6 +22,13 @@ public class EditPersonModule {
     }
 
     @Provides
+    AddPersonActivityVM provideAddPersonActivityVm(EditPersonActivity editPersonActivity, AddPersonInteractor addPersonInteractor) {
+        PersonData personData = new PersonData();
+        return new AddPersonActivityVM(editPersonActivity, addPersonInteractor, personData);
+    }
+
+
+    @Provides
     EditPersonActivityVM provideEditPersonActivityVm(EditPersonActivity editPersonActivity, AddPersonInteractor addPersonInteractor) {
         PersonData personData = editPersonActivity.getIntent().getParcelableExtra(Constants.PERSON_DATA);
         return new EditPersonActivityVM(editPersonActivity, addPersonInteractor, personData);

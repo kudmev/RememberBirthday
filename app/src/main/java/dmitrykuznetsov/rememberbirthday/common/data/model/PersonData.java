@@ -104,7 +104,6 @@ public class PersonData extends BaseObservable implements Parcelable /*extends R
     }
 
 
-
 //    public RealmList<ReminderData> getReminders() {
 //        return reminders;
 //    }
@@ -148,4 +147,13 @@ public class PersonData extends BaseObservable implements Parcelable /*extends R
             return new PersonData[size];
         }
     };
+
+    public void setPersonData(PersonData personData) {
+        setId(personData.id);
+        setName(personData.name);
+        setNote(personData.note);
+        setBindPhone(personData.bindPhone);
+        setPathImage(personData.pathImage);
+        setDateInMillis(personData.dateInMillis);
+    }
 }

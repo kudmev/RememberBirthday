@@ -16,17 +16,17 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.detail.interactor.Deta
 import dmitrykuznetsov.rememberbirthday.features.birthday.edit.EditPersonActivity;
 import io.reactivex.disposables.CompositeDisposable;
 
+import static android.app.Activity.RESULT_OK;
+
 public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActivity> {
 
     private final static String TAG = Constants.LOG_TAG + DetailBirthdayActivityVM.class.getSimpleName();
-    private static final int EDIT_PERSON = 9;
 
+    private CompositeDisposable disposables = new CompositeDisposable();
     private DetailBirthdayInteractor interactor;
     private InputDialog inputDialog;
 
-    private CompositeDisposable disposables = new CompositeDisposable();
-
-    public final PersonData personData;
+    public PersonData personData;
 
     public DetailBirthdayActivityVM(final DetailBirthdayActivity activity, PersonData personData, DetailBirthdayInteractor interactor, InputDialog inputDialog) {
         super(activity);
@@ -49,14 +49,10 @@ public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActiv
             case R.id.action_user_edit:
                 Intent intent = new Intent(activity, EditPersonActivity.class);
                 intent.putExtra(Constants.PERSON_DATA, personData);
-                activity.startActivityForResult(intent, EDIT_PERSON);
+                activity.startActivityForResult(intent, Constants.RESULT_ADD_PERSON);
                 break;
             case R.id.action_user_delete:
                 inputDialog.show();
-                break;
-            case R.id.action_settings:
-//                Intent settings = new Intent(this, SettingsActivity.class);
-//                startActivity(settings);
                 break;
         }
     }
@@ -75,6 +71,29 @@ public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActiv
             Toast.makeText(activity, R.string.toast_success_delete_user, Toast.LENGTH_LONG).show();
             activity.finish();
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == Constants.RESULT_ADD_PERSON) {
+                getPerson();
+            }
+        }
+    }
+
+    private void getPerson() {
+        disposables.add(interactor.getPerson(personData.getId())
+                .subscribe(this::onSuccessGetPerson, this::onErrorGetPerson));
+    }
+
+    private void onSuccessGetPerson(PersonData personData) {
+        this.personData.setPersonData(personData);
+    }
+
+    private void onErrorGetPerson(Throwable throwable) {
+        errorMessage.set(getActivity().getString(R.string.error_user_not_found));
     }
 
     @Override

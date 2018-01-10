@@ -25,12 +25,12 @@ public class PersonData extends BaseObservable implements Parcelable /*extends R
 //    private RealmList<ReminderData> reminders;
 
     public PersonData() {
-        this.id = 0;
-        this.name = "";
-        this.note = "";
-        this.bindPhone = "";
-        this.pathImage = "";
-        this.dateInMillis = 0;
+//        this.id = 0;
+//        this.name = "";
+//        this.note = "";
+//        this.bindPhone = "";
+//        this.pathImage = "";
+//        this.dateInMillis = 0;
     }
 
     public PersonData(int id, String name, String note, String bindPhone, String pathImage, long dateInMillis/*, RealmList<ReminderData> reminders*/) {

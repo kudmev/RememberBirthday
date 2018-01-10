@@ -112,7 +112,7 @@ public class AddPersonActivityVM extends BaseActivityVM<BaseActivity> implements
     protected String getMessageIfError() {
         String message = null;
 
-        if (person.getName().equals("")) {
+        if (person.getName()!= null && person.getName().equals("")) {
             message = activity.getString(R.string.wrong_name);
         }
 

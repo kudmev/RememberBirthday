@@ -30,8 +30,12 @@ public class BindingAdapters {
 
     @BindingAdapter({"imageUrl"})
     public static void loadImage(ImageView imageView, String path) {
-        Drawable drawable = Drawable.createFromPath(path);
-        imageView.setImageDrawable(drawable);
+        if (path != null && !path.equals("")) {
+            Drawable drawable = Drawable.createFromPath(path);
+            imageView.setImageDrawable(drawable);
+        } else {
+            imageView.setImageDrawable(null);
+        }
     }
 
     @BindingAdapter({"bindTouchListener"})
@@ -111,5 +115,14 @@ public class BindingAdapters {
         LocalDate now = new LocalDate();
         Years years = Years.yearsBetween(birthDate, now);
         return years.getYears();
+    }
+
+    @BindingAdapter({"visibility_field"})
+    public static void setBirthdayAndIcon(View view, String value) {
+        if (value == null || value.equals("")) {
+            view.setVisibility(View.INVISIBLE);
+        } else {
+            view.setVisibility(View.VISIBLE);
+        }
     }
 }

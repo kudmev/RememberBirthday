@@ -1,10 +1,12 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.detail;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import dmitrykuznetsov.rememberbirthday.R;
@@ -94,6 +96,19 @@ public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActiv
 
     private void onErrorGetPerson(Throwable throwable) {
         errorMessage.set(getActivity().getString(R.string.error_user_not_found));
+    }
+
+    public void onClickCall(View view){
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(activity.getString(R.string.tel_to) + personData.getBindPhone()));
+        getActivity().startActivity(intent);
+    }
+
+    public void onClickSms(View view) {
+        Uri uri = Uri.parse(activity.getString(R.string.sms_to)+ personData.getBindPhone());
+        Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
+        //intent.putExtra("sms_body", R.string.happy_birthday);
+        getActivity().startActivity(intent);
+
     }
 
     @Override

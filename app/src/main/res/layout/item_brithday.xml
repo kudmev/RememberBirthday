@@ -6,27 +6,27 @@
 
     <data>
 
+        <import type="android.graphics.drawable.Drawable" />
+
         <variable
             name="person"
-            type="dmitrykuznetsov.rememberbirthday.common.data.model.PersonData" />
+            type="dmitrykuznetsov.rememberbirthday.features.birthday.main.model.PersonItemView" />
 
-        <variable
-            name="drawable"
-            type="android.graphics.drawable.Drawable" />
     </data>
 
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="vertical"
-        card_view:cardCornerRadius="4dp">
+    <!--<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:orientation="vertical"-->
+        <!--card_view:cardCornerRadius="4dp">-->
+
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/user_image"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
@@ -36,10 +36,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/user_on_main"
+                app:civ_border_color="#00000000"
+                app:civ_border_width="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                bind:imageUrl="@{person.pathImage}"
+                bind:drawable="@{Drawable.createFromPath(person.personData.pathImage) ?? @drawable/user_on_main}"
                 tools:ignore="contentDescription" />
 
             <TextView
@@ -52,7 +54,7 @@
                 android:layout_marginTop="0dp"
                 android:ellipsize="end"
                 android:maxEms="50"
-                android:text="@{person.name}"
+                android:text="@{person.personData.name}"
                 android:textColor="#333"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/user_image"
@@ -71,7 +73,7 @@
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/user_image"
                 app:layout_constraintTop_toBottomOf="@+id/text_name"
-                bind:birthday="@{person.dateInMillis}"
+                bind:birthday="@{person.personData.dateInMillis}"
                 tools:text="17 лет" />
 
             <TextView
@@ -87,11 +89,11 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/user_image"
-                bind:age="@{person.dateInMillis}" />
+                bind:age="@{person.personData.dateInMillis}" />
 
         </android.support.constraint.ConstraintLayout>
 
-    </android.support.v7.widget.CardView>
+    <!--</android.support.v7.widget.CardView>-->
 
 
 </layout>

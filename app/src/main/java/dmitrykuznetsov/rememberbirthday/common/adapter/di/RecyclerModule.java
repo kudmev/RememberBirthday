@@ -2,7 +2,7 @@ package dmitrykuznetsov.rememberbirthday.common.adapter.di;
 
 import android.content.Context;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
+
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +14,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import dmitrykuznetsov.rememberbirthday.R;
+import dmitrykuznetsov.rememberbirthday.common.adapter.DividerItemDecoration;
 import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
 
 /**
@@ -41,7 +43,7 @@ public class RecyclerModule {
 
     @Provides
     RecyclerView.ItemDecoration provideItemDecoration(Context context) {
-        return new DividerItemDecoration(context, LinearLayout.VERTICAL);
+        return new DividerItemDecoration(context, R.drawable.divider);
     }
 
 //    @Named("recycler_linear")

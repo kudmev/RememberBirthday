@@ -4,19 +4,22 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.PopupMenu;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dmitrykuznetsov.rememberbirthday.BR;
 import dmitrykuznetsov.rememberbirthday.R;
+import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerBindingAdapter;
 import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
 import dmitrykuznetsov.rememberbirthday.common.base.AbstractListActivityVM;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.DetailBirthdayActivity;
+import dmitrykuznetsov.rememberbirthday.features.birthday.edit.EditPersonActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.interactor.BirthdaysInteractor;
+import dmitrykuznetsov.rememberbirthday.features.birthday.main.model.PersonItemView;
 import io.reactivex.disposables.CompositeDisposable;
 
 import static android.app.Activity.RESULT_OK;
@@ -25,38 +28,66 @@ import static android.app.Activity.RESULT_OK;
  * Created by dmitry on 12.05.17.
  */
 
-public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivity, PersonData> {
+public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivity, PersonItemView> {
 
     private CompositeDisposable disposables = new CompositeDisposable();
-    private List<PersonData> persons = new ArrayList<>();
+    private List<PersonItemView> persons;
     private BirthdaysInteractor birthdaysInteractor;
 
-    public BirthdaysActivityVM(BirthdaysActivity activity, RecyclerConfiguration configuration, BirthdaysInteractor birthdaysInteractor) {
-        super(activity, configuration);
+    public BirthdaysActivityVM(BirthdaysActivity activity, List<PersonItemView> persons, RecyclerConfiguration configuration, BirthdaysInteractor birthdaysInteractor) {
+        super(activity, persons, configuration);
         this.birthdaysInteractor = birthdaysInteractor;
+        this.persons = persons;
+//        refreshData();
     }
 
     private void refreshData() {
+        isLoading.set(true);
         disposables.add(birthdaysInteractor.getPersons()
-                            .subscribe(this::onSuccess, this::onError));
+                .subscribe(this::onSuccess, this::onError));
     }
 
-    private void onSuccess(List<PersonData> persons) {
-        this.persons = persons;
-        adapter.setItems(getAdapterList());
+    private void onSuccess(List<PersonItemView> persons) {
+        isLoading.set(false);
+        this.persons.clear();
+        this.persons.addAll(persons);
+        adapter.notifyDataSetChanged();
     }
 
     private void onError(Throwable throwable) {
+        isLoading.set(false);
         errorMessage.set(activity.getString(R.string.error_unknown));
     }
 
     @Override
-    protected void onRecyclerItemClick(PersonData personData) {
+    protected void onRecyclerItemClick(PersonItemView personItemView) {
+        PersonData personData = personItemView.getPersonData();
         DetailBirthdayActivity.open(activity, personData);
     }
 
     @Override
-    protected List<PersonData> getAdapterList() {
+    protected void onRecyclerLongItemClick(PersonItemView personItemView, RecyclerBindingAdapter.BindingHolder holder) {
+        PopupMenu popup = new PopupMenu(getActivity(), holder.itemView);
+        popup.inflate(R.menu.options_menu);
+        popup.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.menuEditPerson:
+                    Intent intent = new Intent(activity, EditPersonActivity.class);
+                    PersonData personData = personItemView.getPersonData();
+                    intent.putExtra(Constants.PERSON_DATA, personData);
+                    activity.startActivityForResult(intent, Constants.RESULT_ADD_PERSON);
+                    break;
+                case R.id.menuDeletePerson:
+                    //handle menu2 click
+                    break;
+            }
+            return false;
+        });
+        popup.show();
+    }
+
+    @Override
+    protected List<PersonItemView> getAdapterList() {
         return persons;
     }
 
@@ -109,7 +140,6 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (resultCode == RESULT_OK) {
             if (requestCode == Constants.RESULT_ADD_PERSON) {
                 refreshData();
@@ -118,8 +148,8 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         refreshData();
     }
 

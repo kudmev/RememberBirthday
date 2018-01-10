@@ -21,13 +21,12 @@ public class RecyclerBindingAdapter<T> extends RecyclerView.Adapter<RecyclerBind
     private int variableId;
     private List<T> items = new ArrayList<>();
     private OnItemClickListener<T> onItemClickListener;
+    private OnLongItemClickListener<T> onLongItemClickListener;
 
     public RecyclerBindingAdapter(int holderLayout, int variableId, List<T> items) {
         this.holderLayout = holderLayout;
         this.variableId = variableId;
-        if (items != null) {
-            this.items = items;
-        }
+        this.items = items;
     }
 
     @Override
@@ -42,14 +41,22 @@ public class RecyclerBindingAdapter<T> extends RecyclerView.Adapter<RecyclerBind
     public void onBindViewHolder(final RecyclerBindingAdapter.BindingHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder");
 
-        final int adapterPosition=holder.getAdapterPosition();
+        final int adapterPosition = holder.getAdapterPosition();
 
         final T item = items.get(position);
 
         holder.getBinding().getRoot().setOnClickListener(v -> {
             if (onItemClickListener != null) {
-                onItemClickListener.onItemClick(adapterPosition, item,  holder);
+                onItemClickListener.onItemClick(adapterPosition, item, holder);
             }
+        });
+
+        holder.getBinding().getRoot().setOnLongClickListener(v -> {
+            if (onLongItemClickListener != null) {
+                onLongItemClickListener.onItemClick(adapterPosition, item, holder);
+                return false;
+            }
+            return false;
         });
         holder.getBinding().setVariable(variableId, item);
     }
@@ -69,6 +76,14 @@ public class RecyclerBindingAdapter<T> extends RecyclerView.Adapter<RecyclerBind
     }
 
     public interface OnItemClickListener<T> {
+        void onItemClick(int position, T item, RecyclerBindingAdapter.BindingHolder holder);
+    }
+
+    public void setOnLongItemClickListener(OnLongItemClickListener<T> onLongItemClickListener) {
+        this.onLongItemClickListener = onLongItemClickListener;
+    }
+
+    public interface OnLongItemClickListener<T> {
         void onItemClick(int position, T item, RecyclerBindingAdapter.BindingHolder holder);
     }
 

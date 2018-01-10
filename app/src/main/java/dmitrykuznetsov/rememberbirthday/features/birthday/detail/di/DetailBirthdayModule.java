@@ -36,14 +36,13 @@ public class DetailBirthdayModule {
 
     @Provides
     @ActivityScope
-    AlertDialog.Builder provideAlertDialog(DetailBirthdayActivity activity){
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.Theme_AppCompat_Dialog_Alert);
-        builder.setTitle(R.string.dialog_title_confirm_delete_user);
-        builder.setMessage(R.string.dialog_message_confirm_delete_user);
-        builder.setPositiveButton(R.string.yes, (dialog, which) -> activity.onClickConfirm());
-        builder.setNegativeButton(R.string.cancel, null);
-        builder.setOnCancelListener(null);
-        return builder;
+    AlertDialog.Builder provideAlertDialog(DetailBirthdayActivity activity) {
+        return new AlertDialog.Builder(activity, R.style.DialogStyle)
+                .setTitle(R.string.dialog_title_confirm_delete_user)
+                .setMessage(R.string.dialog_message_confirm_delete_user)
+                .setPositiveButton(R.string.yes, (dialog, which) -> activity.onClickConfirm())
+                .setNegativeButton(R.string.cancel, null)
+                .setOnCancelListener(null);
     }
 
     @Provides

@@ -18,11 +18,12 @@ public abstract class AbstractListActivityVM<A extends AppCompatActivity, T> ext
     public final RecyclerConfiguration recyclerConfiguration;
     protected final RecyclerBindingAdapter<T> adapter;
 
-    public AbstractListActivityVM(A activity, RecyclerConfiguration recyclerConfiguration) {
+    public AbstractListActivityVM(A activity, List<T> list, RecyclerConfiguration recyclerConfiguration) {
         super(activity);
         this.recyclerConfiguration = recyclerConfiguration;
-        this.adapter = new RecyclerBindingAdapter<>(getLayoutId(), getVariable(), getAdapterList());
+        this.adapter = new RecyclerBindingAdapter<>(getLayoutId(), getVariable(), list);
         this.adapter.setOnItemClickListener(((position, item, holder) -> onRecyclerItemClick(item)));
+        this.adapter.setOnLongItemClickListener(((position, item, holder) -> onRecyclerLongItemClick(item, holder)));
         recyclerConfiguration.setAdapter(adapter);
     }
 
@@ -33,5 +34,7 @@ public abstract class AbstractListActivityVM<A extends AppCompatActivity, T> ext
     protected abstract List<T> getAdapterList();
 
     protected abstract void onRecyclerItemClick(T t);
+
+    protected abstract void onRecyclerLongItemClick(T t, RecyclerBindingAdapter.BindingHolder holder);
 
 }

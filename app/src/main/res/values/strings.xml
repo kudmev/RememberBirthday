@@ -78,6 +78,8 @@
     <string name="years">лет</string>
     <string name="year_rus">года</string>
     <string name="year">год</string>
+    <string name="sms_to">smsto:</string>
+    <string name="tel_to">tel:</string>
 
 
 </resources>

@@ -1,12 +1,22 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.main;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.databinding.ObservableBoolean;
+
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import dmitrykuznetsov.rememberbirthday.BR;
@@ -37,16 +47,19 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
     private List<PersonItemView> persons;
     private BirthdaysInteractor birthdaysInteractor;
 
+    private boolean isSearchNow;
+    private String searchText;
+
     public BirthdaysActivityVM(BirthdaysActivity activity, List<PersonItemView> persons, RecyclerConfiguration configuration, BirthdaysInteractor birthdaysInteractor) {
         super(activity, persons, configuration);
         this.birthdaysInteractor = birthdaysInteractor;
         this.persons = persons;
-//        refreshData();
+        refreshData("");
     }
 
-    private void refreshData() {
+    private void refreshData(String searchText) {
         isLoading.set(true);
-        disposables.add(birthdaysInteractor.getPersons()
+        disposables.add(birthdaysInteractor.getPersons(searchText)
                 .subscribe(this::onSuccess, this::onError));
     }
 
@@ -55,11 +68,13 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
         if (persons.size() > 0) {
             isBirthdays.set(true);
         } else {
-            isBirthdays.set(false);
+            if (!isSearchNow) {
+                isBirthdays.set(false);
+            }
         }
         this.persons.clear();
         this.persons.addAll(persons);
-        adapter.notifyDataSetChanged();
+        adapter.setItems(this.persons);
     }
 
     private void onError(Throwable throwable) {
@@ -114,20 +129,53 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
     public void onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getActivity().getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
+        MenuItem searchViewItem = menu.findItem(R.id.action_search);
+        MenuItem addItem = menu.findItem(R.id.action_add_name);
 
-//        SearchManager searchManager = (SearchManager) getSystemService((Context.SEARCH_SERVICE));
-//        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-//
-//        int imageId = getResources().getIdentifier("android:id/search_button", null, null);
+        final SearchView searchView = (SearchView) searchViewItem.getActionView();
+        EditText searchEditText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        searchEditText.setHintTextColor(activity.getResources().getColor(R.color.colorSearch));
 
-//        ImageView imageView = (ImageView) searchView.findViewById(imageId);
-//        imageView.setBackgroundResource(R.drawable.search);
-//
-//
-//        int searchPlateId = searchView.getContext().getResources().getIdentifier("android:id/search_plate", null, null);
-//        View searchPlate = searchView.findViewById(searchPlateId);
-//        searchPlate.setBackgroundResource(R.drawable.textfield_searchview_holo_light);
+        searchViewItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem menuItem) {
+                isSearchNow = true;
+                addItem.setVisible(false);
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
+                isSearchNow = false;
+                addItem.setVisible(true);
+                activity.invalidateOptionsMenu();
+                return true;
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchView.clearFocus();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String searchText) {
+                BirthdaysActivityVM.this.searchText = searchText;
+                refreshData(searchText);
+//                    List<PersonItemView> searchablePersons = new ArrayList<>();
+//                    for (PersonItemView personItemView : persons) {
+//                        String personName = personItemView.getPersonData().getName().toLowerCase();
+//                        String searchName = searchText.toLowerCase();
+//                        if (personName.contains(searchName)) {
+//                            searchablePersons.add(personItemView);
+//                        }
+//                    }
+//                    adapter.setItems(searchablePersons);
+                return false;
+            }
+        });
 
     }
 
@@ -142,7 +190,7 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
                 addPerson();
                 break;
             case R.id.action_search:
-                //item.setShowAsAction(item.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+//                item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
                 break;
             case R.id.action_settings:
                 break;
@@ -154,7 +202,7 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == Constants.RESULT_ADD_PERSON) {
-                refreshData();
+                refreshData("");
             }
         }
     }
@@ -162,7 +210,12 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
     @Override
     public void onStart() {
         super.onStart();
-        refreshData();
+        if (!isSearchNow) {
+            refreshData("");
+        } else {
+            refreshData(searchText);
+        }
+
     }
 
     @Override

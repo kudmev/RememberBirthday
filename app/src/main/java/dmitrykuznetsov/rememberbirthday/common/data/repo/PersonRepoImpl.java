@@ -29,11 +29,13 @@ public class PersonRepoImpl implements PersonRepo {
     }
 
     @Override
-    public Observable<List<PersonData>> getPersons() {
-//        Realm realm = Realm.getDefaultInstance();
-//        List<PersonData> persons = realm.where(PersonData.class).findAll().sort(PersonData.DATE, Sort.ASCENDING);
+    public Observable<List<PersonData>> getPersons(String searchText) {
+        searchText = "%" + searchText + "%";
+        String where = RememberContentProvider.NAME + " LIKE ?";
+        String[] whereArgs = new String[]{searchText};
+
         List<PersonData> persons = new ArrayList<>();
-        Cursor c = contentResolver.query(RememberContentProvider.CONTENT_URI, null, null, null, null);
+        Cursor c = contentResolver.query(RememberContentProvider.CONTENT_URI, null, where, whereArgs, null);
         if (c != null) {
             while (c.moveToNext()) {
                 PersonData personData = readColumnInDatabase(c);
@@ -56,10 +58,7 @@ public class PersonRepoImpl implements PersonRepo {
         cv.put(RememberContentProvider.PATHIMAGE, personData.getPathImage());
         cv.put(RememberContentProvider.PHONE_NUMBER, personData.getBindPhone());
         contentResolver.insert(RememberContentProvider.CONTENT_URI, cv);
-//        Realm realm = Realm.getDefaultInstance();
-//        realm.beginTransaction();
-//        PersonData newPersonData = realm.copyToRealm(personData);
-//        realm.commitTransaction();
+
     }
 
     @Override
@@ -88,16 +87,7 @@ public class PersonRepoImpl implements PersonRepo {
             c.close();
         }
         return lastId;
-//        Realm realm = Realm.getDefaultInstance();
-//        RealmResults<PersonData> results = realm.where(PersonData.class).findAll();
-//
-//        int lastId = 0;
-//        if (results != null && results.size() != 0) {
-//            PersonData personData = results.sort(PersonData.ID, Sort.ASCENDING).last();
-//            lastId = personData.getId();
-//        }
-//        lastId++;
-//        return lastId;
+
     }
 
     @Override

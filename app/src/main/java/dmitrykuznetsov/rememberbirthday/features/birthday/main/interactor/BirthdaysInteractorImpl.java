@@ -12,6 +12,7 @@ import java.util.List;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepo;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.model.PersonItemView;
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 
@@ -24,8 +25,8 @@ public class BirthdaysInteractorImpl implements BirthdaysInteractor {
     }
 
     @Override
-    public Observable<List<PersonItemView>> getPersons() {
-        return personRepo.getPersons()
+    public Observable<List<PersonItemView>> getPersons(String searchText) {
+        return personRepo.getPersons(searchText)
                 .map(this::sortListByDayOfYear)
                 .map(this::moveBirthdaysBeforeNowDay);
     }

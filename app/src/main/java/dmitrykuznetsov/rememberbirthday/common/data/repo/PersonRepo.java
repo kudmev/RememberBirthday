@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
 /**
@@ -11,7 +12,7 @@ import io.reactivex.Observable;
  */
 
 public interface PersonRepo {
-    Observable<List<PersonData>> getPersons();
+    Observable<List<PersonData>> getPersons(String searchText);
 
     void addPerson(PersonData personData);
 

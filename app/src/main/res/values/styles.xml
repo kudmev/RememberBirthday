@@ -13,6 +13,8 @@
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorSecondary">@android:color/white</item>
         <item name="actionMenuTextColor">@android:color/white</item>
+
+        <item name="colorControlActivated">@color/colorSearch</item>
     </style>
 
     <style name="DialogStyle" parent="Theme.AppCompat.Dialog.Alert">

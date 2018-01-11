@@ -128,7 +128,6 @@ public class RememberContentProvider extends ContentProvider {
             sortOrder = RememberContentProvider.DATE_BIRTHDAY_IN_SECONDS + " ASC";
         }
 
-
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         queryBuilder.setTables(FriendsBirthdayHelper.TABLE_NAME);
 
@@ -143,6 +142,12 @@ public class RememberContentProvider extends ContentProvider {
                 break;
             default:
                 break;
+        }
+
+        if (selection != null) {
+            if (selection.equals("")) {
+                selection = null;
+            }
         }
 
         //Cursor cursor=queryBuilder.query(db, projection, selection, selectionArgs, groupBy, having, sortOrder);

@@ -1,6 +1,7 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.main;
 
 import android.content.Intent;
+import android.databinding.ObservableBoolean;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,6 +31,8 @@ import static android.app.Activity.RESULT_OK;
 
 public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivity, PersonItemView> {
 
+    public ObservableBoolean isBirthdays = new ObservableBoolean(false);
+
     private CompositeDisposable disposables = new CompositeDisposable();
     private List<PersonItemView> persons;
     private BirthdaysInteractor birthdaysInteractor;
@@ -49,6 +52,11 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
 
     private void onSuccess(List<PersonItemView> persons) {
         isLoading.set(false);
+        if (persons.size() > 0) {
+            isBirthdays.set(true);
+        } else {
+            isBirthdays.set(false);
+        }
         this.persons.clear();
         this.persons.addAll(persons);
         adapter.notifyDataSetChanged();
@@ -123,11 +131,15 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
 
     }
 
+    public void addPerson(){
+        AddPersonActivity.open(getActivity(), Constants.RESULT_ADD_PERSON);
+    }
+
     @Override
     public void onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add_name:
-                AddPersonActivity.open(getActivity(), Constants.RESULT_ADD_PERSON);
+                addPerson();
                 break;
             case R.id.action_search:
                 //item.setShowAsAction(item.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);

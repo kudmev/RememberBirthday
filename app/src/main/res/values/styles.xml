@@ -26,22 +26,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AddEditText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:clickable">true</item>
-        <item name="android:drawablePadding">5dp</item>
-        <item name="android:background">@drawable/all_borders_one_pixel</item>
-        <item name="android:layout_margin">5dp</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingBottom">5dp</item>
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:paddingRight">10dp</item>
-        <item name="android:textColorHint">#aaa</item>
-        <item name="android:textColor">#333</item>
-        <item name="android:textSize">16sp</item>
 
-    </style>
 
     <style name="AddConstraintEditText">
         <item name="android:clickable">true</item>

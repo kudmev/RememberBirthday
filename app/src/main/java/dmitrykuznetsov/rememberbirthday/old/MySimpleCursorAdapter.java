@@ -50,14 +50,14 @@ class MySimpleCursorAdapter extends SimpleCursorAdapter {
             String date = cursor.getString(cursor.getColumnIndex(RememberContentProvider.DATE_BIRTHDAY));
 
 
-            if (MyHelperClass.isUserBirthdayToday(milliseconds) == true) {
-                //date = ctx.getString(R.string.today);
-                age++;
-            }
+//            if (MyHelperClass.isUserBirthdayToday(milliseconds) == true) {
+//                //date = ctx.getString(R.string.today);
+//                age++;
+//            }
 
             textName.setText(name);
             textDate.setText(date);
-            textAge.setText(MyHelperClass.getAgeSuffix(age, ctx, 0));
+//            textAge.setText(MyHelperClass.getAgeSuffix(age, ctx, 0));
 
             rowView.setOnClickListener(new View.OnClickListener() {
                 @Override

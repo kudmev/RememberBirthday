@@ -17,13 +17,10 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -35,6 +32,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import dmitrykuznetsov.rememberbirthday.R;
+import dmitrykuznetsov.rememberbirthday.common.service.notification.ServiceSendNotification;
+import dmitrykuznetsov.rememberbirthday.features.birthday.settings.SettingsActivity;
+import dmitrykuznetsov.rememberbirthday.features.birthday.settings.SettingsFragment;
 
 
 //import android.support.v4.app.FragmentActivity;
@@ -75,31 +75,31 @@ public class MainActivity extends Activity implements LoaderManager.LoaderCallba
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
-        LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService
-                (Context.LAYOUT_INFLATER_SERVICE);
-
-        ViewGroup parent = (ViewGroup) findViewById(R.id.my_relative_layout);
-        View rowView = inflater.inflate(R.layout.list_contact, parent, false);
-
-        listView = (ListView) findViewById(R.id.list_item);
-        textTitleNear = (TextView) findViewById(R.id.near_daybirthdays);
-        textAddFirstPerson = (TextView) findViewById(R.id.add_first_person);
-
-        textAge = (TextView) rowView.findViewById(R.id.text_age);
-        textName = (TextView) rowView.findViewById(R.id.text_name);
-        textDate = (TextView) rowView.findViewById(R.id.text_date);
-
-
-        scAdapter = new MySimpleCursorAdapter(this, R.layout.list_contact, null, from, to, 0);
-        listView.setAdapter(scAdapter);
-        this.getLoaderManager().initLoader(URL_LOADER, null, this);
-
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//        LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService
+//                (Context.LAYOUT_INFLATER_SERVICE);
+//
+//        ViewGroup parent = (ViewGroup) findViewById(R.id.my_relative_layout);
+//        View rowView = inflater.inflate(R.layout.list_contact, parent, false);
+//
+//        listView = (ListView) findViewById(R.id.list_item);
+//        textTitleNear = (TextView) findViewById(R.id.near_daybirthdays);
+//        textAddFirstPerson = (TextView) findViewById(R.id.add_first_person);
+//
+//        textAge = (TextView) rowView.findViewById(R.id.text_age);
+//        textName = (TextView) rowView.findViewById(R.id.text_name);
+//        textDate = (TextView) rowView.findViewById(R.id.text_date);
+//
+//
+//        scAdapter = new MySimpleCursorAdapter(this, R.layout.list_contact, null, from, to, 0);
+//        listView.setAdapter(scAdapter);
+//        this.getLoaderManager().initLoader(URL_LOADER, null, this);
+//
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
     }
 

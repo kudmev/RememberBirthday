@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import dmitrykuznetsov.rememberbirthday.common.service.notification.ServiceSendNotification;
+
 /**
  * Created by Dmitry Kuznetsov on 23.07.2015.
  */
@@ -14,14 +16,14 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d("start", "AlarmNotificationReceiver");
-        Intent servIntent = new Intent(context, ServiceSendNotification.class);
+        Intent serviceIntent = new Intent(context, ServiceSendNotification.class);
         int rowId = intent.getIntExtra("rowId", 0);
         long milliseconds = intent.getLongExtra("milliseconds", 0);
 
-        servIntent.putExtra("milliseconds", milliseconds);
-        servIntent.putExtra("rowId", rowId);
+        serviceIntent.putExtra("milliseconds", milliseconds);
+        serviceIntent.putExtra("rowId", rowId);
 
-        context.startService(servIntent);
+        context.startService(serviceIntent);
 
 
     }

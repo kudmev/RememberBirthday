@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import dmitrykuznetsov.rememberbirthday.common.receiver.AlarmReceiver;
+
 /**
  * Created by Dmitry Kuznetsov on 26.07.2015.
  */

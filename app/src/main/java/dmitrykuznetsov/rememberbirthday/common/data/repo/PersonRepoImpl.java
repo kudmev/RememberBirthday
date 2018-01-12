@@ -2,12 +2,15 @@ package dmitrykuznetsov.rememberbirthday.common.data.repo;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.UriMatcher;
 import android.database.Cursor;
+import android.net.Uri;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
+import dmitrykuznetsov.rememberbirthday.common.data.model.SimplePerson;
 import dmitrykuznetsov.rememberbirthday.old.RememberContentProvider;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -23,9 +26,11 @@ import io.reactivex.schedulers.Schedulers;
 public class PersonRepoImpl implements PersonRepo {
 
     private ContentResolver contentResolver;
+    private UriMatcher uriMatcher;
 
-    public PersonRepoImpl(ContentResolver contentResolver) {
+    public PersonRepoImpl(ContentResolver contentResolver, UriMatcher uriMatcher) {
         this.contentResolver = contentResolver;
+        this.uriMatcher = uriMatcher;
     }
 
     @Override
@@ -49,16 +54,26 @@ public class PersonRepoImpl implements PersonRepo {
     }
 
     @Override
-    public void addPerson(PersonData personData) {
+    public Observable<SimplePerson> addPerson(PersonData personData) {
         ContentValues cv = new ContentValues();
-//        cv.put(RememberContentProvider.UID, personData.getId());
         cv.put(RememberContentProvider.NAME, personData.getName());
         cv.put(RememberContentProvider.DATE_BIRTHDAY_IN_SECONDS, personData.getDateInMillis());
         cv.put(RememberContentProvider.NOTE, personData.getNote());
         cv.put(RememberContentProvider.PATHIMAGE, personData.getPathImage());
         cv.put(RememberContentProvider.PHONE_NUMBER, personData.getBindPhone());
-        contentResolver.insert(RememberContentProvider.CONTENT_URI, cv);
+        Uri uri = contentResolver.insert(RememberContentProvider.CONTENT_URI, cv);
 
+        int personId = 0;
+        switch (uriMatcher.match(uri)) {
+            case RememberContentProvider.SINGLE_ROW:
+                if (uri != null) {
+                    String rowID = uri.getLastPathSegment();
+                    personId = Integer.parseInt(rowID);
+                }
+                break;
+        }
+        SimplePerson simplePerson = new SimplePerson(personId, personData.getDateInMillis());
+        return Observable.just(simplePerson);
     }
 
     @Override

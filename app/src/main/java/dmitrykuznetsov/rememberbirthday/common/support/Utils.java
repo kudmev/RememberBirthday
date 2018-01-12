@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.util.Calendar;
 import java.util.List;
 
 import dmitrykuznetsov.rememberbirthday.R;
@@ -24,6 +25,34 @@ public class Utils {
 
     public Utils(Context context) {
         this.context = context;
+    }
+
+    public String getAgeSuffix(int age, int flag) {
+        String ageSuffix;
+
+        if (age % 10 >= 2 && age % 10 <= 4 && (age < 5 || age > 20)) {
+            ageSuffix = context.getString(R.string.year_rus);
+        } else {
+            if (age % 10 != 1) {
+                ageSuffix = context.getString(R.string.years);
+            } else {
+                ageSuffix = context.getString(R.string.year);
+            }
+        }
+        if (flag == 0) {
+            return age + "\n" + ageSuffix;
+        } else {
+            return age + " " + ageSuffix;
+        }
+
+    }
+
+    public boolean isUserBirthdayToday(long milliseconds) {
+        Calendar calendar = Calendar.getInstance();
+        Calendar userCalendar = Calendar.getInstance();
+        userCalendar.setTimeInMillis(milliseconds);
+
+        return calendar.get(Calendar.DAY_OF_YEAR) == userCalendar.get(Calendar.DAY_OF_YEAR);
     }
 
     public String toStr(Object object) {

@@ -19,6 +19,7 @@
 
     <string name="error_person_not_found">Ошибка: пользователь не найден!</string>
     <string name="error_user_not_found">Ошибка: пользователь не найден в базе данных</string>
+    <string name="error_person_not_add">Ошибка: пользователь не может быть добавлен</string>
 
     <string name="wrong_date_millis">Заполните, пожалуйста, дату рождения</string>
     <string name="wrong_name">Пожалуйста, введите имя!</string>
@@ -27,7 +28,8 @@
 
     <!-- Main activity -->
     <string name="upcoming_birthdays">Ближайшие дни рождения:</string>
-    <string name="label_add_first_person">Добавьте первого именинника</string>
+    <string name="text_no_birthdays">У вас пока нет именинников</string>
+    <string name="button_add_first_birthday">Добавить именинника</string>
 
     <!-- Detail activity -->
     <string name="age">Возраст</string>
@@ -80,8 +82,8 @@
     <string name="year">год</string>
     <string name="sms_to">smsto:</string>
     <string name="tel_to">tel:</string>
-    <string name="text_no_birthdays">У вас пока нет именинников</string>
-    <string name="button_add_first_birthday">Добавить именинника</string>
+
+
 
 
 </resources>

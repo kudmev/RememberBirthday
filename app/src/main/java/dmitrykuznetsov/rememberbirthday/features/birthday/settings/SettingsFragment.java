@@ -1,4 +1,4 @@
-package dmitrykuznetsov.rememberbirthday.old;
+package dmitrykuznetsov.rememberbirthday.features.birthday.settings;
 
 
 import android.app.Fragment;
@@ -7,8 +7,14 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
 
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
 import dmitrykuznetsov.rememberbirthday.R;
+import dmitrykuznetsov.rememberbirthday.common.alarm.AlarmRepo;
 
 
 /**
@@ -20,10 +26,14 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     public static final String pref_vibrate = "pref_vibrate";
     public static final String pref_ringtone = "pref_ringtone";
 
+    @Inject
+    AlarmRepo alarmRepo;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        getActivity().getActionBar().setDisplayUseLogoEnabled(false);
+//        getActivity().getActionBar().setDisplayUseLogoEnabled(false);
         addPreferencesFromResource(R.xml.preferences);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -44,12 +54,27 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             case timePrefA_Key:
                 connectionPref = findPreference(key);
                 connectionPref.setTitle(R.string.pref_title_ringtone_time);
+                String time = sharedPreferences.getString(key, "10:00:00.000");
+
+                int hour = Integer.parseInt(time.substring(0, 2));
+                int minute = Integer.parseInt(time.substring(3, 5));
                 connectionPref.setSummary(sharedPreferences.getString(key, "10:00:00.000").substring(0, 5));
+
+                alarmRepo.setAlarmTimeOnTomorrow(hour, minute)
+                        .subscribe(this::onSuccess, this::onError);
                 break;
 
         }
 
 
+    }
+
+    private void onError(Throwable throwable) {
+        Log.d("Alarm", "error");
+    }
+
+    private void onSuccess() {
+        Toast.makeText(getActivity(), "Будильник установлен", Toast.LENGTH_LONG).show();
     }
 
 }

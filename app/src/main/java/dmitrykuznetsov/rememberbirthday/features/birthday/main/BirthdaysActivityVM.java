@@ -1,22 +1,16 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.main;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.ObservableBoolean;
 
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.PopupMenu;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dmitrykuznetsov.rememberbirthday.BR;
@@ -31,6 +25,7 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.detail.DetailBirthdayA
 import dmitrykuznetsov.rememberbirthday.features.birthday.edit.EditPersonActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.interactor.BirthdaysInteractor;
 import dmitrykuznetsov.rememberbirthday.features.birthday.main.model.PersonItemView;
+import dmitrykuznetsov.rememberbirthday.features.birthday.settings.SettingsActivity;
 import io.reactivex.disposables.CompositeDisposable;
 
 import static android.app.Activity.RESULT_OK;
@@ -149,6 +144,7 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
                 isSearchNow = false;
                 addItem.setVisible(true);
                 activity.invalidateOptionsMenu();
+                BirthdaysActivityVM.this.searchText = null;
                 return true;
             }
         });
@@ -162,8 +158,8 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
 
             @Override
             public boolean onQueryTextChange(String searchText) {
-                BirthdaysActivityVM.this.searchText = searchText;
-                refreshData(searchText);
+                if (!(searchText.equals("") && BirthdaysActivityVM.this.searchText == null)) {
+                    refreshData(searchText);
 //                    List<PersonItemView> searchablePersons = new ArrayList<>();
 //                    for (PersonItemView personItemView : persons) {
 //                        String personName = personItemView.getPersonData().getName().toLowerCase();
@@ -173,6 +169,9 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
 //                        }
 //                    }
 //                    adapter.setItems(searchablePersons);
+                }
+                BirthdaysActivityVM.this.searchText = searchText;
+
                 return false;
             }
         });
@@ -193,6 +192,8 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
 //                item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
                 break;
             case R.id.action_settings:
+                Intent intent = new Intent(getActivity(), SettingsActivity.class);
+                activity.startActivity(intent);
                 break;
         }
     }

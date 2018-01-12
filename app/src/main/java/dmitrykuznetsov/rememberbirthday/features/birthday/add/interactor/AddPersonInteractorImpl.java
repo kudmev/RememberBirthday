@@ -5,9 +5,14 @@ import android.net.Uri;
 
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import dmitrykuznetsov.rememberbirthday.common.alarm.AlarmRepo;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepo;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PhoneRetriever;
+import io.reactivex.Completable;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by dmitry on 25.05.17.
@@ -17,15 +22,21 @@ public class AddPersonInteractorImpl implements AddPersonInteractor {
 
     private PersonRepo personRepo;
     private PhoneRetriever phoneRetriever;
+    private AlarmRepo alarmRepo;
 
-    public AddPersonInteractorImpl(PersonRepo personRepo, PhoneRetriever phoneRetriever) {
+    public AddPersonInteractorImpl(PersonRepo personRepo, PhoneRetriever phoneRetriever, AlarmRepo alarmRepo) {
         this.personRepo = personRepo;
         this.phoneRetriever = phoneRetriever;
+        this.alarmRepo = alarmRepo;
     }
 
     @Override
-    public void addPersonData(PersonData personData) {
-        personRepo.addPerson(personData);
+    public Completable addPersonData(PersonData personData) {
+        return personRepo.addPerson(personData)
+//                .map(simplePerson -> alarmRepo.addAlarm(simplePerson.id, simplePerson.millis))
+                .ignoreElements()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override

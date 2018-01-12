@@ -99,14 +99,23 @@ public class AddPersonActivityVM extends BaseActivityVM<BaseActivity> implements
                 String errMessage = getMessageIfError();
 
                 if (errMessage == null) {
-                    addPersonInteractor.addPersonData(person);
-                    getActivity().setResult(Activity.RESULT_OK);
-                    getActivity().finish();
+                    addPersonInteractor.addPersonData(person)
+                            .subscribe(this::onCompleteAdd, this::onErrorAdd);
+
                 } else {
                     errorMessage.set(errMessage);
                 }
                 break;
         }
+    }
+
+    private void onCompleteAdd() {
+        getActivity().setResult(Activity.RESULT_OK);
+        getActivity().finish();
+    }
+
+    private void onErrorAdd(Throwable throwable) {
+        errorMessage.set(activity.getString(R.string.error_person_not_add));
     }
 
     protected String getMessageIfError() {
@@ -116,7 +125,7 @@ public class AddPersonActivityVM extends BaseActivityVM<BaseActivity> implements
             message = activity.getString(R.string.wrong_date_millis);
         }
 
-        if (person.getName()== null || person.getName().equals("")) {
+        if (person.getName() == null || person.getName().equals("")) {
             message = activity.getString(R.string.wrong_name);
         }
 

@@ -2,7 +2,6 @@ package dmitrykuznetsov.rememberbirthday.old;
 
 import android.app.Activity;
 import android.app.AlarmManager;
-import android.app.DialogFragment;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -42,6 +41,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import dmitrykuznetsov.rememberbirthday.R;
+import dmitrykuznetsov.rememberbirthday.features.birthday.settings.SettingsFragment;
 
 /**
  * Created by Dmitry Kuznetsov on 11.01.2016.
@@ -144,12 +144,12 @@ public class ActivityAddPerson extends Activity  {
 
     }
 
-    public void showDatePickerDialog(View v) {
-        Log.d("showDatePickerDialog", "GO");
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.setArguments(bundle);
-        newFragment.show(getFragmentManager(), "datePicker");
-    }
+//    public void showDatePickerDialog(View v) {
+//        Log.d("showDatePickerDialog", "GO");
+//        DialogFragment newFragment = new DatePickerFragment();
+//        newFragment.setArguments(bundle);
+//        newFragment.show(getFragmentManager(), "datePicker");
+//    }
 
 //    @Override
 //    public void onSetDate(Calendar calendar) {
@@ -283,7 +283,7 @@ public class ActivityAddPerson extends Activity  {
                 Intent intentToFire = new Intent(ALARM_ACTION);
                 intentToFire.putExtra("milliseconds", millis);
                 intentToFire.putExtra("rowId", uid);
-                pendingIntent = PendingIntent.getBroadcast(this, uid, intentToFire, pendingIntent.FLAG_CANCEL_CURRENT);
+                pendingIntent = PendingIntent.getBroadcast(this, uid, intentToFire, PendingIntent.FLAG_CANCEL_CURRENT);
                 alarmManager.set(alarmType, millis, pendingIntent);
 
                 setResult(RESULT_OK);

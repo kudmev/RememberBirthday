@@ -17,7 +17,9 @@ import android.util.Log;
 import java.util.HashMap;
 
 public class RememberContentProvider extends ContentProvider {
-    public static final Uri CONTENT_URI = Uri.parse("content://dmitrykuznetsov.rememberbirthday.provider");
+
+    public static final String AUTHORITY = "dmitrykuznetsov.rememberbirthday.provider";
+    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY);
     public static final String UID = "_id";
     public static final String NAME = "peoplename";
     public static final String DATE_BIRTHDAY = "date_birthday";
@@ -29,9 +31,9 @@ public class RememberContentProvider extends ContentProvider {
 
     private static final HashMap<String, String> SEARCH_PROJECTION_MAP;
 
-    private static final int ALLROWS = 1;
-    private static final int SINGLE_ROW = 2;
-    private static final int SEARCH = 3;
+    public static final int ALLROWS = 1;
+    public static final int SINGLE_ROW = 2;
+    public static final int SEARCH = 3;
 
     private static final UriMatcher uriMatcher;
 

@@ -2,11 +2,11 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.edit.di;
 
 import dagger.Module;
 import dagger.Provides;
+import dmitrykuznetsov.rememberbirthday.common.alarm.AlarmRepo;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepo;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PhoneRetriever;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
-import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivityVM;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPersonInteractor;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPersonInteractorImpl;
@@ -17,8 +17,8 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.edit.EditPersonActivit
 public class EditPersonModule {
 
     @Provides
-    AddPersonInteractor provideAddPersonInteractor(PersonRepo personRepo, PhoneRetriever phoneRetriever) {
-        return new AddPersonInteractorImpl(personRepo, phoneRetriever);
+    AddPersonInteractor provideAddPersonInteractor(PersonRepo personRepo, PhoneRetriever phoneRetriever, AlarmRepo alarmRepo) {
+        return new AddPersonInteractorImpl(personRepo, phoneRetriever, alarmRepo);
     }
 
     @Provides

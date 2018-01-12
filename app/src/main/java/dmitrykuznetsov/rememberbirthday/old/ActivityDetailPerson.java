@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.features.birthday.edit.EditPersonActivity;
+import dmitrykuznetsov.rememberbirthday.features.birthday.settings.SettingsActivity;
 
 /**
  * Created by Dmitry Kuznetsov on 11.01.2016.
@@ -95,17 +96,17 @@ public class ActivityDetailPerson extends Activity implements ConfirmDeleteUserD
             }
         }
 
-        if (MyHelperClass.isUserBirthdayToday(milliseconds) == true) {
-            //date = getApplicationContext().getString(R.string.today);
-            age++;
-        }
+//        if (MyHelperClass.isUserBirthdayToday(milliseconds) == true) {
+//            //date = getApplicationContext().getString(R.string.today);
+//            age++;
+//        }
 
         Bitmap userImage = MyHelperClass.loadImageFromStorage(pathImage, position);
         if (userImage != null)
             imageView.setImageBitmap(userImage);
 
         textName.setText(name);
-        textAge.setText(MyHelperClass.getAgeSuffix(age, getApplicationContext(), 1));
+//        textAge.setText(MyHelperClass.getAgeSuffix(age, getApplicationContext(), 1));
         textDate.setText(date);
         if (note.equals("")) {
             textNote.setVisibility(View.GONE);

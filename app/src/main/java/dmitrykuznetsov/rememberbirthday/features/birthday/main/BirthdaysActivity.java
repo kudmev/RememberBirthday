@@ -6,6 +6,7 @@ import dmitrykuznetsov.rememberbirthday.BR;
 import javax.inject.Inject;
 
 import dmitrykuznetsov.rememberbirthday.common.base.BaseActivity;
+import dmitrykuznetsov.rememberbirthday.common.support.Config;
 import dmitrykuznetsov.rememberbirthday.databinding.ActivityBirthdayBinding;
 
 

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import org.joda.time.DateTime;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -38,15 +40,9 @@ public class MyHelperClass {
     }
 
     public static boolean isUserBirthdayToday(long milliseconds) {
-        Calendar calendar = Calendar.getInstance();
-        Calendar userCalendar = Calendar.getInstance();
-        userCalendar.setTimeInMillis(milliseconds);
-
-        if (calendar.get(Calendar.DAY_OF_YEAR) == userCalendar.get(Calendar.DAY_OF_YEAR)) {
-            return true;
-        } else {
-            return false;
-        }
+        DateTime now = DateTime.now();
+        DateTime userTime = new DateTime(milliseconds);
+        return now.getDayOfYear() == userTime.getDayOfYear();
     }
 
 

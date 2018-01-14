@@ -1,6 +1,12 @@
 package dmitrykuznetsov.rememberbirthday.common.receiver.di;
 
+import android.content.Context;
+
 import dagger.Module;
+import dagger.Provides;
+import dmitrykuznetsov.rememberbirthday.common.alarm.AlarmRepo;
+import dmitrykuznetsov.rememberbirthday.common.receiver.interactor.AlarmInteractor;
+import dmitrykuznetsov.rememberbirthday.common.receiver.interactor.AlarmInteractorImpl;
 
 /**
  * Created by dmitry on 1/12/18.
@@ -8,4 +14,9 @@ import dagger.Module;
 
 @Module
 public class AlarmReceiverModule {
+
+    @Provides
+    AlarmInteractor provideAlarmInteractor(AlarmRepo alarmRepo, Context context) {
+        return new AlarmInteractorImpl(alarmRepo, context);
+    }
 }

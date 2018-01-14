@@ -22,26 +22,22 @@ public class AddPersonInteractorImpl implements AddPersonInteractor {
 
     private PersonRepo personRepo;
     private PhoneRetriever phoneRetriever;
-    private AlarmRepo alarmRepo;
 
-    public AddPersonInteractorImpl(PersonRepo personRepo, PhoneRetriever phoneRetriever, AlarmRepo alarmRepo) {
+    public AddPersonInteractorImpl(PersonRepo personRepo, PhoneRetriever phoneRetriever) {
         this.personRepo = personRepo;
         this.phoneRetriever = phoneRetriever;
-        this.alarmRepo = alarmRepo;
     }
 
     @Override
     public Completable addPersonData(PersonData personData) {
         return personRepo.addPerson(personData)
-//                .map(simplePerson -> alarmRepo.addAlarm(simplePerson.id, simplePerson.millis))
-                .ignoreElements()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override
-    public void updatePersonData(PersonData personData) {
-        personRepo.updatePerson(personData);
+    public Completable updatePersonData(PersonData personData) {
+        return personRepo.updatePerson(personData);
     }
 
     @Override
@@ -57,9 +53,4 @@ public class AddPersonInteractorImpl implements AddPersonInteractor {
         return resultUri.getPath();
     }
 
-    private int getNextIdPerson() {
-        int id = personRepo.getLastPersonId();
-        id++;
-        return id;
-    }
 }

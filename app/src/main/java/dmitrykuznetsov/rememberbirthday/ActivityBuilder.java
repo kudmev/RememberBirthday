@@ -8,9 +8,9 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.detail.DetailBirthdayA
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.di.DetailBirthdayModule;
 import dmitrykuznetsov.rememberbirthday.features.birthday.edit.EditPersonActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.edit.di.EditPersonModule;
-import dmitrykuznetsov.rememberbirthday.features.birthday.main.BirthdaysActivity;
-import dmitrykuznetsov.rememberbirthday.features.birthday.main.di.BirthdaysModule;
-import dmitrykuznetsov.rememberbirthday.features.birthday.main.scope.ActivityScope;
+import dmitrykuznetsov.rememberbirthday.features.main.BirthdaysActivity;
+import dmitrykuznetsov.rememberbirthday.features.main.di.BirthdaysModule;
+import dmitrykuznetsov.rememberbirthday.features.main.scope.ActivityScope;
 
 /**
  * Created by vernau on 21.08.17.

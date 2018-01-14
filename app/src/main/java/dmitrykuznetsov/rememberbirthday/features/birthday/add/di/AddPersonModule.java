@@ -15,8 +15,8 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPers
 public class AddPersonModule {
 
     @Provides
-    AddPersonInteractor provideAddPersonInteractor(PersonRepo personRepo, PhoneRetriever phoneRetriever, AlarmRepo alarmRepo) {
-        return new AddPersonInteractorImpl(personRepo, phoneRetriever, alarmRepo);
+    AddPersonInteractor provideAddPersonInteractor(PersonRepo personRepo, PhoneRetriever phoneRetriever) {
+        return new AddPersonInteractorImpl(personRepo, phoneRetriever);
     }
 
     @Provides

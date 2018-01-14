@@ -23,7 +23,6 @@ public abstract class AbstractListActivityVM<A extends AppCompatActivity, T> ext
         this.recyclerConfiguration = recyclerConfiguration;
         this.adapter = new RecyclerBindingAdapter<>(getLayoutId(), getVariable(), list);
         this.adapter.setOnItemClickListener(((position, item, holder) -> onRecyclerItemClick(item)));
-        this.adapter.setOnLongItemClickListener(((position, item, holder) -> onRecyclerLongItemClick(item, holder)));
         recyclerConfiguration.setAdapter(adapter);
     }
 
@@ -31,10 +30,6 @@ public abstract class AbstractListActivityVM<A extends AppCompatActivity, T> ext
 
     protected abstract int getVariable();
 
-    protected abstract List<T> getAdapterList();
-
     protected abstract void onRecyclerItemClick(T t);
-
-    protected abstract void onRecyclerLongItemClick(T t, RecyclerBindingAdapter.BindingHolder holder);
 
 }

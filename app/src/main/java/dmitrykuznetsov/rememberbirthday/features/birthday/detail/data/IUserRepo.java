@@ -2,11 +2,8 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.detail.data;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import android.database.Cursor;
-import android.os.AsyncTask;
 
-import dmitrykuznetsov.rememberbirthday.R;
-import dmitrykuznetsov.rememberbirthday.old.RememberContentProvider;
+import dmitrykuznetsov.rememberbirthday.common.data.RememberContentProvider;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.callback.ServiceCallback;
 

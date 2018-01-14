@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,7 +18,6 @@ import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.common.base.BaseActivity;
 import dmitrykuznetsov.rememberbirthday.common.base.BaseActivityVM;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
-import dmitrykuznetsov.rememberbirthday.common.data.model.PersonObservable;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPersonInteractor;
 
 public class AddPersonActivityVM extends BaseActivityVM<BaseActivity> implements DatePickerDialog.OnDateSetListener {

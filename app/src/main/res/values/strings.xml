@@ -20,6 +20,7 @@
     <string name="error_person_not_found">Ошибка: пользователь не найден!</string>
     <string name="error_user_not_found">Ошибка: пользователь не найден в базе данных</string>
     <string name="error_person_not_add">Ошибка: пользователь не может быть добавлен</string>
+    <string name="error_person_not_edit">Ошибка: пользователь не может быть изменен</string>
 
     <string name="wrong_date_millis">Заполните, пожалуйста, дату рождения</string>
     <string name="wrong_name">Пожалуйста, введите имя!</string>
@@ -84,6 +85,10 @@
     <string name="tel_to">tel:</string>
 
 
+    <!-- Notification -->
+    <string name="notification_title">Напоминание</string>
+    <string name="notification_person_today_birthday">%1$s сегодня отмечает ДР</string>
+    <string name="notification_person_date_birthday">%1$s %2$s.%3$s отмечал ДР</string>
 
 
 </resources>

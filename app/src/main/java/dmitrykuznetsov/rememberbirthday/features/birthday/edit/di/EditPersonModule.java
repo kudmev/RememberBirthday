@@ -17,8 +17,8 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.edit.EditPersonActivit
 public class EditPersonModule {
 
     @Provides
-    AddPersonInteractor provideAddPersonInteractor(PersonRepo personRepo, PhoneRetriever phoneRetriever, AlarmRepo alarmRepo) {
-        return new AddPersonInteractorImpl(personRepo, phoneRetriever, alarmRepo);
+    AddPersonInteractor provideAddPersonInteractor(PersonRepo personRepo, PhoneRetriever phoneRetriever) {
+        return new AddPersonInteractorImpl(personRepo, phoneRetriever);
     }
 
     @Provides

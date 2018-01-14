@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import org.joda.time.DateTime;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -48,11 +50,9 @@ public class Utils {
     }
 
     public boolean isUserBirthdayToday(long milliseconds) {
-        Calendar calendar = Calendar.getInstance();
-        Calendar userCalendar = Calendar.getInstance();
-        userCalendar.setTimeInMillis(milliseconds);
-
-        return calendar.get(Calendar.DAY_OF_YEAR) == userCalendar.get(Calendar.DAY_OF_YEAR);
+        DateTime now = DateTime.now();
+        DateTime userTime = new DateTime(milliseconds);
+        return now.getDayOfYear() == userTime.getDayOfYear();
     }
 
     public String toStr(Object object) {

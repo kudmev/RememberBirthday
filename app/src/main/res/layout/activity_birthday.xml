@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="dmitrykuznetsov.rememberbirthday.features.birthday.main.BirthdaysActivityVM" />
+            type="dmitrykuznetsov.rememberbirthday.features.main.BirthdaysActivityVM" />
     </data>
 
     <android.support.constraint.ConstraintLayout

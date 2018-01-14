@@ -16,7 +16,7 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.detail.input.InputDial
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.input.InputDialogVM;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.interactor.DetailBirthdayInteractor;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.interactor.DetailBirthdayInteractorImpl;
-import dmitrykuznetsov.rememberbirthday.features.birthday.main.scope.ActivityScope;
+import dmitrykuznetsov.rememberbirthday.features.main.scope.ActivityScope;
 
 /**
  * Created by Alena on 26.12.2017.

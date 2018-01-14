@@ -3,7 +3,6 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor;
 import android.content.Intent;
 
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
-import dmitrykuznetsov.rememberbirthday.common.data.model.PersonObservable;
 import io.reactivex.Completable;
 
 /**
@@ -12,7 +11,10 @@ import io.reactivex.Completable;
 
 public interface AddPersonInteractor {
     Completable addPersonData(PersonData personData);
-    void updatePersonData(PersonData personData);
+
+    Completable updatePersonData(PersonData personData);
+
     String getPhone(Intent data);
+
     String getPathImage(Intent data);
 }

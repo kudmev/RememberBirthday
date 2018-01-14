@@ -10,7 +10,7 @@
 
         <variable
             name="person"
-            type="dmitrykuznetsov.rememberbirthday.features.birthday.main.model.PersonItemView" />
+            type="dmitrykuznetsov.rememberbirthday.features.main.model.PersonItemView" />
 
     </data>
 

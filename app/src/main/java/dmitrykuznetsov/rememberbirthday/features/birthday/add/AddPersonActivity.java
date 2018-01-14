@@ -7,10 +7,8 @@ import javax.inject.Inject;
 
 import dmitrykuznetsov.rememberbirthday.BR;
 import dmitrykuznetsov.rememberbirthday.R;
-
 import dmitrykuznetsov.rememberbirthday.common.base.NextStackActivity;
 import dmitrykuznetsov.rememberbirthday.databinding.ActivityAddPersonBinding;
-import dmitrykuznetsov.rememberbirthday.common.base.BaseActivity;
 
 /**
  * Created by dmitry on 18.03.17.

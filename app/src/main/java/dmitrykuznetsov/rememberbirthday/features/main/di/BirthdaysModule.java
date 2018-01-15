@@ -6,7 +6,9 @@ import java.util.List;
 import dagger.Module;
 import dagger.Provides;
 import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
+import dmitrykuznetsov.rememberbirthday.common.alarm.AlarmRepo;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepo;
+import dmitrykuznetsov.rememberbirthday.common.support.Config;
 import dmitrykuznetsov.rememberbirthday.features.main.BirthdaysActivity;
 import dmitrykuznetsov.rememberbirthday.features.main.BirthdaysActivityVM;
 import dmitrykuznetsov.rememberbirthday.features.main.interactor.BirthdaysInteractor;
@@ -23,8 +25,8 @@ public class BirthdaysModule {
 
     @Provides
     @ActivityScope
-    BirthdaysInteractor provideBirthdayInteractor(PersonRepo personRepo) {
-        return new BirthdaysInteractorImpl(personRepo);
+    BirthdaysInteractor provideBirthdayInteractor(PersonRepo personRepo, AlarmRepo alarmRepo, Config config) {
+        return new BirthdaysInteractorImpl(personRepo, alarmRepo, config);
     }
 
     @Provides

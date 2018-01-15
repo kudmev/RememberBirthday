@@ -39,7 +39,7 @@
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/profile_name"
-            style="@style/AddConstraintEditText"
+            style="@style/RoundAddView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -67,7 +67,7 @@
 
         <TextView
             android:id="@+id/profile_date"
-            style="@style/AddConstraintEditText"
+            style="@style/RoundAddView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -95,7 +95,7 @@
 
         <EditText
             android:id="@+id/profile_note"
-            style="@style/AddConstraintEditText"
+            style="@style/RoundAddView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -124,7 +124,7 @@
 
         <TextView
             android:id="@+id/profile_phone"
-            style="@style/AddConstraintEditText"
+            style="@style/RoundAddView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

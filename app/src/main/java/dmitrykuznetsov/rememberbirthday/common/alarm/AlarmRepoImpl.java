@@ -33,18 +33,6 @@ public class AlarmRepoImpl implements AlarmRepo {
         this.config = config;
     }
 
-//    @Override
-//    public Completable setAlarmTimeOnToday(int hour, int minute) {
-//        return setAlarmTime(hour, minute, false)
-//                .map(this::saveTime);
-//    }
-//
-//    @Override
-//    public Completable setAlarmTimeOnTomorrow(int hour, int minute) {
-//        return setAlarmTime(hour, minute, true)
-//                .flatMap(this::saveTime);
-//    }
-
     @Override
     public Completable setAlarmTime(boolean isNeedPlusDay, int hour, int minute) {
         Intent intentToFire = new Intent(AlarmReceiver.ACTION_REFRESH_DATA);

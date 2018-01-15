@@ -54,6 +54,7 @@
     <!-- Dialog + toast -->
     <string name="yes">Да</string>
     <string name="cancel">Отмена</string>
+    <string name="select">Выбрать</string>
     <string name="toast_success_delete_user">Пользователь был успешно удален.</string>
     <string name="dialog_title_confirm_delete_user">Удалить контакт?</string>
     <string name="dialog_message_confirm_delete_user">Подтверждая действие, вы удалите полностью пользователя со всеми данными.</string>
@@ -74,8 +75,8 @@
     <string name="pref_ringtone">Мелодия</string>
     <string name="pref_ringtone_summary">Установите мелодию для оповещения</string>
     <string name="pref_title_ringtone_time">Время для оповещения</string>
+    <string name="default_alarm_time">10:00:00.000</string>
 
-    <string name="select">Выбрать</string>
 
     <!-- Helper -->
     <string name="years">лет</string>
@@ -90,6 +91,6 @@
     <string name="notification_person_today_birthday">%1$s сегодня отмечает ДР</string>
     <string name="notification_person_date_birthday">%1$s %2$s.%3$s отмечал ДР</string>
     <string name="birthday_today">Сегодня</string>
-
+    <string name="settings_title">Настройка уведомлений</string>
 
 </resources>

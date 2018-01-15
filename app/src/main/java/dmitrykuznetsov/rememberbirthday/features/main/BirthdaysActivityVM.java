@@ -7,7 +7,6 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.EditText;
 
 
 import java.util.List;
@@ -46,7 +45,8 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
         super(activity, persons, configuration);
         this.birthdaysInteractor = birthdaysInteractor;
         this.persons = persons;
-//        getPersons();
+        birthdaysInteractor.setInitialAlarm()
+                .subscribe();
     }
 
     @Override
@@ -104,9 +104,6 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
         MenuItem addItem = menu.findItem(R.id.action_add_name);
 
         final SearchView searchView = (SearchView) searchViewItem.getActionView();
-        EditText searchEditText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        searchEditText.setHintTextColor(activity.getResources().getColor(R.color.colorSearch));
-
         searchViewItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem menuItem) {

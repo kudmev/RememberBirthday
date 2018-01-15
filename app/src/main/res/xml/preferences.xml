@@ -28,8 +28,6 @@
         <dmitrykuznetsov.rememberbirthday.old.TimePreference
             android:key="timePrefA_Key"
             android:title="@string/pref_title_ringtone_time"
-
-
             android:defaultValue="10:00:00.000"/>
     </PreferenceCategory>
 <!--

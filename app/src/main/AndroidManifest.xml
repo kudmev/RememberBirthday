@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.QUICKBOOT_POWERON" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
@@ -19,10 +18,6 @@
         android:largeHeap="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <!--<meta-data-->
-        <!--android:name="android.app.default_searchable"-->
-        <!--android:value=".RememberSearchResults"/>-->
 
         <activity
             android:name=".features.main.BirthdaysActivity"
@@ -68,6 +63,7 @@
                 <action android:name="dmitrykuznetsov.rememberbirthday.ACTION_REFRESH_DATA" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
             </intent-filter>
         </receiver>
 

@@ -202,9 +202,6 @@ public class RememberContentProvider extends ContentProvider {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            Log.w("LOG_TAG", "���������� ���� ������ � " + oldVersion + " �� ������ " + newVersion + ", ������� ������ ������ ���� ������");
-            //db.execSQL(DELETE_DB);
-            //onCreate(db);
             if (oldVersion == 8 && newVersion == 9) {
                 db.beginTransaction();
                 try {

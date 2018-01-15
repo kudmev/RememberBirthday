@@ -16,6 +16,8 @@ import org.joda.time.Years;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.util.Date;
+
 import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 
@@ -89,17 +91,25 @@ public class BindingAdapters {
         view.setText(ageStr);
     }
 
+    @BindingAdapter({"birthday_main"})
+    public static void setBirthdayMain(TextView view, long dateInMillis) {
+            LocalDate birthDate = new LocalDate(dateInMillis);
+            String dayBirthday;
+            if (birthDate.getDayOfYear() == LocalDate.now().getDayOfYear()) {
+                dayBirthday = view.getContext().getString(R.string.birthday_today);
+            } else {
+                DateTimeFormatter formatter = DateTimeFormat.forPattern("dd MMMM");
+                dayBirthday = birthDate.toString(formatter);
+            }
+            view.setText(dayBirthday);
+    }
+
     @BindingAdapter({"birthday"})
     public static void setBirthday(TextView view, long dateInMillis) {
-        if (dateInMillis != 0) {
             LocalDate birthDate = new LocalDate(dateInMillis);
-            int age = getYears(dateInMillis);
-            birthDate.plusYears(age);
-
             DateTimeFormatter formatter = DateTimeFormat.forPattern("dd MMMM yyyy");
             String dayBirthday = birthDate.toString(formatter);
             view.setText(dayBirthday);
-        }
     }
 
     @BindingAdapter({"birthdayAndIcon"})

@@ -60,7 +60,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                 int minute = Integer.parseInt(time.substring(3, 5));
                 connectionPref.setSummary(sharedPreferences.getString(key, "10:00:00.000").substring(0, 5));
 
-                alarmRepo.setAlarmTime(false, hour, minute)
+                alarmRepo.setAlarmTime(true, hour, minute)
                         .subscribe(this::onSuccess, this::onError);
                 break;
         }

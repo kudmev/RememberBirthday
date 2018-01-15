@@ -7,6 +7,6 @@ import io.reactivex.Completable;
  */
 
 public interface AlarmInteractor {
-    Completable updateAlarm(long millis);
-    Completable runNotificationPersons(long millis);
+    Completable updateAlarm();
+    Completable runNotificationPersons();
 }

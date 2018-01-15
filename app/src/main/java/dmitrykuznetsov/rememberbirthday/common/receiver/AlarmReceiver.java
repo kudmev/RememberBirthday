@@ -8,8 +8,6 @@ import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 import dmitrykuznetsov.rememberbirthday.common.receiver.interactor.AlarmInteractor;
-import dmitrykuznetsov.rememberbirthday.common.support.Config;
-import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 
 /**
  * Created by Dmitry Kuznetsov on 23.07.2015.
@@ -17,22 +15,19 @@ import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 public class AlarmReceiver extends BroadcastReceiver {
 
     public static final String ACTION_REFRESH_DATA = "dmitrykuznetsov.rememberbirthday.ACTION_REFRESH_DATA";
+    public static final String ACTION_PACKAGE_REPLACED = "android.intent.action.MY_PACKAGE_REPLACED";
 
     @Inject
     AlarmInteractor alarmInteractor;
-
-    @Inject
-    Config config;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         AndroidInjection.inject(this, context);
 
-        if (ACTION_REFRESH_DATA.equals(intent.getAction())) {
-            long alarmMillis = config.getAsLong(Constants.ALARM_TIME);
-            alarmInteractor.updateAlarm(alarmMillis)
+        if (ACTION_REFRESH_DATA.equals(intent.getAction()) || ACTION_PACKAGE_REPLACED.equals(intent.getAction())) {
+            alarmInteractor.updateAlarm()
                     .subscribe();
-            alarmInteractor.runNotificationPersons(alarmMillis)
+            alarmInteractor.runNotificationPersons()
                     .subscribe();
         }
     }

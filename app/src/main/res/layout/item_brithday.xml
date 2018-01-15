@@ -14,14 +14,6 @@
 
     </data>
 
-    <!--<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="5dp"-->
-        <!--android:orientation="vertical"-->
-        <!--card_view:cardCornerRadius="4dp">-->
-
-
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -73,7 +65,7 @@
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/user_image"
                 app:layout_constraintTop_toBottomOf="@+id/text_name"
-                bind:birthday="@{person.personData.dateInMillis}"
+                bind:birthday_main="@{person.personData.dateInMillis}"
                 tools:text="17 лет" />
 
             <TextView
@@ -92,8 +84,5 @@
                 bind:age="@{person.personData.dateInMillis}" />
 
         </android.support.constraint.ConstraintLayout>
-
-    <!--</android.support.v7.widget.CardView>-->
-
 
 </layout>

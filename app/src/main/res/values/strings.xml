@@ -89,6 +89,7 @@
     <string name="notification_title">Напоминание</string>
     <string name="notification_person_today_birthday">%1$s сегодня отмечает ДР</string>
     <string name="notification_person_date_birthday">%1$s %2$s.%3$s отмечал ДР</string>
+    <string name="birthday_today">Сегодня</string>
 
 
 </resources>

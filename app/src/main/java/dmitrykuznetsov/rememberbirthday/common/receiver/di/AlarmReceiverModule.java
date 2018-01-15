@@ -7,6 +7,7 @@ import dagger.Provides;
 import dmitrykuznetsov.rememberbirthday.common.alarm.AlarmRepo;
 import dmitrykuznetsov.rememberbirthday.common.receiver.interactor.AlarmInteractor;
 import dmitrykuznetsov.rememberbirthday.common.receiver.interactor.AlarmInteractorImpl;
+import dmitrykuznetsov.rememberbirthday.common.support.Config;
 
 /**
  * Created by dmitry on 1/12/18.
@@ -16,7 +17,7 @@ import dmitrykuznetsov.rememberbirthday.common.receiver.interactor.AlarmInteract
 public class AlarmReceiverModule {
 
     @Provides
-    AlarmInteractor provideAlarmInteractor(AlarmRepo alarmRepo, Context context) {
-        return new AlarmInteractorImpl(alarmRepo, context);
+    AlarmInteractor provideAlarmInteractor(AlarmRepo alarmRepo, Config config, Context context) {
+        return new AlarmInteractorImpl(alarmRepo, config, context);
     }
 }

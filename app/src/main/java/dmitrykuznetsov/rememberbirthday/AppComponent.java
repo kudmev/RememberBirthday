@@ -11,6 +11,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 import dmitrykuznetsov.rememberbirthday.common.adapter.di.RecyclerModule;
 import dmitrykuznetsov.rememberbirthday.common.alarm.di.AlarmModule;
 import dmitrykuznetsov.rememberbirthday.common.data.di.RepoModule;
+import dmitrykuznetsov.rememberbirthday.common.permissions.di.PermissionModule;
 import dmitrykuznetsov.rememberbirthday.common.support.di.StorageModule;
 import dmitrykuznetsov.rememberbirthday.common.support.di.SupportModule;
 
@@ -27,6 +28,7 @@ import dmitrykuznetsov.rememberbirthday.common.support.di.SupportModule;
         RecyclerModule.class,
         RepoModule.class,
         AlarmModule.class,
+        PermissionModule.class,
         ActivityBuilder.class,
         FragmentBuilder.class,
         ServiceBuilder.class,

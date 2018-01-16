@@ -2,10 +2,10 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.edit.di;
 
 import dagger.Module;
 import dagger.Provides;
-import dmitrykuznetsov.rememberbirthday.common.alarm.AlarmRepo;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepo;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PhoneRetriever;
+import dmitrykuznetsov.rememberbirthday.common.permissions.PermissionsStorage;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivityVM;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPersonInteractor;
@@ -22,16 +22,16 @@ public class EditPersonModule {
     }
 
     @Provides
-    AddPersonActivityVM provideAddPersonActivityVm(EditPersonActivity editPersonActivity, AddPersonInteractor addPersonInteractor) {
+    AddPersonActivityVM provideAddPersonActivityVm(EditPersonActivity editPersonActivity, AddPersonInteractor addPersonInteractor, PermissionsStorage permissionsStorage) {
         PersonData personData = new PersonData();
-        return new AddPersonActivityVM(editPersonActivity, addPersonInteractor, personData);
+        return new AddPersonActivityVM(editPersonActivity, addPersonInteractor, permissionsStorage, personData);
     }
 
 
     @Provides
-    EditPersonActivityVM provideEditPersonActivityVm(EditPersonActivity editPersonActivity, AddPersonInteractor addPersonInteractor) {
+    EditPersonActivityVM provideEditPersonActivityVm(EditPersonActivity editPersonActivity, AddPersonInteractor addPersonInteractor, PermissionsStorage permissionsStorage) {
         PersonData personData = editPersonActivity.getIntent().getParcelableExtra(Constants.PERSON_DATA);
-        return new EditPersonActivityVM(editPersonActivity, addPersonInteractor, personData);
+        return new EditPersonActivityVM(editPersonActivity, addPersonInteractor, permissionsStorage, personData);
     }
 
 }

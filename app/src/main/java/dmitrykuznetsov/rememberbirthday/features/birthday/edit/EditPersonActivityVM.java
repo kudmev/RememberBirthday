@@ -6,6 +6,7 @@ import android.view.MenuItem;
 
 import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
+import dmitrykuznetsov.rememberbirthday.common.permissions.PermissionsStorage;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivityVM;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPersonInteractor;
 
@@ -15,8 +16,8 @@ import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPers
 
 public class EditPersonActivityVM extends AddPersonActivityVM implements DatePickerDialog.OnDateSetListener {
 
-    public EditPersonActivityVM(EditPersonActivity activity, AddPersonInteractor addPersonInteractor, PersonData person) {
-        super(activity, addPersonInteractor, person);
+    public EditPersonActivityVM(EditPersonActivity activity, AddPersonInteractor addPersonInteractor, PermissionsStorage permissionsStorage, PersonData person) {
+        super(activity, addPersonInteractor, permissionsStorage, person);
     }
 
     @Override

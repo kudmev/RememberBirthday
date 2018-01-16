@@ -93,4 +93,14 @@
     <string name="birthday_today">Сегодня</string>
     <string name="settings_title">Настройка уведомлений</string>
 
+
+    <!-- Permissions -->
+    <string name="ok">OK</string>
+    <string name="permission_rationale_title_read_contacts">Доступ к контактам</string>
+    <string name="permission_rationale_message_read_contacts">Напоминалка ДР нужен доступ к твоим контактам, чтобы присоединить телефонный номер к имениннику, и иметь возможность звонить и отсылать сообщения прямо со страницы пользователя.</string>
+    <string name="error_permission_denied_read_contacts">Нет разрешения на чтение контактов</string>
+
+    <string name="permission_rationale_title_write_storage">Доступ к памяти</string>
+    <string name="permission_rationale_message_write_storage">Напоминалка ДР нужен доступ к памяти телефона, чтобы добавить фотографию именинника, редактировать её, и сохранить уменьшенную копию.</string>
+    <string name="error_permission_denied_write_storage">Нет разрешения на доступ к памяти телефона</string>
 </resources>

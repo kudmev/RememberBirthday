@@ -2,10 +2,10 @@ package dmitrykuznetsov.rememberbirthday.features.birthday.add.di;
 
 import dagger.Module;
 import dagger.Provides;
-import dmitrykuznetsov.rememberbirthday.common.alarm.AlarmRepo;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepo;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PhoneRetriever;
+import dmitrykuznetsov.rememberbirthday.common.permissions.PermissionsStorage;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivityVM;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPersonInteractor;
@@ -20,9 +20,9 @@ public class AddPersonModule {
     }
 
     @Provides
-    AddPersonActivityVM provideAddPersonActivityVm(AddPersonActivity addPersonActivity, AddPersonInteractor addPersonInteractor) {
+    AddPersonActivityVM provideAddPersonActivityVm(AddPersonActivity addPersonActivity, AddPersonInteractor addPersonInteractor, PermissionsStorage permissionsStorage) {
         PersonData personData = new PersonData();
-        return new AddPersonActivityVM(addPersonActivity, addPersonInteractor, personData);
+        return new AddPersonActivityVM(addPersonActivity, addPersonInteractor, permissionsStorage, personData);
     }
 
 }

@@ -18,3 +18,4 @@
 -dontwarn com.google.errorprone.annotations.*
 -dontwarn org.joda.time.*
 -dontwarn org.joda.convert.**
+-keep class android.support.v7.widget.SearchView { *; }

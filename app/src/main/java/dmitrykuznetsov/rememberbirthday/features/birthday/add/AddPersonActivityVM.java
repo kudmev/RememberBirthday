@@ -1,10 +1,12 @@
 package dmitrykuznetsov.rememberbirthday.features.birthday.add;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.support.v4.app.ActivityCompat;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,11 +18,12 @@ import org.joda.time.LocalDate;
 
 import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.common.base.BaseActivity;
-import dmitrykuznetsov.rememberbirthday.common.base.BaseActivityVM;
+import dmitrykuznetsov.rememberbirthday.common.base.BasePermissionActivityVM;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
+import dmitrykuznetsov.rememberbirthday.common.permissions.PermissionsStorage;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.interactor.AddPersonInteractor;
 
-public class AddPersonActivityVM extends BaseActivityVM<BaseActivity> implements DatePickerDialog.OnDateSetListener {
+public class AddPersonActivityVM extends BasePermissionActivityVM<BaseActivity> implements DatePickerDialog.OnDateSetListener {
 
     private static final int REQUEST_GALLERY = 1;
     private static final int PICK_PHONE = 2;
@@ -29,17 +32,27 @@ public class AddPersonActivityVM extends BaseActivityVM<BaseActivity> implements
 
     protected AddPersonInteractor addPersonInteractor;
 
-    public AddPersonActivityVM(BaseActivity activity, AddPersonInteractor addPersonInteractor, PersonData person) {
-        super(activity);
+    private boolean isClickOnPickPhone;
+    private boolean isClickOnAddImage;
+
+    public AddPersonActivityVM(BaseActivity activity, AddPersonInteractor addPersonInteractor, PermissionsStorage permissionsStorage, PersonData person) {
+        super(activity, permissionsStorage);
         this.addPersonInteractor = addPersonInteractor;
         this.person = person;
+        initPermissions();
     }
 
     public void addImage() {
+        isClickOnAddImage = true;
+        requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, this::requestAddImage);
+    }
+
+    private void requestAddImage() {
         Intent intent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         activity.startActivityForResult(intent, REQUEST_GALLERY);
     }
+
 
     public void showDatePickerDialog() {
         LocalDate localDate = new LocalDate(person.getDateInMillis());
@@ -55,8 +68,43 @@ public class AddPersonActivityVM extends BaseActivityVM<BaseActivity> implements
     }
 
     public void pickPhone() {
+        isClickOnPickPhone = true;
+        requestPermission(Manifest.permission.READ_CONTACTS, this::requestPhone);
+    }
+
+    private void requestPhone() {
         Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
         activity.startActivityForResult(intent, PICK_PHONE);
+    }
+
+    @Override
+    protected void permissionOK(int requestCode) {
+        switch (requestCode) {
+            case PermissionsStorage.PERMISSION_REQUEST_READ_CONTACTS:
+                if (isClickOnPickPhone) {
+                    requestPhone();
+                }
+                break;
+            case PermissionsStorage.PERMISSION_REQUEST_WRITE_STORAGE:
+                if (isClickOnAddImage) {
+                    requestAddImage();
+                }
+                break;
+        }
+        isClickOnPickPhone = false;
+        isClickOnAddImage = false;
+    }
+
+    @Override
+    protected void permissionCancel(int requestCode) {
+        switch (requestCode) {
+            case PermissionsStorage.PERMISSION_REQUEST_READ_CONTACTS:
+                isClickOnPickPhone = false;
+                break;
+            case PermissionsStorage.PERMISSION_REQUEST_WRITE_STORAGE:
+                isClickOnAddImage = false;
+                break;
+        }
     }
 
     @Override
@@ -77,8 +125,12 @@ public class AddPersonActivityVM extends BaseActivityVM<BaseActivity> implements
                     person.setPathImage(pathImage);
                     break;
                 case PICK_PHONE:
-                    String phone = addPersonInteractor.getPhone(data);
-                    person.setBindPhone(phone);
+                    if (hasPermission(Manifest.permission.READ_CONTACTS)) {
+                        String phone = addPersonInteractor.getPhone(data);
+                        person.setBindPhone(phone);
+                    } else {
+                        errorMessage.set(activity.getString(R.string.error_permission_denied_read_contacts));
+                    }
                     break;
             }
         }
@@ -128,6 +180,12 @@ public class AddPersonActivityVM extends BaseActivityVM<BaseActivity> implements
         }
 
         return message;
+    }
+
+    private void initPermissions() {
+        ActivityCompat.requestPermissions(getActivity(),
+                new String[]{Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                PermissionsStorage.PERMISSION_REQUEST_READ_CONTACTS);
     }
 
 }

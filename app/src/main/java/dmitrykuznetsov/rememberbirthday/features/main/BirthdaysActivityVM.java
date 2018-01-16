@@ -45,8 +45,8 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
         super(activity, persons, configuration);
         this.birthdaysInteractor = birthdaysInteractor;
         this.persons = persons;
-        birthdaysInteractor.setInitialAlarm()
-                .subscribe();
+        disposables.add(birthdaysInteractor.setInitialAlarm()
+                .subscribe());
     }
 
     @Override
@@ -103,7 +103,7 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
         MenuItem searchViewItem = menu.findItem(R.id.action_search);
         MenuItem addItem = menu.findItem(R.id.action_add_name);
 
-        final SearchView searchView = (SearchView) searchViewItem.getActionView();
+        SearchView searchView = (SearchView) searchViewItem.getActionView();
         searchViewItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem menuItem) {
@@ -126,7 +126,7 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-//                searchView.clearFocus();
+                searchView.clearFocus();
                 return true;
             }
 
@@ -150,9 +150,6 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
         switch (item.getItemId()) {
             case R.id.action_add_name:
                 addPerson();
-                break;
-            case R.id.action_search:
-//                item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
                 break;
             case R.id.action_settings:
                 Intent intent = new Intent(getActivity(), SettingsActivity.class);

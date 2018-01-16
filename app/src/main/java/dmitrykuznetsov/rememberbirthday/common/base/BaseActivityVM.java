@@ -12,7 +12,7 @@ import dmitrykuznetsov.rememberbirthday.common.support.Utils;
  * Created by vernau on 3/15/17.
  */
 
-public class BaseActivityVM<A extends AppCompatActivity> extends ActivityViewModel<A> {
+public abstract class BaseActivityVM<A extends AppCompatActivity> extends ActivityViewModel<A> {
 
     public final ObservableBoolean isLoading = new ObservableBoolean();
     public final ObservableField<String> errorMessage = new ObservableField<String>() {
@@ -28,4 +28,7 @@ public class BaseActivityVM<A extends AppCompatActivity> extends ActivityViewMod
     public BaseActivityVM(A activity) {
         super(activity);
     }
+
+
+
 }

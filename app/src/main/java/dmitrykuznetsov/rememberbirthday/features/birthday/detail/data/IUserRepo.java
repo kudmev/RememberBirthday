@@ -30,10 +30,10 @@ public class IUserRepo implements UserRepo {
 //                    String name = c.getString(c.getColumnIndex(RememberContentProvider.NAME));
 //                    String note = c.getString(c.getColumnIndex(RememberContentProvider.NOTE));
 //                    String pathImage = c.getString(c.getColumnIndex(RememberContentProvider.PATHIMAGE));
-//                    long dateInMillis = c.getLong(c.getColumnIndex(RememberContentProvider.DATE_BIRTHDAY_IN_SECONDS));
+//                    long millis = c.getLong(c.getColumnIndex(RememberContentProvider.DATE_BIRTHDAY_IN_SECONDS));
 //                    String bindPhone = c.getString(c.getColumnIndex(RememberContentProvider.PHONE_NUMBER));
 //
-//                    PersonData observablePerson = new PersonData(userId, name, note, bindPhone, pathImage, dateInMillis);
+//                    PersonData observablePerson = new PersonData(userId, name, note, bindPhone, pathImage, millis);
 //                    callBack.onSuccess(observablePerson);
 //                    c.close();
 //                } else {

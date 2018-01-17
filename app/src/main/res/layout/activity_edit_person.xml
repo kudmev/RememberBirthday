@@ -56,7 +56,7 @@
             <!--android:drawableRight="@drawable/button_selector"-->
             <!--android:hint="@string/hint_add_date"-->
             <!--app:onClick="@{viewModel::showDatePickerDialog}"-->
-            <!--bind:birthday="@{viewModel.userObservable.dateInMillis}" />-->
+            <!--bind:birthday="@{viewModel.userObservamillisllis}" />-->
 
         <!--<TextView-->
             <!--style="@style/MyH2TextViewStyle"-->

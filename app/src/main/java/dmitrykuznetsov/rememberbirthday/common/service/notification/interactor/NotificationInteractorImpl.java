@@ -10,6 +10,8 @@ import javax.inject.Inject;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepo;
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by dmitry on 1/14/18.
@@ -26,7 +28,9 @@ public class NotificationInteractorImpl implements NotificationInteractor {
     @Override
     public Observable<List<PersonData>> getPersonsWaitNotification(long alarmMillis) {
         return personRepo.getPersons("")
-                .flatMap((persons) -> filterPersons(persons, alarmMillis));
+                .flatMap((persons) -> filterPersons(persons, alarmMillis))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     private Observable<List<PersonData>> filterPersons(List<PersonData> persons, long alarmMillis) {

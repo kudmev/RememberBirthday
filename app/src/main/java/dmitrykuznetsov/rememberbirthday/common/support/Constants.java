@@ -8,5 +8,4 @@ public class Constants {
     public static final int RESULT_ADD_PERSON = 1;
 
     public static final String ALARM_TIME = "alarm_time";
-
 }

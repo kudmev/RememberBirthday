@@ -68,11 +68,9 @@ public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActiv
         Log.d(TAG, throwable.getMessage());
     }
 
-    private void onSuccessDeletePerson(Boolean result) {
-        if (result) {
-            Toast.makeText(activity, R.string.toast_success_delete_user, Toast.LENGTH_LONG).show();
-            activity.finish();
-        }
+    private void onSuccessDeletePerson() {
+        Toast.makeText(activity, R.string.toast_success_delete_user, Toast.LENGTH_LONG).show();
+        activity.finish();
     }
 
     @Override
@@ -98,13 +96,13 @@ public class DetailBirthdayActivityVM extends BaseActivityVM<DetailBirthdayActiv
         errorMessage.set(getActivity().getString(R.string.error_user_not_found));
     }
 
-    public void onClickCall(View view){
+    public void onClickCall(View view) {
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(activity.getString(R.string.tel_to) + personData.getBindPhone()));
         getActivity().startActivity(intent);
     }
 
     public void onClickSms(View view) {
-        Uri uri = Uri.parse(activity.getString(R.string.sms_to)+ personData.getBindPhone());
+        Uri uri = Uri.parse(activity.getString(R.string.sms_to) + personData.getBindPhone());
         Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
         //intent.putExtra("sms_body", R.string.happy_birthday);
         getActivity().startActivity(intent);

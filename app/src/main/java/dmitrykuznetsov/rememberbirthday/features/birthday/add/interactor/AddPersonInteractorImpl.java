@@ -37,7 +37,10 @@ public class AddPersonInteractorImpl implements AddPersonInteractor {
 
     @Override
     public Completable updatePersonData(PersonData personData) {
-        return personRepo.updatePerson(personData);
+        return personRepo.updatePerson(personData)
+                .ignoreElements()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override

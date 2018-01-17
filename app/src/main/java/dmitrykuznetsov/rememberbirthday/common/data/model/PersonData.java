@@ -1,8 +1,5 @@
 package dmitrykuznetsov.rememberbirthday.common.data.model;
 
-//import io.realm.RealmList;
-//import io.realm.RealmObject;
-
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.os.Parcel;
@@ -22,15 +19,8 @@ public class PersonData extends BaseObservable implements Parcelable /*extends R
     private String bindPhone;
     private String pathImage;
     private long dateInMillis;
-//    private RealmList<ReminderData> reminders;
 
     public PersonData() {
-//        this.id = 0;
-//        this.name = "";
-//        this.note = "";
-//        this.bindPhone = "";
-//        this.pathImage = "";
-//        this.dateInMillis = 0;
     }
 
     public PersonData(int id, String name, String note, String bindPhone, String pathImage, long dateInMillis/*, RealmList<ReminderData> reminders*/) {
@@ -40,7 +30,6 @@ public class PersonData extends BaseObservable implements Parcelable /*extends R
         this.bindPhone = bindPhone;
         this.pathImage = pathImage;
         this.dateInMillis = dateInMillis;
-//        this.reminders = reminders;
     }
 
     @Bindable
@@ -102,15 +91,6 @@ public class PersonData extends BaseObservable implements Parcelable /*extends R
         this.dateInMillis = dateInMillis;
         notifyPropertyChanged(BR.dateInMillis);
     }
-
-
-//    public RealmList<ReminderData> getReminders() {
-//        return reminders;
-//    }
-//
-//    public void setReminders(RealmList<ReminderData> reminders) {
-//        this.reminders = reminders;
-//    }
 
     @Override
     public int describeContents() {

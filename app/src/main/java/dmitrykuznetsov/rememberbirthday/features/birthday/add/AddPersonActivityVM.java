@@ -39,7 +39,6 @@ public class AddPersonActivityVM extends BasePermissionActivityVM<BaseActivity> 
         super(activity, permissionsStorage);
         this.addPersonInteractor = addPersonInteractor;
         this.person = person;
-        initPermissions();
     }
 
     public void addImage() {
@@ -182,10 +181,6 @@ public class AddPersonActivityVM extends BasePermissionActivityVM<BaseActivity> 
         return message;
     }
 
-    private void initPermissions() {
-        ActivityCompat.requestPermissions(getActivity(),
-                new String[]{Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                PermissionsStorage.PERMISSION_REQUEST_READ_CONTACTS);
-    }
+
 
 }

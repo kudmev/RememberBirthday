@@ -30,7 +30,7 @@ public class RepoModule {
     @Named("uri_single_row")
     UriMatcher provideUriMatcher() {
         UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI(RememberContentProvider.AUTHORITY, "/#", RememberContentProvider.SINGLE_ROW);
+        uriMatcher.addURI(RememberContentProvider.AUTHORITY, "/#", RememberContentProvider.SINGLE_BIRTHDAY);
         return uriMatcher;
     }
 

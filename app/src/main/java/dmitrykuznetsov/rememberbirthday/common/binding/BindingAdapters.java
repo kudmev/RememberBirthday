@@ -130,7 +130,7 @@ public class BindingAdapters {
     @BindingAdapter({"visibility_field"})
     public static void setBirthdayAndIcon(View view, String value) {
         if (value == null || value.equals("")) {
-            view.setVisibility(View.INVISIBLE);
+            view.setVisibility(View.GONE);
         } else {
             view.setVisibility(View.VISIBLE);
         }

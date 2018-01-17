@@ -15,11 +15,12 @@ public interface PersonRepo {
 
     Completable addPerson(PersonData personData);
 
-    Completable updatePerson(PersonData personData);
+    Observable<Integer> updatePerson(PersonData personData);
 
-    Observable<Boolean> deletePerson(int personId);
+    Completable deletePerson(int personId);
 
     Observable<PersonData> getPerson(int personId);
 
+    Completable upgradePersonsAge();
 
 }

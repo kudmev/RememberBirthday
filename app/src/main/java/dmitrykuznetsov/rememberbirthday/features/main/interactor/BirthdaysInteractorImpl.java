@@ -55,7 +55,9 @@ public class BirthdaysInteractorImpl implements BirthdaysInteractor {
     private Observable<List<PersonItemView>> searchPersons(String searchText) {
         return personRepo.getPersons(searchText)
                 .map(this::sortListByDayOfYear)
-                .map(this::moveBirthdaysBeforeNowDay);
+                .map(this::moveBirthdaysBeforeNowDay)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     private List<PersonItemView> sortListByDayOfYear(List<PersonData> persons) {

@@ -35,7 +35,7 @@ public class UpgradeVersionReceiver extends BroadcastReceiver {
 
         boolean isUpgradeAge = config.getAsBoolean(UPGRADE_AGE);
 
-        if (ACTION_PACKAGE_REPLACED.equals(intent.getAction())) {
+        if (ACTION_PACKAGE_REPLACED.equals(intent.getAction()) && !isUpgradeAge) {
             Log.d("UpgradeVersionReceiver", "isUpgradeAge false");
             personRepo.upgradePersonsAge()
                     .subscribe(this::onComplete, this::onError);

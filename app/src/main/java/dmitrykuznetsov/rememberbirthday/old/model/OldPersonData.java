@@ -16,5 +16,11 @@ public class OldPersonData {
         this.age = age;
     }
 
-
+    @Override
+    public String toString() {
+        return "OldPersonData{" +
+                "personData=" + personData +
+                ", age=" + age +
+                '}';
+    }
 }

@@ -31,11 +31,12 @@ public class UpgradeVersionReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         AndroidInjection.inject(this, context);
+        Log.d("UpgradeVersionReceiver", "onReceive");
 
         boolean isUpgradeAge = config.getAsBoolean(UPGRADE_AGE);
 
-        if (ACTION_PACKAGE_REPLACED.equals(intent.getAction()) && isUpgradeAge) {
-            Log.d("AlarmReceiver", "run");
+        if (ACTION_PACKAGE_REPLACED.equals(intent.getAction())) {
+            Log.d("UpgradeVersionReceiver", "isUpgradeAge false");
             personRepo.upgradePersonsAge()
                     .subscribe(this::onComplete, this::onError);
         }
@@ -46,10 +47,8 @@ public class UpgradeVersionReceiver extends BroadcastReceiver {
         config.set(UPGRADE_AGE, true);
     }
 
-
     private void onError(Throwable throwable) {
         Log.d("UpgradeVersionReceiver", "error");
     }
-
 
 }

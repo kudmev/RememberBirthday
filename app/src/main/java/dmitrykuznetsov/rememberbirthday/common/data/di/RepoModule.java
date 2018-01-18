@@ -36,8 +36,8 @@ public class RepoModule {
 
     @Provides
     @Singleton
-    PersonRepo providePersonRepo(ContentResolver contentResolver, @Named("uri_single_row") UriMatcher uriMatcher) {
-        return new PersonRepoImpl(contentResolver, uriMatcher);
+    PersonRepo providePersonRepo(ContentResolver contentResolver, Context context) {
+        return new PersonRepoImpl(contentResolver, context);
     }
 
     @Provides

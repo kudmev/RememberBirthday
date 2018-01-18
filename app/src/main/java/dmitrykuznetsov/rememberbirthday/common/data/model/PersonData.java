@@ -93,6 +93,18 @@ public class PersonData extends BaseObservable implements Parcelable /*extends R
     }
 
     @Override
+    public String toString() {
+        return "PersonData{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", note='" + note + '\'' +
+                ", bindPhone='" + bindPhone + '\'' +
+                ", pathImage='" + pathImage + '\'' +
+                ", dateInMillis=" + dateInMillis +
+                '}';
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }

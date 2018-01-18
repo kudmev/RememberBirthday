@@ -2,6 +2,8 @@ package dmitrykuznetsov.rememberbirthday.common.data.repo;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.util.Log;
@@ -25,12 +27,14 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class PersonRepoImpl implements PersonRepo {
 
-    private ContentResolver contentResolver;
-    private UriMatcher uriMatcher;
+    private static final String TAG = PersonRepoImpl.class.getSimpleName();
 
-    public PersonRepoImpl(ContentResolver contentResolver, UriMatcher uriMatcher) {
+    private ContentResolver contentResolver;
+    private Context context;
+
+    public PersonRepoImpl(ContentResolver contentResolver, Context context) {
         this.contentResolver = contentResolver;
-        this.uriMatcher = uriMatcher;
+        this.context = context;
     }
 
     @Override
@@ -155,17 +159,22 @@ public class PersonRepoImpl implements PersonRepo {
             }
             c.close();
         }
+        Log.d(TAG, "size old: " + oldPersons.size());
         return Observable.just(oldPersons);
     }
 
     private Observable<List<OldPersonData>> rewriteDateInMillisByAge(List<OldPersonData> persons) {
-//        List<OldPersonData> convert = new ArrayList<>();
         for (OldPersonData oldPersonData : persons) {
             PersonData personData = oldPersonData.personData;
             DateTime dateTime = new DateTime(personData.getDateInMillis());
-            dateTime.minusYears(oldPersonData.age);
+            dateTime = dateTime.minusYears(oldPersonData.age);
             personData.setDateInMillis(dateTime.getMillis());
+            String pathImage = personData.getPathImage();
+            if (pathImage != null && !pathImage.equals("")) {
+                personData.setPathImage(pathImage + "/" + personData.getId() + ".jpg");
+            }
         }
+        Log.d(TAG, "size old: " + persons.toString());
         return Observable.just(persons);
     }
 
@@ -176,7 +185,7 @@ public class PersonRepoImpl implements PersonRepo {
             int index = updateById(personData);
             count = count + index;
         }
-        Log.d("PersonRepoImpl: ", "count rewrite person: " + count);
+        Log.d(TAG, "count rewrite person: " + count);
         return Observable.just(count);
     }
 }

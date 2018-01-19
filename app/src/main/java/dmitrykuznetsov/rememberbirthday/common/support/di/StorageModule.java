@@ -2,9 +2,11 @@ package dmitrykuznetsov.rememberbirthday.common.support.di;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -29,14 +31,22 @@ public class StorageModule {
 
     @Provides
     @Singleton
-    AppSharedPreferences provideAppSharedPreferences(SharedPreferences sharedPreferences, Utils utils) {
+    AppSharedPreferences provideAppSharedPreferences(@Named("config") SharedPreferences sharedPreferences, Utils utils) {
         return new AppSharedPreferences(sharedPreferences, utils);
     }
 
     @Provides
     @Singleton
+    @Named("config")
     SharedPreferences provideSharedPreferences(Context context) {
         final String config = "config";
         return context.getSharedPreferences(config, Context.MODE_PRIVATE);
+    }
+
+    @Provides
+    @Singleton
+    @Named("default")
+    SharedPreferences provideDefaultSharedPreferences(Context context) {
+       return PreferenceManager.getDefaultSharedPreferences(context);
     }
 }

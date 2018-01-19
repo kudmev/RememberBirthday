@@ -167,7 +167,9 @@ public class PersonRepoImpl implements PersonRepo {
         for (OldPersonData oldPersonData : persons) {
             PersonData personData = oldPersonData.personData;
             DateTime dateTime = new DateTime(personData.getDateInMillis());
-            dateTime = dateTime.minusYears(oldPersonData.age);
+
+            int minusYear = oldPersonData.age + 1;
+            dateTime = dateTime.minusYears(minusYear);
             personData.setDateInMillis(dateTime.getMillis());
             String pathImage = personData.getPathImage();
             if (pathImage != null && !pathImage.equals("")) {

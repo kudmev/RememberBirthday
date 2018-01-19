@@ -8,8 +8,5 @@ import io.reactivex.Observable;
  */
 
 public interface AlarmRepo {
-    Completable setAlarmTime(boolean isNeedPlusDay, int hour, int minute);
-
-//    Completable setAlarmTimeOnToday(int hour, int minute);
-//    Completable setAlarmTimeOnTomorrow(int hour, int minute);
+    Completable setAlarmTime(long millis);
 }

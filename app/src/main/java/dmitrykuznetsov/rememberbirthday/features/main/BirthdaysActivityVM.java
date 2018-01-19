@@ -16,9 +16,11 @@ import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
 import dmitrykuznetsov.rememberbirthday.common.base.AbstractListActivityVM;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
+import dmitrykuznetsov.rememberbirthday.common.receiver.interactor.AlarmInteractor;
 import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 import dmitrykuznetsov.rememberbirthday.features.birthday.add.AddPersonActivity;
 import dmitrykuznetsov.rememberbirthday.features.birthday.detail.DetailBirthdayActivity;
+import dmitrykuznetsov.rememberbirthday.features.help.HelpActivity;
 import dmitrykuznetsov.rememberbirthday.features.main.interactor.BirthdaysInteractor;
 import dmitrykuznetsov.rememberbirthday.features.main.model.PersonItemView;
 import dmitrykuznetsov.rememberbirthday.features.settings.SettingsActivity;
@@ -37,15 +39,21 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
     private CompositeDisposable disposables = new CompositeDisposable();
     private List<PersonItemView> persons;
     private BirthdaysInteractor birthdaysInteractor;
+    private AlarmInteractor alarmInteractor;
 
     private boolean isSearchNow;
     private String searchText;
 
-    public BirthdaysActivityVM(BirthdaysActivity activity, List<PersonItemView> persons, RecyclerConfiguration configuration, BirthdaysInteractor birthdaysInteractor) {
+    public BirthdaysActivityVM(BirthdaysActivity activity, List<PersonItemView> persons, RecyclerConfiguration configuration, BirthdaysInteractor bInteractor, AlarmInteractor aInteractor) {
         super(activity, persons, configuration);
-        this.birthdaysInteractor = birthdaysInteractor;
+        this.birthdaysInteractor = bInteractor;
+        this.alarmInteractor = aInteractor;
         this.persons = persons;
-        disposables.add(birthdaysInteractor.setInitialAlarm()
+        initAlarmIfNeed();
+    }
+
+    private void initAlarmIfNeed(){
+        disposables.add(alarmInteractor.updateAlarm()
                 .subscribe());
     }
 
@@ -152,8 +160,12 @@ public class BirthdaysActivityVM extends AbstractListActivityVM<BirthdaysActivit
                 addPerson();
                 break;
             case R.id.action_settings:
-                Intent intent = new Intent(getActivity(), SettingsActivity.class);
-                activity.startActivity(intent);
+                Intent intentSettings = new Intent(getActivity(), SettingsActivity.class);
+                activity.startActivity(intentSettings);
+                break;
+            case R.id.action_help:
+                Intent intentHelp = new Intent(getActivity(), HelpActivity.class);
+                activity.startActivity(intentHelp);
                 break;
         }
     }

@@ -6,14 +6,14 @@ package dmitrykuznetsov.rememberbirthday.common.receiver.model;
 
 public class AlarmTime {
     public final long alarmMillis;
-    public final boolean isNeedPlusDay;
-    public final int hour;
-    public  final int minute;
+//    public final boolean isNeedPlusDay;
+//    public final int hour;
+//    public  final int minute;
 
-    public AlarmTime(long alarmMillis, boolean isNeedPlusDay, int hour, int minute) {
+    public AlarmTime(long alarmMillis/*, boolean isNeedPlusDay, int hour, int minute*/) {
         this.alarmMillis = alarmMillis;
-        this.isNeedPlusDay = isNeedPlusDay;
-        this.hour = hour;
-        this.minute = minute;
+//        this.isNeedPlusDay = isNeedPlusDay;
+//        this.hour = hour;
+//        this.minute = minute;
     }
 }

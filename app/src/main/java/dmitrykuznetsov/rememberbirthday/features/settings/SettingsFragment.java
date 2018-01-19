@@ -5,17 +5,18 @@ import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
-
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.util.Log;
-import android.widget.Toast;
+
+import org.joda.time.DateTime;
 
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.common.alarm.AlarmRepo;
+import dmitrykuznetsov.rememberbirthday.common.receiver.interactor.AlarmInteractor;
+import dmitrykuznetsov.rememberbirthday.common.support.Constants;
 
 
 /**
@@ -23,13 +24,8 @@ import dmitrykuznetsov.rememberbirthday.common.alarm.AlarmRepo;
  */
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    public static final String timePrefA_Key = "timePrefA_Key";
-    public static final String pref_sync = "pref_sync";
-    public static final String pref_vibrate = "pref_vibrate";
-    public static final String pref_ringtone = "pref_ringtone";
-
     @Inject
-    AlarmRepo alarmRepo;
+    AlarmInteractor alarmInteractor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +34,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         addPreferencesFromResource(R.xml.preferences);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        onSharedPreferenceChanged(sharedPreferences, timePrefA_Key);
+        onSharedPreferenceChanged(sharedPreferences, Constants.timePrefA_Key);
     }
 
     @Override
@@ -52,16 +48,13 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference connectionPref;
         switch (key) {
-            case timePrefA_Key:
+            case Constants.timePrefA_Key:
                 connectionPref = findPreference(key);
                 connectionPref.setTitle(R.string.pref_title_ringtone_time);
                 String time = sharedPreferences.getString(key, getString(R.string.default_alarm_time));
-
-                int hour = Integer.parseInt(time.substring(0, 2));
-                int minute = Integer.parseInt(time.substring(3, 5));
                 connectionPref.setSummary(time.substring(0, 5));
 
-                alarmRepo.setAlarmTime(true, hour, minute)
+                alarmInteractor.updateAlarm()
                         .subscribe();
                 break;
         }

@@ -6,6 +6,7 @@
     <string name="title_detail_person">Информация об имениннике</string>
     <string name="title_add_person">Добавить именинника</string>
     <string name="title_activity_settings">Экран настроек</string>
+    <string name="title_activity_help">Помощь</string>
 
     <!-- ERRORS -->
     <string name="error_network_not_available">Интернет не доступен, проверьте настройки подключения</string>
@@ -66,6 +67,7 @@
     <string name="menu_delete">Удалить контакт</string>
     <string name="menu_save">Сохранить</string>
     <string name="menu_settings">Настройки</string>
+    <string name="menu_help">Помощь</string>
 
     <!-- Preferences -->
     <string name="settings_notification">Настройка уведомлений</string>
@@ -103,4 +105,18 @@
     <string name="permission_rationale_title_write_storage">Доступ к памяти</string>
     <string name="permission_rationale_message_write_storage">Напоминалка ДР нужен доступ к памяти телефона, чтобы добавить фотографию именинника, редактировать её, и сохранить уменьшенную копию.</string>
     <string name="error_permission_denied_write_storage">Нет разрешения на доступ к памяти телефона</string>
+
+    <!-- Help Activity -->
+    <string name="tv_help_header_answer_notifications">Почему мне не приходят уведомления?</string>
+    <string name="tv_help_description_answer_notifications"><![CDATA[<p>Некоторые производители оборудования (особенно китайские) имеют режимы экономии энергии, которые блокируют работу будильников приложения и запрещают их автозапуск.</p><p><br/>Чтобы уведомления от приложения приходили вовремя, пройдите несколько шагов:</p><p><br/>1. Отключите режим экономии энергии или добавьте приложение в белый список (Настройки > Батарея > Экономия заряда батареи).</p><p><br/>2. Добавьте Напоминалка ДР в исключения программ, которые блокируют работу в фоновом режиме («Battery Saver», «Clean Master» или др.).</p><p><br/>3. Убедитесь, что для приложения Напоминалка ДР разрешены уведомления (Настройки > Приложения > Напоминалка ДР).</p>]]></string>
+    <string name="tv_help_header_samsung">Для смартфонов Samsung</string>
+    <string name="tv_help_description_samsung">Найдите приложение «Smart Manager», нажмите на батарею, затем на «Подробно». Убедитесь, что для приложения Напоминалка ДР отключено энергосбережение.</string>
+    <string name="tv_help_header_huawei">Для смартфонов Huawei</string>
+    <string name="tv_help_description_huawei">Откройте настройки телефона, перейдите в «Энергосбережение», затем откройте вкладку «Защищенные приложения» и отметьте в списке Напоминалка ДР.</string>
+    <string name="tv_help_header_xiaomi">Для смартфонов Xiaomi</string>
+    <string name="tv_help_description_xiaomi"><![CDATA[<p>1. Откройте настройки телефона, перейдите в «Безопасность» (или будет доступен сразу пункт «Разрешения»), далее найдите пункт «Разрешения», нажмите «Автостарт», найдите приложение Напоминалка ДР и разрешите автозапуск.</p><p><br/>2. Откройте настройки телефона, перейдите в «Батарея и производительность», далее найдите в подразделах настройки экономии энергии для конкретного приложения, и выберите «Нет ограничений» для Напоминалка ДР.</p>]]></string>
+    <string name="tv_help_header_addition">Дополнительные настройки</string>
+    <string name="tv_help_description_addition">В зависимости от версии оболочки (EMUI, MIUI, Oxygen и др.), применяемой производителем, настройки могут находиться в разных местах.</string>
+
+
 </resources>

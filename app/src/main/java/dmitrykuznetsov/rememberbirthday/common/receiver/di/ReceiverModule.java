@@ -16,8 +16,4 @@ import dmitrykuznetsov.rememberbirthday.common.support.Config;
 @Module
 public class ReceiverModule {
 
-    @Provides
-    AlarmInteractor provideAlarmInteractor(AlarmRepo alarmRepo, Config config, Context context) {
-        return new AlarmInteractorImpl(alarmRepo, config, context);
-    }
 }

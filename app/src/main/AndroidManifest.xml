@@ -51,6 +51,10 @@
             android:theme="@style/AppTheme.ActionBar" />
 
         <activity
+            android:name=".features.help.HelpActivity"
+            android:parentActivityName=".features.main.BirthdaysActivity" />
+
+        <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
 
@@ -68,6 +72,8 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
             </intent-filter>
         </receiver>
 

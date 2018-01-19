@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 
 import org.joda.time.DateTime;
 
@@ -23,6 +24,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class AlarmRepoImpl implements AlarmRepo {
 
+    public static final String CLASS_NAME = AlarmRepoImpl.class.getSimpleName();
+
     private Context context;
     private AlarmManager alarmManager;
     private Config config;
@@ -34,20 +37,17 @@ public class AlarmRepoImpl implements AlarmRepo {
     }
 
     @Override
-    public Completable setAlarmTime(boolean isNeedPlusDay, int hour, int minute) {
-        Intent intentToFire = new Intent(AlarmReceiver.ACTION_REFRESH_DATA);
-
-        int day = isNeedPlusDay ? 1 : 0;
-        DateTime dateTime = new DateTime()
-                .plusDays(day)
-                .withHourOfDay(hour)
-                .withMinuteOfHour(minute)
-                .withSecondOfMinute(0)
-                .withMillisOfSecond(0);
-
-        long millis = dateTime.getMillis();
+    public Completable setAlarmTime(long millis) {
+        DateTime dateTime = new DateTime(millis);
+        Log.d(CLASS_NAME, "Alarm set: year: "
+                + dateTime.getYear()
+                + " month: " + dateTime.getMonthOfYear()
+                + " day: " + dateTime.getDayOfMonth()
+                + " hour: " + dateTime.getHourOfDay()
+                + " minute: " + dateTime.getMinuteOfHour());
         config.set(Constants.ALARM_TIME, millis);
 
+        Intent intentToFire = new Intent(AlarmReceiver.ACTION_REFRESH_DATA);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intentToFire, PendingIntent.FLAG_CANCEL_CURRENT);
         if (Build.VERSION.SDK_INT < 23) {
             if (Build.VERSION.SDK_INT >= 19) {

@@ -10,5 +10,4 @@ import io.reactivex.Observable;
 public interface BirthdaysInteractor {
     Observable<List<PersonItemView>> getPersons();
     Observable<List<PersonItemView>> getPersonsByName(String searchText);
-    Completable setInitialAlarm();
 }

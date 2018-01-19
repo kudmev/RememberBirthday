@@ -5,6 +5,9 @@ import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -38,6 +41,19 @@ public class BindingAdapters {
         } else {
             imageView.setImageDrawable(null);
         }
+    }
+
+
+    @BindingAdapter({"spanText"})
+    public static void setSpanText(TextView view, String text) {
+        Spanned spanned;
+        if (Build.VERSION.SDK_INT >= 24) {
+            spanned = Html.fromHtml(text, android.text.Html.FROM_HTML_MODE_COMPACT);
+        } else {
+            spanned = Html.fromHtml(text);
+        }
+        view.setText(spanned);
+        view.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @BindingAdapter({"bindTouchListener"})

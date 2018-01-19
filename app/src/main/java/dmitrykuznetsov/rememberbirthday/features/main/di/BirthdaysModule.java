@@ -8,6 +8,7 @@ import dagger.Provides;
 import dmitrykuznetsov.rememberbirthday.common.adapter.RecyclerConfiguration;
 import dmitrykuznetsov.rememberbirthday.common.alarm.AlarmRepo;
 import dmitrykuznetsov.rememberbirthday.common.data.repo.PersonRepo;
+import dmitrykuznetsov.rememberbirthday.common.receiver.interactor.AlarmInteractor;
 import dmitrykuznetsov.rememberbirthday.common.support.Config;
 import dmitrykuznetsov.rememberbirthday.features.main.BirthdaysActivity;
 import dmitrykuznetsov.rememberbirthday.features.main.BirthdaysActivityVM;
@@ -32,9 +33,9 @@ public class BirthdaysModule {
     @Provides
     @ActivityScope
     BirthdaysActivityVM provideBirthdayActivityVM(BirthdaysActivity activity,
-                                                    RecyclerConfiguration configuration,
-                                                    BirthdaysInteractor interactor) {
+                                                  RecyclerConfiguration configuration,
+                                                  BirthdaysInteractor bInteractor, AlarmInteractor aInteractor) {
         List<PersonItemView> persons = new ArrayList<>();
-        return new BirthdaysActivityVM(activity, persons, configuration, interactor);
+        return new BirthdaysActivityVM(activity, persons, configuration, bInteractor, aInteractor);
     }
 }

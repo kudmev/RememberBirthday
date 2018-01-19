@@ -40,18 +40,6 @@ public class BirthdaysInteractorImpl implements BirthdaysInteractor {
         return searchPersons(searchName);
     }
 
-    @Override
-    public Completable setInitialAlarm() {
-        long alarmMillis = config.getAsLong(Constants.ALARM_TIME);
-        if (alarmMillis == 0) {
-            return alarmRepo.setAlarmTime(true, 10, 0)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread());
-        } else {
-            return Completable.complete();
-        }
-    }
-
     private Observable<List<PersonItemView>> searchPersons(String searchText) {
         return personRepo.getPersons(searchText)
                 .map(this::sortListByDayOfYear)

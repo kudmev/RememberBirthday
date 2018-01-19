@@ -13,6 +13,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import org.joda.time.DateTime;
@@ -20,7 +21,9 @@ import org.joda.time.DateTime;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
+import dagger.Lazy;
 import dagger.android.DaggerIntentService;
 import dmitrykuznetsov.rememberbirthday.R;
 import dmitrykuznetsov.rememberbirthday.common.data.model.PersonData;
@@ -35,7 +38,7 @@ import dmitrykuznetsov.rememberbirthday.features.settings.SettingsFragment;
  */
 public class NotificationService extends DaggerIntentService {
 
-    private final static String CLASS_NAME = NotificationService.class.getClass().getSimpleName();
+    private final static String CLASS_NAME = NotificationService.class.getSimpleName();
 
     @Inject
     NotificationInteractor notificationInteractor;
@@ -44,7 +47,8 @@ public class NotificationService extends DaggerIntentService {
     NotificationManager notificationManager;
 
     @Inject
-    Notification.Builder builder;
+    @Named("default")
+    SharedPreferences sharedPreferences;
 
     @Inject
     Utils utils;
@@ -73,6 +77,7 @@ public class NotificationService extends DaggerIntentService {
         for (PersonData personData : personsWaitNotification) {
             buildNotification(getApplicationContext(), personData);
         }
+        Log.d(CLASS_NAME, "personsWaitNotification: " + personsWaitNotification.size());
     }
 
     private void onError(Throwable throwable) {
@@ -85,8 +90,9 @@ public class NotificationService extends DaggerIntentService {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, personData.getId(),
                 intent, 0);
 
-        Bitmap userBitmap = BitmapFactory.decodeFile(personData.getPathImage());
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "remember_notification");
 
+        Bitmap userBitmap = BitmapFactory.decodeFile(personData.getPathImage());
         builder.setSmallIcon(R.mipmap.logo);
         if (userBitmap != null) {
             builder.setLargeIcon(userBitmap);
@@ -99,7 +105,7 @@ public class NotificationService extends DaggerIntentService {
             DateTime userTime = new DateTime(personData.getDateInMillis());
             String dayPrint = String.valueOf(userTime.getDayOfMonth());
             int month = userTime.getMonthOfYear();
-            String monthPrint = month < 10 ? String.valueOf(month) : String.valueOf("0" + month);
+            String monthPrint = month < 10 ? "0" + String.valueOf(month) : String.valueOf(month) ;
             contentText = context.getString(R.string.notification_person_date_birthday, personData.getName(), dayPrint, monthPrint);
         }
 
@@ -110,15 +116,15 @@ public class NotificationService extends DaggerIntentService {
                 .setLights(Color.WHITE, 0, 1)
                 .setContentIntent(pendingIntent).setAutoCancel(true);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Boolean soundNotification = sharedPreferences.getBoolean(SettingsFragment.pref_sync, false);
-        Boolean vibrateNotification = sharedPreferences.getBoolean(SettingsFragment.pref_vibrate, false);
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        Boolean soundNotification = sharedPreferences.getBoolean(Constants.pref_sync, false);
+        Boolean vibrateNotification = sharedPreferences.getBoolean(Constants.pref_vibrate, false);
 
-        String alarms = sharedPreferences.getString(SettingsFragment.pref_ringtone, "default ringtone");
+        String alarms = sharedPreferences.getString(Constants.pref_ringtone, "default ringtone");
 
         if (soundNotification) {
             builder.setDefaults(Notification.DEFAULT_LIGHTS);
-            RingtoneManager.getRingtone(this, Uri.parse(alarms)).play();
+            builder.setSound(Uri.parse(alarms));
         }
 
         if (vibrateNotification) {
